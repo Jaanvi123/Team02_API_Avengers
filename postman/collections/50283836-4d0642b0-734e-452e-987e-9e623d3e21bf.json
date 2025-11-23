@@ -20,7 +20,7 @@
 							"\r",
 							"// Save token to environment\r",
 							"if (token) {\r",
-							"    pm.globals.set(\"auth_token\", token);\r",
+							"    pm.Team02_LMS_API_Ramya.set(\"auth_token\", token);\r",
 							"    console.log(\"Captured token:\", token);\r",
 							"} else {\r",
 							"    pm.test(\"Token not found\", function () {\r",
