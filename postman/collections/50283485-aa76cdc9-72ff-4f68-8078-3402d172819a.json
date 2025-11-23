@@ -18,6 +18,18 @@
 			"response": []
 		},
 		{
+			"name": "CreateNewUser",
+			"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
 			"name": "CreateNewSkill",
 			"id": "50283485-4ea1751e-94b2-4c41-8a05-897dc63877e6",
 			"protocolProfileBehavior": {
@@ -54,8 +66,8 @@
 			"response": []
 		},
 		{
-			"name": "CreateNewUser",
-			"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
+			"name": "New Request",
+			"id": "50283485-0eff6d75-b552-455e-a996-88ed3de339e3",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
