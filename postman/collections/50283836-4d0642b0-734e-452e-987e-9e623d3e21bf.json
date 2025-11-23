@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "50283836-4d0642b0-734e-452e-987e-9e623d3e21bf",
+		"name": "UserLoginModule-Ramya",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/login",
+			"id": "50283836-8664e6e0-beb7-4ef0-adcc-7b2738e287ef",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "50283836-8a0bbf35-b6a3-4f8f-a486-f075b70291da",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjM4NTA4MjgsImV4cCI6MTc2Mzg3OTYyOH0.7mUESvBudM4vRfW9O9NM57L-WKXK7421QGLIhWVmHY865FLUW4j4uHXMREFRrP2jtmjUwY3zzYoCc4O2Arp3LA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/logoutlms",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"logoutlms"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b5f8ede1-db11-4fe3-9f19-1b6c14a31c45",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a4b612e6-0e81-41d2-8547-ff8b3d285f3c",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
