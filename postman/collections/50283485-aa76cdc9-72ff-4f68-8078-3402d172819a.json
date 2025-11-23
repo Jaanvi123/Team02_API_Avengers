@@ -42,6 +42,18 @@
 			"response": []
 		},
 		{
+			"name": "CreateNewProgramBatch",
+			"id": "50283485-e3c477d0-df9e-4b50-8a47-3058f8885aee",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
 			"name": "CreateNewSkill",
 			"id": "50283485-4ea1751e-94b2-4c41-8a05-897dc63877e6",
 			"protocolProfileBehavior": {
@@ -74,18 +86,6 @@
 						"SaveSkillMaster "
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"id": "50283485-e3c477d0-df9e-4b50-8a47-3058f8885aee",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
 			},
 			"response": []
 		}
