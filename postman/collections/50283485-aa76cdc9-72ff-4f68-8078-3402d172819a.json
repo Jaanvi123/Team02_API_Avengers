@@ -23,7 +23,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "{{",
+				"value": "{{Token}}",
 				"type": "string"
 			}
 		]
@@ -32,7 +32,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "b850fa25-effb-45d3-89bf-e4ae426fb396",
+				"id": "57aecd2f-1ebd-44d1-bb6f-d48559b430e1",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -44,7 +44,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "0a28af98-ab91-4176-bdfd-461c77ff4811",
+				"id": "57fe8a46-4d8e-4baf-991e-d2866758fb77",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
