@@ -20,7 +20,7 @@
 							"\r",
 							"// Save token to environment\r",
 							"if (token) {\r",
-							"    pm.environment.set(\"auth_token\", \"value\");\r",
+							"    pm.environment.set(\"auth_token\", token);\r",
 							"    pm.globals.set(\"auth_token\", token);\r",
 							"    console.log(\"Captured token:\", token);\r",
 							"} else {\r",
