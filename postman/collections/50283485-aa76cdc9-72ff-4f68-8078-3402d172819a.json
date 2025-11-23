@@ -30,6 +30,18 @@
 			"response": []
 		},
 		{
+			"name": "CreateProgramBatch",
+			"id": "50283485-28a4e32f-0d9d-482b-b23b-c1f5f65540b0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
 			"name": "CreateNewUser",
 			"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
 			"protocolProfileBehavior": {
@@ -141,18 +153,6 @@
 		{
 			"name": "New Request",
 			"id": "50283485-ca46a70c-17bf-4ec3-8304-6a59b4d087da",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
-			"id": "50283485-28a4e32f-0d9d-482b-b23b-c1f5f65540b0",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
