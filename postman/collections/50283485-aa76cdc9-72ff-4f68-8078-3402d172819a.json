@@ -165,7 +165,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "",
+				"value": "    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjM5NDE2NDcsImV4cCI6MTc2Mzk3MDQ0N30.Rz-SJ-UxT4i-ExwcUwlm62cYR6JxEjOt85wDGQLNgimOVreHu-FJzJVayXFiIKb2T_3y816G2HNhxhOuIcKAQg\",",
 				"type": "string"
 			}
 		]
@@ -174,7 +174,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "f93d91d6-06aa-47a3-908b-70d4c8971fb8",
+				"id": "3f7c4105-2963-4933-9e59-a1ab3193d124",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -186,7 +186,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "3294fa51-04a9-4c0e-8eec-aa24edd82996",
+				"id": "8954d8d4-e6d7-499c-bcf3-69a6bfff1e6b",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
