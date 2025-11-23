@@ -24,8 +24,32 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\"skillName\": \"Digital Communication\" \r\n   \r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/SaveSkillMaster ",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"SaveSkillMaster "
+					]
+				}
 			},
 			"response": []
 		}
