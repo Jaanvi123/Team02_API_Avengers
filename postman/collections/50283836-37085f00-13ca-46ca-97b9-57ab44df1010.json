@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "50283836-37085f00-13ca-46ca-97b9-57ab44df1010",
-		"name": "UserLoginModule-Ramya",
+		"name": "UserLoginModule",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
