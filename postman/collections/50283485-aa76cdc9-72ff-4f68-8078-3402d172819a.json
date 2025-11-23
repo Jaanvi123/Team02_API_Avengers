@@ -85,17 +85,26 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjM5MzQ2ODYsImV4cCI6MTc2Mzk2MzQ4Nn0.xtSSP4ANIN9QP3yeNtPqwkmLrC8XC9q0fNM7zqZ6WAAeSeJOm-TNT2sg5pwABfcRO6cZMKicNClnz67uQo5EeA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n\"skillName\": \"Digital Communication\" \r\n   \r\n} ",
+					"raw": "{\r\n    \"skillName\": \"Computer\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -103,12 +112,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/SaveSkillMaster ",
+					"raw": "{{baseURL}}/SaveSkillMaster",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"SaveSkillMaster "
+						"SaveSkillMaster"
 					]
 				}
 			},
