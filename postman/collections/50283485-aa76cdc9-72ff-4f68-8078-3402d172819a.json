@@ -90,8 +90,20 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "GetAllUsers",
 			"id": "50283485-3eb01b40-d204-484f-bb4f-307e4e40c69c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "50283485-6be18e16-7fc0-4f4f-b8b6-b19b9d01ef13",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
