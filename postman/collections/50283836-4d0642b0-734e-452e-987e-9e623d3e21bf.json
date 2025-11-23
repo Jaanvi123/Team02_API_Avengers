@@ -7,6 +7,33 @@
 	"item": [
 		{
 			"name": "/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cabcb04-4a31-4736-ac3e-df9f6d4aa457",
+						"exec": [
+							"let json = pm.response.json();\r",
+							"\r",
+							"// Extract token from response\r",
+							"let token = json.token;\r",
+							"\r",
+							"// Save token to environment\r",
+							"if (token) {\r",
+							"    pm.globals.set(\"auth_token\", token);\r",
+							"    console.log(\"Captured token:\", token);\r",
+							"} else {\r",
+							"    pm.test(\"Token not found\", function () {\r",
+							"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283836-8664e6e0-beb7-4ef0-adcc-7b2738e287ef",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -27,9 +54,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/login",
+					"raw": "{{baseURL}}/login",
 					"host": [
-						"{{baseUrl}}"
+						"{{baseURL}}"
 					],
 					"path": [
 						"login"
