@@ -18,7 +18,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "CreateNewSkill",
 			"id": "50283485-4ea1751e-94b2-4c41-8a05-897dc63877e6",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -54,7 +54,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "CreateNewUser",
 			"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
