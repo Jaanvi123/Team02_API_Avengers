@@ -25,7 +25,16 @@
 			},
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\"userComments\": \"Admin\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8548115150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team9@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
 			},
 			"response": []
 		},
