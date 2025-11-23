@@ -6,13 +6,25 @@
 	},
 	"item": [
 		{
-			"name": "Create New Skill",
+			"name": "Login",
 			"id": "50283485-ba504a7b-1a88-4c64-896e-cc14d9502f46",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "50283485-4ea1751e-94b2-4c41-8a05-897dc63877e6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
 				"header": []
 			},
 			"response": []
