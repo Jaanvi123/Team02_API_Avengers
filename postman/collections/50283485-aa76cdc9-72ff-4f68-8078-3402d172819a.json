@@ -1,0 +1,21 @@
+{
+	"info": {
+		"_postman_id": "50283485-aa76cdc9-72ff-4f68-8078-3402d172819a",
+		"name": "Skill Master Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create New Skill",
+			"id": "50283485-ba504a7b-1a88-4c64-896e-cc14d9502f46",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
