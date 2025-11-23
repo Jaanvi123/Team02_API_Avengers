@@ -58,9 +58,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/logoutlms",
+					"raw": "{{baseURL}}/logoutlms",
 					"host": [
-						"{{baseUrl}}"
+						"{{baseURL}}"
 					],
 					"path": [
 						"logoutlms"
