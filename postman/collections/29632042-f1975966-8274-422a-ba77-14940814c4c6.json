@@ -1,0 +1,21 @@
+{
+	"info": {
+		"_postman_id": "29632042-f1975966-8274-422a-ba77-14940814c4c6",
+		"name": "User Module-Yogini",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"id": "29632042-b5667974-b1da-4bec-8e6a-0bfb36279dc8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
