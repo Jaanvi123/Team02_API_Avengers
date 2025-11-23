@@ -18,27 +18,6 @@
 			"response": []
 		},
 		{
-			"name": "CreateNewUser",
-			"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{ \r\n\"userComments\": \"Admin\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8548115150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team9@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "CreateNewProgram",
 			"id": "50283485-0eff6d75-b552-455e-a996-88ed3de339e3",
 			"protocolProfileBehavior": {
@@ -47,6 +26,43 @@
 			"request": {
 				"method": "POST",
 				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewUser",
+			"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n\"userComments\": \"String\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8548116150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team12@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roleStatus",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roleStatus"
+					]
+				}
 			},
 			"response": []
 		},
