@@ -46,7 +46,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"programDescription\": \"JavaFullCourse\",\r\n  \"programName\": \"java-full\",\r\n  \"programStatus\": \"Active\"\r\n}",
+					"raw": "{\r\n  \"programDescription\": \"basicC\",\r\n  \"programName\": \"cplusplus\",\r\n  \"programStatus\": \"Active\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
