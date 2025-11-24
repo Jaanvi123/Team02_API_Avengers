@@ -12,8 +12,46 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjM4NTA4MjgsImV4cCI6MTc2Mzg3OTYyOH0.7mUESvBudM4vRfW9O9NM57L-WKXK7421QGLIhWVmHY865FLUW4j4uHXMREFRrP2jtmjUwY3zzYoCc4O2Arp3LA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
-				"header": []
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"programDescription\": \"Core Java course\",\r\n  \"programName\": \"Java Basics\",\r\n  \"programStatus\": \"Active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/saveprogram",
+					"protocol": "https",
+					"host": [
+						"lms-hackathon-nov-2025-8dd40899c026",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"lms",
+						"saveprogram"
+					]
+				}
 			},
 			"response": []
 		},
