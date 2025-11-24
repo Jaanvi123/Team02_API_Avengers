@@ -575,13 +575,66 @@
 		},
 		{
 			"name": "GetAllPraogramsWithUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e249f795-99cf-491f-90be-a2aae071a1dd",
+						"exec": [
+							"pm.test(\"Status code 200\", () => pm.response.to.have.status(200));\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.expect(jsonData).to.be.an(\"array\");\r",
+							"jsonData.forEach(program => {\r",
+							"    pm.expect(program).to.have.property(\"programUsers\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283816-d39afb0f-2a0a-438f-b263-fdaad7eb433c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMDU0MzEsImV4cCI6MTc2NDAzNDIzMX0.UZd042ArndSESLnrAYUnOvHcb02CueoFfvmY_Vq0FCNZtvQtJemjfJIQq-420TXYkiEi1i0MBNei3hCMu59vNA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/allProgramsWithUsers",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"allProgramsWithUsers"
+					]
+				}
 			},
 			"response": []
 		},
