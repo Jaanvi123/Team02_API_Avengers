@@ -565,7 +565,7 @@
 					"script": {
 						"id": "72804111-e202-4938-9b3b-c1b6ebac9fef",
 						"exec": [
-							"pm.test(\"User by Program Batches\", function () { \r",
+							"pm.test(\"User by Program Batches: Request successfully completed\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							""
