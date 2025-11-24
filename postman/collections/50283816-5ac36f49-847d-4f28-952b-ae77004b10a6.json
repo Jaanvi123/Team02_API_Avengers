@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Create",
+			"name": "Add new Program",
 			"id": "50283816-f623602f-c78c-4514-8106-1a5e2dff81ab",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
