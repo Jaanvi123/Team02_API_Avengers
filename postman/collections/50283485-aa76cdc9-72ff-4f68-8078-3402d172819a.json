@@ -319,8 +319,37 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4MTk2LCJleHAiOjE3NjQwMTUzOTZ9.y6Xgt3X2yxhPf4Ear8sJjL2qN860WcAKrB9KHJFIGyrzhL1ORrgZbdFAPX8Mzw5pKrCz3397FDjC2AJVC25RkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{ \r\n  \"password\": \"TestUsers@1234\", \r\n  \"userLoginEmailId\": \"team77@gmail.com\" \r\n} "
+						},
+						"url": {
+							"raw": "{{baseURL}}/resetPassword ",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"resetPassword "
+							]
+						}
 					},
 					"response": []
 				}
