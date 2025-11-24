@@ -311,6 +311,18 @@
 							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4MTk2LCJleHAiOjE3NjQwMTUzOTZ9.y6Xgt3X2yxhPf4Ear8sJjL2qN860WcAKrB9KHJFIGyrzhL1ORrgZbdFAPX8Mzw5pKrCz3397FDjC2AJVC25RkQ\",\n    \"type\": \"Bearer\",\n    \"userId\": \"U126\",\n    \"email\": \"team77@gmail.com\",\n    \"roles\": [\n        \"ROLE_STUDENT\"\n    ],\n    \"status\": \"Email sent to your registered email Id\",\n    \"passwordExpired\": false\n}"
 						}
 					]
+				},
+				{
+					"name": "New Request",
+					"id": "50283485-8652176a-acfa-4583-bfc5-621ce4d5319a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "50283485-4b2822b0-744d-4c11-a46d-11a6b9278173"
