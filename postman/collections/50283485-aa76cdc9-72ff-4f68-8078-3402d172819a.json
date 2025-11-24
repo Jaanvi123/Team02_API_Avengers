@@ -620,8 +620,36 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJSYW1SYWppdkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMTAzMjcsImV4cCI6MTc2NDAzOTEyN30.8Pm7MbOQJocVbhzu17pHjub69r2Jl6_cBma5DdkPxoNnNxkRmiX7NjnomeRjKHY6NNH-RpSaaQh4ZTQeAtnd-g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": []
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"skillName\": \"TestnG\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/SaveSkillMaster",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"SaveSkillMaster"
+							]
+						}
 					},
 					"response": []
 				}
