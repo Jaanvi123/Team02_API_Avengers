@@ -172,7 +172,7 @@
 				},
 				{
 					"id": "50283816-db4ba4f2-efc1-4d9a-a443-2a436b380bd6",
-					"name": "New Request",
+					"name": "negative",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
