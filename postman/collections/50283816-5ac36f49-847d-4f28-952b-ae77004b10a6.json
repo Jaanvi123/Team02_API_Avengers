@@ -54,13 +54,13 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "UpdateProgramByProgramName",
 			"id": "50283816-1833bbd4-571d-486f-94c0-c7c84bc15f7c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": []
 			},
 			"response": []
