@@ -508,13 +508,68 @@
 		},
 		{
 			"name": "GetProgramByProgramId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ec5f5eed-395d-4b41-bfb4-f9a0106ddd4b",
+						"exec": [
+							"pm.test(\"Status code 200\", () => pm.response.to.have.status(200));\r",
+							"var jsonData = pm.response.json()[0];\r",
+							"pm.expect(jsonData.programId).to.eql(parseInt(pm.environment.get(\"programId\")));"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283816-3a07617c-c44f-4f80-b7a3-0f4c649747f8",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMDU0MzEsImV4cCI6MTc2NDAzNDIzMX0.UZd042ArndSESLnrAYUnOvHcb02CueoFfvmY_Vq0FCNZtvQtJemjfJIQq-420TXYkiEi1i0MBNei3hCMu59vNA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/programs/66",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"programs",
+						"66"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"type": "text",
+							"disabled": true
+						}
+					]
+				}
 			},
 			"response": []
 		},
