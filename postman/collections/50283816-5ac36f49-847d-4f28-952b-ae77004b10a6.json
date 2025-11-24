@@ -18,8 +18,20 @@
 			"response": []
 		},
 		{
-			"name": "Get all programs",
+			"name": "GetAllPrograms",
 			"id": "50283816-82e552e0-1c4a-49ee-af28-56f2a895cae6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "50283816-3a07617c-c44f-4f80-b7a3-0f4c649747f8",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
