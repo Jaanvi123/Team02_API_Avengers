@@ -14,8 +14,9 @@
 						"id": "a77e8871-3170-4b21-a2f4-6af62415b487",
 						"exec": [
 							"if (pm.response.code === 200) {\r",
-							"\r",
+							"//Extract token from response\r",
 							"const response = pm.response.json();\r",
+							"//Set token to environment\r",
 							"pm.globals.set(\"apiKey\",response.token);\r",
 							"console.log(\"ApiKey:\"+pm.collectionVariables.get(\"apiKey\"));\r",
 							"}"
