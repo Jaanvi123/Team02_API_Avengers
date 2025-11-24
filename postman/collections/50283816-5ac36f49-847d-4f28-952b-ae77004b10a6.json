@@ -90,13 +90,13 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "DeleteProgramByProgramName",
 			"id": "50283816-faed65ed-8e21-41f0-b287-f78af8b50119",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": []
 			},
 			"response": []
