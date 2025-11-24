@@ -699,7 +699,36 @@
 					"response": []
 				}
 			],
-			"id": "50283485-14aefd40-7e62-45e2-8f88-f2593af53269"
+			"id": "50283485-14aefd40-7e62-45e2-8f88-f2593af53269",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4b3cbea1-aa13-41e8-8fc5-2cbaaafc60bb",
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e830e4a-df4e-4233-a64b-4dca6523763c",
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "Login",
