@@ -11,42 +11,6 @@
 			"id": "50283485-4b2822b0-744d-4c11-a46d-11a6b9278173"
 		},
 		{
-			"name": "Login",
-			"id": "50283485-ba504a7b-1a88-4c64-896e-cc14d9502f46",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "CreateNewProgram",
-			"id": "50283485-0eff6d75-b552-455e-a996-88ed3de339e3",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "CreateProgramBatch",
-			"id": "50283485-28a4e32f-0d9d-482b-b23b-c1f5f65540b0",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": []
-			},
-			"response": []
-		},
-		{
 			"name": "CreateNewUser",
 			"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
 			"protocolProfileBehavior": {
@@ -196,6 +160,42 @@
 					"body": "{\n    \"user\": {\n        \"userId\": \"U126\",\n        \"userFirstName\": \"Ravi\",\n        \"userLastName\": \"Krishann\",\n        \"userMiddleName\": \"M\",\n        \"userPhoneNumber\": \"+91 8577116150\",\n        \"userLocation\": \"Ohio\",\n        \"userTimeZone\": \"CST\",\n        \"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\",\n        \"userEduUg\": \"DIploma\",\n        \"userEduPg\": \"BE Computer\",\n        \"userComments\": \"String\",\n        \"userVisaStatus\": \"H4-EAD\",\n        \"userLoginEmail\": \"team77@gmail.com\"\n    },\n    \"roles\": [\n        {\n            \"roleId\": \"R03\",\n            \"userRoleStatus\": \"Active\"\n        }\n    ]\n}"
 				}
 			]
+		},
+		{
+			"name": "Login",
+			"id": "50283485-ba504a7b-1a88-4c64-896e-cc14d9502f46",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewProgram",
+			"id": "50283485-0eff6d75-b552-455e-a996-88ed3de339e3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CreateProgramBatch",
+			"id": "50283485-28a4e32f-0d9d-482b-b23b-c1f5f65540b0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
 		},
 		{
 			"name": "CreateNewSkill",
