@@ -1,0 +1,933 @@
+{
+	"info": {
+		"_postman_id": "29632042-f1975966-8274-422a-ba77-14940814c4c6",
+		"name": "User Module-Yogini",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UserLogin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a77e8871-3170-4b21-a2f4-6af62415b487",
+						"exec": [
+							"if (pm.response.code === 200) {\r",
+							"//Extract token from response\r",
+							"const response = pm.response.json();\r",
+							"//Set token to environment\r",
+							"pm.globals.set(\"apiKey\",response.token);\r",
+							"//Captured token set to environment\r",
+							"console.log(\"ApiKey:\"+pm.collectionVariables.get(\"apiKey\"));\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-574c946f-e8b9-42bf-97b5-6e0f6a1299a2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fd1a2aec-714d-4824-91b3-010e5836a37c",
+						"exec": [
+							"//Extract response from Json body of API response\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"User successfully created\", function () { \r",
+							"    pm.response.to.have.status(201);\r",
+							"    //Extract userId from user object in response\r",
+							"    pm.collectionVariables.set(\"userID\", response.user.userId)\r",
+							"});\r",
+							"if (pm.response.code === 400) {\r",
+							"    //Extract message from response body\r",
+							"    let errorMsg = response.message;\r",
+							"\r",
+							"    pm.test(\"Bad Request, Invalid data : \"+errorMsg, function () { \r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0c137e93-f629-4515-b654-324eb28c662d",
+						"exec": [
+							"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
+							"console.log(\"raw phone:\"+rawPhoneNumber);\r",
+							"\r",
+							"//Replace '-' from the random generated phone number.\r",
+							"const cleanedPhoneNumber = +rawPhoneNumber.replace(/-/g, ''); \r",
+							"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \"+cleanedPhoneNumber);\r",
+							"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
+							"\r",
+							"//Generate random email. API only accepts @gmail.com\r",
+							"    pm.collectionVariables.set('userEmail', pm.variables.replaceIn(\"{{$randomFirstName}}\")+\"@gmail.com\");\r",
+							"    console.log(pm.collectionVariables.get('userEmail'));\r",
+							"    console.log(pm.request.body.raw);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b636a9e8-1137-4374-baf0-9c661fed012a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userComments\": \"string\",\r\n\"userEduPg\": \"string\",\r\n\"userEduUg\": \"string\",\r\n\"userFirstName\": \"YogiS\",\r\n\"userLastName\": \"Sh\",\r\n\"userLinkedinUrl\": \"www.linkedin.com/123\",\r\n\"userLocation\": \"USA\",\r\n\"userMiddleName\": \"S\",\r\n\"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"R03\",\r\n\"userRoleStatus\": \"Active\"\r\n}\r\n],\r\n\"userTimeZone\": \"CST\",\r\n\"userVisaStatus\": \"NA\",\r\n\"userLogin\": {\r\n\"userLoginEmail\": \"{{userEmail}}\",\r\n\"loginStatus\" : \"\",\r\n\"status\": \"Active\"\r\n} \r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roleStatus",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roleStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74686675-41bd-4999-8063-da6ac6c8f76c",
+						"exec": [
+							"pm.test(\"Get All Users: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-18eac073-ea4a-48cd-a810-aeb1447a894e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Active User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "69b9890d-f3ba-4f63-99cd-d9009a42b34b",
+						"exec": [
+							"pm.test(\"Get All Active Users: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-40971efd-fa24-48b5-b6db-316ddaa39d23",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/activeUsers",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"activeUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Active user emails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "146c7149-ab8f-462b-a61b-874f1e14ec1a",
+						"exec": [
+							"pm.test(\"Get Active user emails: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-ae5ce584-61f6-435f-b435-159f41c3e1f9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/fetch-emails",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"fetch-emails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Roles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39d81d66-c259-466a-8a66-25b3c0096ff6",
+						"exec": [
+							"pm.test(\"Get All Roles: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-49234f08-b2a9-4aca-b1c2-25fa06e9b10a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/roles",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Info by UserId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d429a74e-28ff-42f7-8368-3f8ea611ffb0",
+						"exec": [
+							"pm.test(\"Get User info by UserId: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-ea86b7e7-5fc2-4d49-9e07-8eebd18cdf42",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users with roles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65622bdf-a4ba-4522-b99a-b9cabd2f9930",
+						"exec": [
+							"pm.test(\"Get Users with roles: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-c179057e-b1b6-4ecd-8a9c-3a5936a43ba3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roles",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Role Status by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef6bf7fe-db48-42bb-af06-eeedb4efa2fa",
+						"exec": [
+							"pm.test(\"Get Role Status by Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-36e58e65-4449-48b8-9e85-b925fbb5e6ec",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/byStatus?id=all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"byStatus"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User by Program Batches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "72804111-e202-4938-9b3b-c1b6ebac9fef",
+						"exec": [
+							"pm.test(\"User by Program Batches: Request successfully completed\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-1171d1e4-9746-4549-b0b8-ee6fe1ef3e01",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/programBatch/33",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"programBatch",
+						"33"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User by Program",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63796c17-1b92-47ee-9907-71e61a33775f",
+						"exec": [
+							"pm.test(\"Get User by Program: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b3d5f304-a85f-4f1a-bc9c-75c76bf73929",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/programs/13",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"programs",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users by roleId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5140a68d-a891-44ed-821f-9d21f7486d0a",
+						"exec": [
+							"pm.test(\"Get Users by roleId: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-8158d9c6-2315-483c-99b7-64f00314f800",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roles/R01",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roles",
+						"R01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users by roleId V2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25d9c3ba-cd3e-407c-aa06-7ae5f437a709",
+						"exec": [
+							"pm.test(\"Get Users by roleId V2: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-dfa7dbe8-ce9b-4272-8c2a-52af7ddfd11d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User BatchId by User Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e70bb013-5ead-4722-961e-085a85e0b1e4",
+						"exec": [
+							"pm.test(\"Get User BatchId by User Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b31dda86-b1b5-4309-8cea-df104641635b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/user/U93",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"user",
+						"U93"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Details by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3358d4f-01a6-4f3a-945f-68a58aaf6fe5",
+						"exec": [
+							"pm.test(\"Get User details by Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b9ad76c9-efad-4773-9717-8009b2a30dfc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{apiKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/details/U93",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"details",
+						"U93"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "randomPhNumber",
+			"value": ""
+		},
+		{
+			"key": "userEmail",
+			"value": ""
+		},
+		{
+			"key": "userID",
+			"value": ""
+		}
+	]
+}
