@@ -18,6 +18,7 @@
 							"const response = pm.response.json();\r",
 							"//Set token to environment\r",
 							"pm.globals.set(\"apiKey\",response.token);\r",
+							"//Captured token set to environment\r",
 							"console.log(\"ApiKey:\"+pm.collectionVariables.get(\"apiKey\"));\r",
 							"}"
 						],
