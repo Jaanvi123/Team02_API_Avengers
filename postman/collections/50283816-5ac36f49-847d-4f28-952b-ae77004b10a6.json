@@ -311,6 +311,22 @@
 		},
 		{
 			"name": "GetAllPrograms",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3603de9f-3b46-4a1e-892c-44f7b66c5e06",
+						"exec": [
+							"pm.test(\"Status code 200\", () => pm.response.to.have.status(200));\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.expect(jsonData).to.be.an(\"array\");"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283816-82e552e0-1c4a-49ee-af28-56f2a895cae6",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -345,15 +361,11 @@
 					}
 				},
 				"url": {
-					"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/allPrograms",
-					"protocol": "https",
+					"raw": "{{baseURL}}/allPrograms",
 					"host": [
-						"lms-hackathon-nov-2025-8dd40899c026",
-						"herokuapp",
-						"com"
+						"{{baseURL}}"
 					],
 					"path": [
-						"lms",
 						"allPrograms"
 					],
 					"query": [
