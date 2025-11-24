@@ -322,6 +322,23 @@
 		},
 		{
 			"name": "All Roles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39d81d66-c259-466a-8a66-25b3c0096ff6",
+						"exec": [
+							"pm.test(\"Get All Roles: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-49234f08-b2a9-4aca-b1c2-25fa06e9b10a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
