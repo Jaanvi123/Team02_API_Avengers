@@ -160,7 +160,7 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "Forgot Password/ConfirmEmail",
 					"id": "50283485-17b80f96-614b-4c39-b2d8-d0b476b4ef40",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
