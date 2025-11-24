@@ -612,6 +612,18 @@
 							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4NzM3LCJleHAiOjE3NjQwMzc1Mzd9.bkH5484JQ9_1aMzK17I45fE_bZb3ImVMDu9-JpOc4kjcRSf77OmNPlIFGFtSYezBhMXuR-iKAGIwp2IALRsNuQ\",\n    \"type\": \"Bearer\",\n    \"userId\": \"U126\",\n    \"email\": \"team77@gmail.com\",\n    \"roles\": [\n        \"ROLE_STUDENT\"\n    ],\n    \"status\": \"Active\",\n    \"passwordExpired\": false\n}"
 						}
 					]
+				},
+				{
+					"name": "New Request",
+					"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "50283485-4b2822b0-744d-4c11-a46d-11a6b9278173"
