@@ -794,6 +794,23 @@
 		},
 		{
 			"name": "User BatchId by User Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e70bb013-5ead-4722-961e-085a85e0b1e4",
+						"exec": [
+							"pm.test(\"Get User BatchId by User Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-b31dda86-b1b5-4309-8cea-df104641635b",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
