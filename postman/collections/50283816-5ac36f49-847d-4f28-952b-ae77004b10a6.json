@@ -42,7 +42,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "GetAllPraogramsWithUsers",
 			"id": "50283816-d39afb0f-2a0a-438f-b263-fdaad7eb433c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
