@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"programDescription\": \"Core Java course\",\r\n  \"programName\": \"Java Basics\",\r\n  \"programStatus\": \"Active\"\r\n}",
+					"raw": "{\r\n  \"programDescription\": \"CoreJavacourse\",\r\n  \"programName\": \"c\",\r\n  \"programStatus\": \"Active\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
