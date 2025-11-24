@@ -154,10 +154,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "178464ca-9b50-4d04-abb5-1602a11a86f4",
+						"id": "74686675-41bd-4999-8063-da6ac6c8f76c",
 						"exec": [
 							"pm.test(\"Request completed successfully\", function () { \r",
-							"    pm.response.to.have.status(20);\r",
+							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							""
 						],
@@ -207,6 +207,23 @@
 		},
 		{
 			"name": "All Active User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "69b9890d-f3ba-4f63-99cd-d9009a42b34b",
+						"exec": [
+							"pm.test(\"Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-40971efd-fa24-48b5-b6db-316ddaa39d23",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -234,12 +251,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users",
+					"raw": "{{baseURL}}/users/activeUsers",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"users"
+						"users",
+						"activeUsers"
 					]
 				}
 			},
