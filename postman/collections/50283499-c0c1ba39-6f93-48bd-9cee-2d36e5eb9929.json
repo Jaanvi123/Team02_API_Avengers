@@ -1,0 +1,21 @@
+{
+	"info": {
+		"_postman_id": "50283499-c0c1ba39-6f93-48bd-9cee-2d36e5eb9929",
+		"name": "Program Batch Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"id": "50283499-633f5079-85a6-4bae-8b4f-f57a0e69bfcf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
