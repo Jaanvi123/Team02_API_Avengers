@@ -166,8 +166,34 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{ \r\n\"userLoginEmailId\":\"team77@gmail.com\" \r\n} ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login",
+								"forgotpassword",
+								"confirmEmail"
+							]
+						}
 					},
 					"response": []
 				}
