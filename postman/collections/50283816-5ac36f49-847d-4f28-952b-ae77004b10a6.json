@@ -524,7 +524,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{ \r\n  \"programDescription\": \r\n\"\", \r\n  \"programName\": \"JavaBasics\", \r\n  \"programStatus\": \"\" \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -532,13 +532,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/program/",
+					"raw": "{{baseURL}}/program/JavaBasics",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"program",
-						""
+						"JavaBasics"
 					]
 				}
 			},
