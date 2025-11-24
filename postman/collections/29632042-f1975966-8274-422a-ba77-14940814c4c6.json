@@ -265,6 +265,23 @@
 		},
 		{
 			"name": "Active user emails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "146c7149-ab8f-462b-a61b-874f1e14ec1a",
+						"exec": [
+							"pm.test(\"Get Active user emails: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-ae5ce584-61f6-435f-b435-159f41c3e1f9",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
