@@ -559,6 +559,23 @@
 		},
 		{
 			"name": "User by Program Batches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "72804111-e202-4938-9b3b-c1b6ebac9fef",
+						"exec": [
+							"pm.test(\"User by Program Batches\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-1171d1e4-9746-4549-b0b8-ee6fe1ef3e01",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
