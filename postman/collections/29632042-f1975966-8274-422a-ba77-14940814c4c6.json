@@ -495,6 +495,23 @@
 		},
 		{
 			"name": "Role Status by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef6bf7fe-db48-42bb-af06-eeedb4efa2fa",
+						"exec": [
+							"pm.test(\"Get Role Status by Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-36e58e65-4449-48b8-9e85-b925fbb5e6ec",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
