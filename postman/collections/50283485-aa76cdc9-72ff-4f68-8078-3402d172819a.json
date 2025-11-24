@@ -652,7 +652,36 @@
 					"response": []
 				}
 			],
-			"id": "50283485-4b2822b0-744d-4c11-a46d-11a6b9278173"
+			"id": "50283485-4b2822b0-744d-4c11-a46d-11a6b9278173",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "42d83458-de86-4404-abc2-e0d9f4f74bcb",
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "25e433cc-12a0-49ef-b347-b90a2c2a98ca",
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		},
 		{
 			"name": "Login",
