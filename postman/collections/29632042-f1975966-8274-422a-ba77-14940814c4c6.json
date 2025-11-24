@@ -379,6 +379,23 @@
 		},
 		{
 			"name": "User Info by UserId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d429a74e-28ff-42f7-8368-3f8ea611ffb0",
+						"exec": [
+							"pm.test(\"Get User info by UserId: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-ea86b7e7-5fc2-4d49-9e07-8eebd18cdf42",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
