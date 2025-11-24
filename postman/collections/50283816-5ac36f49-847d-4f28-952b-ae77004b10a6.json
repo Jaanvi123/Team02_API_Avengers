@@ -72,6 +72,18 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"method": "PUT",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "50283816-fb6c0b7b-a86c-4d4e-882d-3cbf8b4fccc4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
 				"method": "GET",
 				"header": []
 			},
