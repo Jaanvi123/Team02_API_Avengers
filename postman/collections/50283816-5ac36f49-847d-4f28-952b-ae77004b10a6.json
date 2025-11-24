@@ -1265,13 +1265,58 @@
 		},
 		{
 			"name": "DeleteProgramByProgramName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1199eb0e-c610-4cb2-8f1a-aebe730122c0",
+						"exec": [
+							"pm.test(\"Status code 200 or 404\", () => {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283816-faed65ed-8e21-41f0-b287-f78af8b50119",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMDU0MzEsImV4cCI6MTc2NDAzNDIzMX0.UZd042ArndSESLnrAYUnOvHcb02CueoFfvmY_Vq0FCNZtvQtJemjfJIQq-420TXYkiEi1i0MBNei3hCMu59vNA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/deletebyprogname/PythonBasics",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"deletebyprogname",
+						"PythonBasics"
+					]
+				}
 			},
 			"response": []
 		},
