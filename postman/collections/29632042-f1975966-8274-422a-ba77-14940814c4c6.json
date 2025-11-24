@@ -437,6 +437,23 @@
 		},
 		{
 			"name": "Users with roles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65622bdf-a4ba-4522-b99a-b9cabd2f9930",
+						"exec": [
+							"pm.test(\"Get Users with roles: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-c179057e-b1b6-4ecd-8a9c-3a5936a43ba3",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
