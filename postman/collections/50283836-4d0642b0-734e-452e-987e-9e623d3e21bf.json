@@ -68,7 +68,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "logoutlms",
 			"id": "50283836-8a0bbf35-b6a3-4f8f-a486-f075b70291da",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
