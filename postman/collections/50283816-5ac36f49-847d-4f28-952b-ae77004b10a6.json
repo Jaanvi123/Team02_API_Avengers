@@ -1,0 +1,21 @@
+{
+	"info": {
+		"_postman_id": "50283816-5ac36f49-847d-4f28-952b-ae77004b10a6",
+		"name": "Program Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"id": "50283816-f623602f-c78c-4514-8106-1a5e2dff81ab",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
