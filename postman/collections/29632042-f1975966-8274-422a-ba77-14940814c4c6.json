@@ -853,6 +853,23 @@
 		},
 		{
 			"name": "User Details by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3358d4f-01a6-4f3a-945f-68a58aaf6fe5",
+						"exec": [
+							"pm.test(\"Get User details by Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-b9ad76c9-efad-4773-9717-8009b2a30dfc",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
