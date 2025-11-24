@@ -6,18 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Login",
-			"id": "50283816-f623602f-c78c-4514-8106-1a5e2dff81ab",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
 			"name": "New Request",
 			"id": "50283816-076855f4-2348-4b7f-a5a9-59b69a6933c9",
 			"protocolProfileBehavior": {
