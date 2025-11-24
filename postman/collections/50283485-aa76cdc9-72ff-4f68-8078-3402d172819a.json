@@ -198,7 +198,7 @@
 					"response": [
 						{
 							"id": "50283485-f8342535-f7d0-4699-b23b-fecff66dca7a",
-							"name": "New Request",
+							"name": "UserToken",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
