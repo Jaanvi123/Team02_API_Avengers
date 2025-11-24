@@ -156,7 +156,7 @@
 					"script": {
 						"id": "74686675-41bd-4999-8063-da6ac6c8f76c",
 						"exec": [
-							"pm.test(\"Request completed successfully\", function () { \r",
+							"pm.test(\"Get All Users: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							""
@@ -213,7 +213,7 @@
 					"script": {
 						"id": "69b9890d-f3ba-4f63-99cd-d9009a42b34b",
 						"exec": [
-							"pm.test(\"Request completed successfully\", function () { \r",
+							"pm.test(\"Get All Active Users: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							""
