@@ -263,8 +263,34 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}"
+				},
+				"url": {
+					"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/login",
+					"protocol": "https",
+					"host": [
+						"lms-hackathon-nov-2025-8dd40899c026",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"lms",
+						"login"
+					]
+				}
 			},
 			"response": []
 		}
