@@ -618,6 +618,23 @@
 		},
 		{
 			"name": "User by Program",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63796c17-1b92-47ee-9907-71e61a33775f",
+						"exec": [
+							"pm.test(\"Get User by Program: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-b3d5f304-a85f-4f1a-bc9c-75c76bf73929",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
