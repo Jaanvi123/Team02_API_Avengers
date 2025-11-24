@@ -736,6 +736,23 @@
 		},
 		{
 			"name": "Users by roleId V2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25d9c3ba-cd3e-407c-aa06-7ae5f437a709",
+						"exec": [
+							"pm.test(\"Get Users by roleId V2: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-dfa7dbe8-ce9b-4272-8c2a-52af7ddfd11d",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
