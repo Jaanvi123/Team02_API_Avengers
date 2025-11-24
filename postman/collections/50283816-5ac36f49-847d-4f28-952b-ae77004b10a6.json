@@ -18,7 +18,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Get all programs",
 			"id": "50283816-82e552e0-1c4a-49ee-af28-56f2a895cae6",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
