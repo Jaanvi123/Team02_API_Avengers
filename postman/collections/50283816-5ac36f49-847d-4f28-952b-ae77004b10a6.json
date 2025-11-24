@@ -56,7 +56,7 @@
 			"response": [
 				{
 					"id": "50283816-606ffbaa-6695-4828-a19d-dfed85cef28d",
-					"name": "New Request",
+					"name": "success",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
