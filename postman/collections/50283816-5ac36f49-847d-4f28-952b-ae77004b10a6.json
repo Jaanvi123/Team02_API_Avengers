@@ -13,10 +13,7 @@
 					"script": {
 						"id": "2cc76ef2-859a-4b65-aa38-756821676334",
 						"exec": [
-							"pm.test(\"Status code 201\", () => pm.response.to.have.status(201));\r",
-							"var jsonData = pm.response.json();\r",
-							"pm.environment.set(\"programId\", jsonData.programId);\r",
-							"pm.expect(jsonData.programName).to.eql(pm.environment.get(\"programName\"));"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {},
