@@ -76,6 +76,7 @@
 							"    pm.collectionVariables.set(\"userID\", response.user.userId)\r",
 							"});\r",
 							"if (pm.response.code === 400) {\r",
+							"    //Extract message from response body\r",
 							"let errorMsg = response.message;\r",
 							"\r",
 							"pm.test(\"Bad Request, Invalid data : \"+errorMsg, function () { \r",
