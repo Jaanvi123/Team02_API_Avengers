@@ -939,18 +939,6 @@
 					]
 				},
 				{
-					"name": "GetAllUsers",
-					"id": "50283485-3eb01b40-d204-484f-bb4f-307e4e40c69c",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
 					"name": "UpdateUserRoleID",
 					"id": "50283485-d090b878-ed4b-40cc-be5f-08c7df800869",
 					"protocolProfileBehavior": {
@@ -1117,6 +1105,18 @@
 				}
 			],
 			"id": "50283485-9f883cb1-ee63-464d-9ee4-6d618e77aa09"
+		},
+		{
+			"name": "GetAllUsers",
+			"id": "50283485-3eb01b40-d204-484f-bb4f-307e4e40c69c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		},
 		{
 			"name": "CreateNewProgram",
