@@ -1477,7 +1477,7 @@
 					"response": []
 				},
 				{
-					"name": "GetUserDetailsbyId",
+					"name": "Get User Details by User Id",
 					"id": "50283485-f106398d-7dc8-454d-88fe-c1c9374b2fec",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
