@@ -614,7 +614,7 @@
 					]
 				},
 				{
-					"name": "SetPassword",
+					"name": "SetActiveLoginStatus",
 					"id": "50283485-b539899f-58ac-4438-a15d-831f31171491",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
