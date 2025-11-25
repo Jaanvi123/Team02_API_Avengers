@@ -313,7 +313,7 @@
 					]
 				},
 				{
-					"name": "resetPassword",
+					"name": "ResetPasswordForAdmin",
 					"id": "50283485-8652176a-acfa-4583-bfc5-621ce4d5319a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
