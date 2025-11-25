@@ -95,7 +95,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmailId\": {{userLoginEmailId}},\r\n  \"password\": {{password}}\r\n}",
+							"raw": "{\r\n  \"userLoginEmailId\": \"{{userLoginEmailId}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
