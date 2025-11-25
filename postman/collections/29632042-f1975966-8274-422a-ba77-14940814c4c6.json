@@ -718,7 +718,7 @@
 							"    let errorMsg = response.message;\r",
 							"\r",
 							"    pm.test(\"Invalid endpoint/ Bad Request : \" + errorMsg, function () {\r",
-							"        pm.response.to.have.status(400);\r",
+							"        pm.response.to.have.status(404);\r",
 							"    });\r",
 							"}\r",
 							"\r",
