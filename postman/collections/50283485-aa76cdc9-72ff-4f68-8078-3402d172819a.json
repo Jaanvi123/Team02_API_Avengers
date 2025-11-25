@@ -1409,6 +1409,37 @@
 					"response": []
 				},
 				{
+					"name": "GetAllRoles",
+					"id": "50283485-fa27a282-3e50-44d5-927f-b6013824de1e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/roles",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetEmailOfUsersWithActiveStatus",
 					"id": "50283485-ca46a70c-17bf-4ec3-8304-6a59b4d087da",
 					"protocolProfileBehavior": {
@@ -1537,37 +1568,6 @@
 					"request": {
 						"method": "GET",
 						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "GetAllRoles",
-					"id": "50283485-fa27a282-3e50-44d5-927f-b6013824de1e",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/roles",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"roles"
-							]
-						}
 					},
 					"response": []
 				}
