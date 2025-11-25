@@ -1016,7 +1016,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{apiKey}}",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
@@ -1033,14 +1033,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/details/U93",
+					"raw": "{{baseURL}}/users/details/{{userID}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"details",
-						"U93"
+						"{{userID}}"
 					]
 				}
 			},
