@@ -25,27 +25,17 @@
 					"name": "/login11",
 					"event": [
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
-								"id": "11cbdb29-e226-4b9c-888d-fcba52c305ea",
+								"id": "cedde928-261b-41b5-9445-6ddec37b44d6",
 								"exec": [
-									"// Get value from CSV column \"contentType\"\r",
-									"let type = pm.variables.get(\"contentType\");   \r",
-									"\r",
-									"// Fallback if CSV value is missing\r",
-									"if (!type) {\r",
-									"    type = \"application/json\";\r",
-									"}\r",
-									"\r",
-									"// Apply Content-Type header\r",
-									"pm.request.headers.upsert({\r",
-									"    key: \"Content-Type\",\r",
-									"    value: type\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"// Optional debug\r",
-									"console.log(\"Using Content-Type:\", type);\r",
-									""
+									"pm.test(\"Content-Type header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -53,34 +43,36 @@
 							}
 						},
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
-								"id": "87ba107d-0e3a-4337-a30b-b2675e008511",
+								"id": "6a1190c9-d28d-4169-9f56-1925e211d6a2",
 								"exec": [
-									"let json = pm.response.json();\r",
+									"// Get value from CSV column \"contentType\"\r",
+									"let type = pm.variables.get(\"contentType\");   \r",
+									"let mime = \"\";\r",
 									"\r",
+									"switch(type) {\r",
+									"    case \"javascript\":\r",
+									"        mime = \"application/javascript\";\r",
+									"        break;\r",
+									"    case \"xml\":\r",
+									"        mime = \"application/xml\";\r",
+									"        break;\r",
+									"    case \"html\":\r",
+									"        mime = \"text/html\";\r",
+									"        break;\r",
+									"    case \"json\":\r",
+									"        mime = \"application/json\";\r",
+									"        break;        \r",
+									"}\r",
 									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.request.headers.upsert({\r",
+									"    key: \"Content-Type\",\r",
+									"    value: mime\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});\r",
-									"\r",
-									"// Extract token from response\r",
-									"let token = json.token;\r",
-									"\r",
-									"// Save token to environment\r",
-									"if (token) {\r",
-									"    pm.environment.set(\"auth_token\", token);\r",
-									"    pm.globals.set(\"auth_token\", token);\r",
-									"    console.log(\"Captured token:\", token);\r",
-									"} else {\r",
-									"    pm.test(\"Token not found\", function () {\r",
-									"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
-									"    });\r",
-									"}"
+									"// Optional debug\r",
+									"console.log(\"Using Content-Type:\", mime);"
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -90,7 +82,10 @@
 					],
 					"id": "50283836-0a0ce390-ea53-42cd-9687-209185cddc10",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
 					},
 					"request": {
 						"auth": {
@@ -100,7 +95,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmailId\": {{userLoginEmailId}},\r\n  \"password\": {{password}}\r\n}",
+							"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -334,7 +329,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjM4NTA4MjgsImV4cCI6MTc2Mzg3OTYyOH0.7mUESvBudM4vRfW9O9NM57L-WKXK7421QGLIhWVmHY865FLUW4j4uHXMREFRrP2jtmjUwY3zzYoCc4O2Arp3LA",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
