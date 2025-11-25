@@ -84,16 +84,6 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -104,7 +94,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n\"userComments\": \"String\", \r\n\"userEduPg\": \"BE Electrical\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Jonathan\", \r\n\"userLastName\": \"Ram\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/jram\", \r\n\"userLocation\": \"Alaska\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 9120016150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R01\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"Jonathan@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
+							"raw": "{ \r\n\"userComments\": \"String\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8577116150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team77@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -137,7 +127,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{ \r\n\"userComments\": \"String\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8577116150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team77@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
+									"raw": "{\r\n    \"userComments\": \"String\",\r\n    \"userEduPg\": \"BE Computer\",\r\n    \"userEduUg\": \"DIploma\",\r\n    \"userFirstName\": \"Shiv\",\r\n    \"userLastName\": \"Krishann\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\",\r\n    \"userLocation\": \"Alabama\",\r\n    \"userMiddleName\": \"M\",\r\n    \"userPhoneNumber\": \"+91 4577116150\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"R01\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"CST\",\r\n    \"userVisaStatus\": \"H4\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"numpyninja02@gmail.com\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Logged\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2009,6 +1999,16 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -2019,7 +2019,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"batchDescription\": \"FUll\",\r\n    \"batchName\": \"Robotics404\",\r\n    \"batchNoOfClasses\": 15,\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\": 59\r\n}",
+					"raw": "{\r\n    \"batchDescription\": \"SkillBatch\",\r\n    \"batchName\": \"RoboYouth\",\r\n    \"batchNoOfClasses\": 15,\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\": 102\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
