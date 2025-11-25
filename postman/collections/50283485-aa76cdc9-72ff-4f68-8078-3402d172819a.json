@@ -1335,7 +1335,7 @@
 			"name": "New Folder",
 			"item": [
 				{
-					"name": "GetAllUsers",
+					"name": "Get All Users",
 					"id": "50283485-3eb01b40-d204-484f-bb4f-307e4e40c69c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -1446,7 +1446,7 @@
 					"response": []
 				},
 				{
-					"name": "GetAllRoles",
+					"name": "Get All Roles",
 					"id": "50283485-fa27a282-3e50-44d5-927f-b6013824de1e",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
