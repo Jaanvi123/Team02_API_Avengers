@@ -1477,6 +1477,18 @@
 					"response": []
 				},
 				{
+					"name": "Get User Information By User ID",
+					"id": "50283485-335a796e-96b4-48d4-b48b-cebb697b3c64",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
 					"name": "Get All Users With Roles",
 					"id": "50283485-c89f26e1-31b4-43fd-b124-154a70ca8fea",
 					"protocolProfileBehavior": {
@@ -1665,18 +1677,6 @@
 				{
 					"name": "GetUsersByStatus",
 					"id": "50283485-c6ed3adc-b249-46d3-90da-3f8043491628",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Getn User Information By User ID",
-					"id": "50283485-335a796e-96b4-48d4-b48b-cebb697b3c64",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
