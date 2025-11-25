@@ -708,17 +708,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"loginStatus\": \"ACTIVE\",\r\n    \r\n    \"roleIds\": [\r\n        \"R01\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"Jonathan@gmail.com\"\r\n}"
+							"raw": "{\r\n    \"loginStatus\": \"ACTIVE\",\r\n    \r\n    \"roleIds\": [\r\n        \"R01\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"team2@gmail.com\"\r\n}"
 						},
 						"url": {
-							"raw": "{{baseURL}}/users/userLogin/U155",
+							"raw": "{{baseURL}}/users/userLogin/U62",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"users",
 								"userLogin",
-								"U155"
+								"U62"
 							]
 						}
 					},
@@ -1484,7 +1484,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"loginStatus\": \"Active\",\r\n    \"roleIds\": [\r\n        \"R01\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"Jonathan@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"loginStatus\": \"Active\",\r\n   \r\n    \"roleIds\": [\r\n        \"R01\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"Jonathan@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
