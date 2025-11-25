@@ -1890,8 +1890,21 @@
 			"id": "50283485-9f883cb1-ee63-464d-9ee4-6d618e77aa09"
 		},
 		{
-			"name": "New Folder",
-			"item": [],
+			"name": "ProgramBatches",
+			"item": [
+				{
+					"name": "New Request",
+					"id": "50283485-add0fd5a-44e0-4aa1-b616-0d70481bf205",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
 			"id": "50283485-415b4e15-d7d8-47ab-8c02-984f4f8e7768"
 		},
 		{
