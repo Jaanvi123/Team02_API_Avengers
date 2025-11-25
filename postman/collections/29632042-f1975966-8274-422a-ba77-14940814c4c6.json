@@ -772,6 +772,92 @@
 			"response": []
 		},
 		{
+			"name": "All Users with roles Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5140a68d-a891-44ed-821f-9d21f7486d0a",
+						"exec": [
+							"pm.test(\"Get Users by roleId: Request completed successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"\r",
+							"    //Extract response from Json body of API response\r",
+							"    const response = pm.response.json();\r",
+							"    //Extract message from response body\r",
+							"    let errorMsg = response.message;\r",
+							"   /* pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.expect(response).to.have.property('message');\r",
+							"    });*/\r",
+							"\r",
+							"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4b0582aa-3c1e-4d6e-9b2b-b3e2593cbb04",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-55d36f8d-57b0-4ba6-a82f-11ff190e7054",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roles",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Users by roleId V2",
 			"event": [
 				{
