@@ -909,8 +909,38 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb25hdGhhbkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA3NjUsImV4cCI6MTc2NDEwOTU2NX0.H0XHU3WcTSMCysrJMKVSxM1na8yqZW9-G168UNPJtxavV5RStf9QJl6CX80nXGMI1XlN2XWzd3dbO5Q2hYlscQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"programId\": 2,\r\n    \"roleId\": \"R01\",\r\n    \"userId\": \"U155\",\r\n    \"userRoleProgramBatches\": [\r\n        {\r\n            \"batchId\": 24,\r\n            \"userRoleProgramBatchStatus\": \"Active\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/roleProgramBatchStatus/U155",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"roleProgramBatchStatus",
+								"U155"
+							]
+						}
 					},
 					"response": [
 						{
