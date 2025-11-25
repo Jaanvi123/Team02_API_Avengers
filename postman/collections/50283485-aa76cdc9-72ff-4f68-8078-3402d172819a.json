@@ -1370,43 +1370,6 @@
 			]
 		},
 		{
-			"name": "ProgramBatches",
-			"item": [
-				{
-					"name": "Get All Batches",
-					"id": "50283485-add0fd5a-44e0-4aa1-b616-0d70481bf205",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwOTc1NzUsImV4cCI6MTc2NDEyNjM3NX0.njn-epszjIU3DRO0lcumCVj3yVVmEg8rI8ua4vCZwQbYcd8rkiVJNMgjnhVajnRFW8sog6ifzYLhjf7cmMt5Sw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/batches",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"batches"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"id": "50283485-415b4e15-d7d8-47ab-8c02-984f4f8e7768"
-		},
-		{
 			"name": "CreateNewProgram",
 			"id": "50283485-0eff6d75-b552-455e-a996-88ed3de339e3",
 			"protocolProfileBehavior": {
