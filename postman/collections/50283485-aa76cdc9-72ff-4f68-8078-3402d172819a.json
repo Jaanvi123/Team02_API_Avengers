@@ -6,802 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "UserLogin",
-			"item": [
-				{
-					"name": "CreateNewUserAsAdmin",
-					"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \r\n\"userComments\": \"String\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8548116150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team12@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/users/roleStatus",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"users",
-								"roleStatus"
-							]
-						}
-					},
-					"response": [
-						{
-							"id": "50283485-6c5d153a-98e6-42c4-b749-3328d9bcfc9b",
-							"name": "CreateNewUser",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{ \r\n\"userComments\": \"String\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8577116150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team77@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseURL}}/users/roleStatus",
-									"host": [
-										"{{baseURL}}"
-									],
-									"path": [
-										"users",
-										"roleStatus"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 24 Nov 2025 17:12:51 GMT"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "Nel",
-									"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Report-To",
-									"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=7YNVgzcw9AWywuiY2GzbJglGDg2a5apeAIxoM4atOR0%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764004370\"}],\"max_age\":3600}"
-								},
-								{
-									"key": "Reporting-Endpoints",
-									"value": "heroku-nel=\"https://nel.heroku.com/reports?s=7YNVgzcw9AWywuiY2GzbJglGDg2a5apeAIxoM4atOR0%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764004370\""
-								},
-								{
-									"key": "Server",
-									"value": "Heroku"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=31536000 ; includeSubDomains"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 heroku-router"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "X-Xss-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Length",
-									"value": "411"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": "{\n    \"user\": {\n        \"userId\": \"U126\",\n        \"userFirstName\": \"Ravi\",\n        \"userLastName\": \"Krishann\",\n        \"userMiddleName\": \"M\",\n        \"userPhoneNumber\": \"+91 8577116150\",\n        \"userLocation\": \"Ohio\",\n        \"userTimeZone\": \"CST\",\n        \"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\",\n        \"userEduUg\": \"DIploma\",\n        \"userEduPg\": \"BE Computer\",\n        \"userComments\": \"String\",\n        \"userVisaStatus\": \"H4-EAD\",\n        \"userLoginEmail\": \"team77@gmail.com\"\n    },\n    \"roles\": [\n        {\n            \"roleId\": \"R03\",\n            \"userRoleStatus\": \"Active\"\n        }\n    ]\n}"
-						}
-					]
-				},
-				{
-					"name": "Forgot Password/ConfirmEmail",
-					"id": "50283485-17b80f96-614b-4c39-b2d8-d0b476b4ef40",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "\r\n{ \r\n\"userLoginEmailId\":\"team77@gmail.com\" \r\n} ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"login",
-								"forgotpassword",
-								"confirmEmail"
-							]
-						}
-					},
-					"response": [
-						{
-							"id": "50283485-f8342535-f7d0-4699-b23b-fecff66dca7a",
-							"name": "UserToken",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "\r\n{ \r\n\"userLoginEmailId\":\"team77@gmail.com\" \r\n} ",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
-									"host": [
-										"{{baseURL}}"
-									],
-									"path": [
-										"login",
-										"forgotpassword",
-										"confirmEmail"
-									]
-								}
-							},
-							"status": "Created",
-							"code": 201,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 24 Nov 2025 18:16:38 GMT"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "Nel",
-									"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Report-To",
-									"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=CRjpqVV3oIwocIEbtvntLxmXpZIbKZWLbHUU3qXnkvU%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764008196\"}],\"max_age\":3600}"
-								},
-								{
-									"key": "Reporting-Endpoints",
-									"value": "heroku-nel=\"https://nel.heroku.com/reports?s=CRjpqVV3oIwocIEbtvntLxmXpZIbKZWLbHUU3qXnkvU%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764008196\""
-								},
-								{
-									"key": "Server",
-									"value": "Heroku"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=31536000 ; includeSubDomains"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 heroku-router"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "X-Xss-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Length",
-									"value": "358"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4MTk2LCJleHAiOjE3NjQwMTUzOTZ9.y6Xgt3X2yxhPf4Ear8sJjL2qN860WcAKrB9KHJFIGyrzhL1ORrgZbdFAPX8Mzw5pKrCz3397FDjC2AJVC25RkQ\",\n    \"type\": \"Bearer\",\n    \"userId\": \"U126\",\n    \"email\": \"team77@gmail.com\",\n    \"roles\": [\n        \"ROLE_STUDENT\"\n    ],\n    \"status\": \"Email sent to your registered email Id\",\n    \"passwordExpired\": false\n}"
-						}
-					]
-				},
-				{
-					"name": "ResetPasswordForAdmin",
-					"id": "50283485-8652176a-acfa-4583-bfc5-621ce4d5319a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4MTk2LCJleHAiOjE3NjQwMTUzOTZ9.y6Xgt3X2yxhPf4Ear8sJjL2qN860WcAKrB9KHJFIGyrzhL1ORrgZbdFAPX8Mzw5pKrCz3397FDjC2AJVC25RkQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "\r\n{ \r\n  \"password\": \"TestUsers@1234\", \r\n  \"userLoginEmailId\": \"team77@gmail.com\" \r\n} "
-						},
-						"url": {
-							"raw": "{{baseURL}}/resetPassword ",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"resetPassword "
-							]
-						}
-					},
-					"response": [
-						{
-							"id": "50283485-5498f5cb-7980-4b1d-a93e-8a909ccdddcb",
-							"name": "NewPassword",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"userLoginEmailId\": \"team77@gmail.com\",\r\n    \"password\": \"TestUsersall@1234\"\r\n}"
-								},
-								"url": {
-									"raw": "{{baseURL}}/resetPassword",
-									"host": [
-										"{{baseURL}}"
-									],
-									"path": [
-										"resetPassword"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 24 Nov 2025 18:23:19 GMT"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "Nel",
-									"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Report-To",
-									"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=f7Wk0fEd6SIc%2B369zSkJuo69G%2Ft4wxWVvT3uhvSBvJ8%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764008599\"}],\"max_age\":3600}"
-								},
-								{
-									"key": "Reporting-Endpoints",
-									"value": "heroku-nel=\"https://nel.heroku.com/reports?s=f7Wk0fEd6SIc%2B369zSkJuo69G%2Ft4wxWVvT3uhvSBvJ8%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764008599\""
-								},
-								{
-									"key": "Server",
-									"value": "Heroku"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=31536000 ; includeSubDomains"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 heroku-router"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "X-Xss-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Length",
-									"value": "43"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": "{\n    \"message\": \"Password saved\",\n    \"success\": true\n}"
-						}
-					]
-				},
-				{
-					"name": "LoginWithAdminRole",
-					"id": "50283485-84c42777-b059-4927-b458-408dc884fe11",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmailId\": \"team77@gmail.com\",\r\n  \"password\": \"TestUsers@1234\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/login",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": [
-						{
-							"id": "50283485-ad433d3a-f69d-48cd-8b73-451ed4a71140",
-							"name": "NewUserToken",
-							"originalRequest": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"userLoginEmailId\": \"team77@gmail.com\",\r\n    \"password\": \"TestUsersall@1234\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseURL}}/login",
-									"host": [
-										"{{baseURL}}"
-									],
-									"path": [
-										"login"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								},
-								{
-									"key": "Date",
-									"value": "Mon, 24 Nov 2025 18:25:37 GMT"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "Nel",
-									"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Report-To",
-									"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=WfsYmC7KwIVGrsJ1KAfIDTcVc4Tox%2B3kn3NhmC%2BUu70%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764008736\"}],\"max_age\":3600}"
-								},
-								{
-									"key": "Reporting-Endpoints",
-									"value": "heroku-nel=\"https://nel.heroku.com/reports?s=WfsYmC7KwIVGrsJ1KAfIDTcVc4Tox%2B3kn3NhmC%2BUu70%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764008736\""
-								},
-								{
-									"key": "Server",
-									"value": "Heroku"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=31536000 ; includeSubDomains"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 heroku-router"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "X-Xss-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Content-Length",
-									"value": "326"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4NzM3LCJleHAiOjE3NjQwMzc1Mzd9.bkH5484JQ9_1aMzK17I45fE_bZb3ImVMDu9-JpOc4kjcRSf77OmNPlIFGFtSYezBhMXuR-iKAGIwp2IALRsNuQ\",\n    \"type\": \"Bearer\",\n    \"userId\": \"U126\",\n    \"email\": \"team77@gmail.com\",\n    \"roles\": [\n        \"ROLE_STUDENT\"\n    ],\n    \"status\": \"Active\",\n    \"passwordExpired\": false\n}"
-						}
-					]
-				},
-				{
-					"name": "SetActiveLoginStatus",
-					"id": "50283485-b539899f-58ac-4438-a15d-831f31171491",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "PUT",
-						"header": []
-					},
-					"response": [
-						{
-							"id": "50283485-01f1bfd3-f392-42ff-a7e3-19a4a90c5501",
-							"name": "ActiveUSer132",
-							"originalRequest": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"loginStatus\": \"ACTIVE\",\r\n    \r\n    \"roleIds\": [\r\n        \"R01\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"RamRajiv@gmail.com\"\r\n}"
-								},
-								"url": {
-									"raw": "{{baseURL}}/users/userLogin/U132",
-									"host": [
-										"{{baseURL}}"
-									],
-									"path": [
-										"users",
-										"userLogin",
-										"U132"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": null,
-							"header": [
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Content-Length",
-									"value": "44"
-								},
-								{
-									"key": "Content-Type",
-									"value": "text/plain;charset=UTF-8"
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 25 Nov 2025 00:54:28 GMT"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "Nel",
-									"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Report-To",
-									"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=fOOLbB3w7ccakZifQZyOZPE3%2BuVsplTl%2B3UzG8ioAE0%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764032068\"}],\"max_age\":3600}"
-								},
-								{
-									"key": "Reporting-Endpoints",
-									"value": "heroku-nel=\"https://nel.heroku.com/reports?s=fOOLbB3w7ccakZifQZyOZPE3%2BuVsplTl%2B3UzG8ioAE0%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764032068\""
-								},
-								{
-									"key": "Server",
-									"value": "Heroku"
-								},
-								{
-									"key": "Strict-Transport-Security",
-									"value": "max-age=31536000 ; includeSubDomains"
-								},
-								{
-									"key": "Vary",
-									"value": "Origin"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Method"
-								},
-								{
-									"key": "Vary",
-									"value": "Access-Control-Request-Headers"
-								},
-								{
-									"key": "Via",
-									"value": "1.1 heroku-router"
-								},
-								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "X-Xss-Protection",
-									"value": "0"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": "UserLoginEmail/Status Updated for User: U132"
-						}
-					]
-				},
-				{
-					"name": "CerateSkillUsingAdminUser",
-					"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJSYW1SYWppdkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMTAzMjcsImV4cCI6MTc2NDAzOTEyN30.8Pm7MbOQJocVbhzu17pHjub69r2Jl6_cBma5DdkPxoNnNxkRmiX7NjnomeRjKHY6NNH-RpSaaQh4ZTQeAtnd-g",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"skillName\": \"TestnG\"\r\n}"
-						},
-						"url": {
-							"raw": "{{baseURL}}/SaveSkillMaster",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"SaveSkillMaster"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"id": "50283485-4b2822b0-744d-4c11-a46d-11a6b9278173",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "e8a976c7-0bd7-44ce-9be5-91c55901b9e2",
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {},
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "5f341698-7f29-455e-928e-350f87498475",
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {},
-						"exec": [
-							""
-						]
-					}
-				}
-			]
-		},
-		{
 			"name": "Login",
 			"item": [
 				{
@@ -850,7 +54,804 @@
 		},
 		{
 			"name": "New Folder",
-			"item": [],
+			"item": [
+				{
+					"name": "UserLogin",
+					"item": [
+						{
+							"name": "CreateNewUserAsAdmin",
+							"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n\"userComments\": \"String\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8548116150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team12@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/users/roleStatus",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"users",
+										"roleStatus"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "50283485-6c5d153a-98e6-42c4-b749-3328d9bcfc9b",
+									"name": "CreateNewUser",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \r\n\"userComments\": \"String\", \r\n\"userEduPg\": \"BE Computer\", \r\n\"userEduUg\": \"DIploma\", \r\n\"userFirstName\": \"Ravi\", \r\n\"userLastName\": \"Krishann\", \r\n\"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\", \r\n\"userLocation\": \"Ohio\", \r\n\"userMiddleName\": \"M\", \r\n\"userPhoneNumber\": \"+91 8577116150\", \r\n\"userRoleMaps\": [ \r\n{ \r\n\"roleId\": \"R03\", \r\n\"userRoleStatus\": \"Active\" \r\n} \r\n], \r\n\"userTimeZone\": \"CST\", \r\n\"userVisaStatus\": \"H4-EAD\", \r\n\"userLogin\": { \r\n    \"userLoginEmail\": \"team77@gmail.com\", \r\n   \"loginStatus\" : \"Active\", \r\n  \"status\":  \"Logged\" \r\n  }   }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseURL}}/users/roleStatus",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"users",
+												"roleStatus"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 24 Nov 2025 17:12:51 GMT"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "Nel",
+											"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Report-To",
+											"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=7YNVgzcw9AWywuiY2GzbJglGDg2a5apeAIxoM4atOR0%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764004370\"}],\"max_age\":3600}"
+										},
+										{
+											"key": "Reporting-Endpoints",
+											"value": "heroku-nel=\"https://nel.heroku.com/reports?s=7YNVgzcw9AWywuiY2GzbJglGDg2a5apeAIxoM4atOR0%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764004370\""
+										},
+										{
+											"key": "Server",
+											"value": "Heroku"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000 ; includeSubDomains"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 heroku-router"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Content-Length",
+											"value": "411"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"user\": {\n        \"userId\": \"U126\",\n        \"userFirstName\": \"Ravi\",\n        \"userLastName\": \"Krishann\",\n        \"userMiddleName\": \"M\",\n        \"userPhoneNumber\": \"+91 8577116150\",\n        \"userLocation\": \"Ohio\",\n        \"userTimeZone\": \"CST\",\n        \"userLinkedinUrl\": \"www.linkedin.com/RaviKrishana\",\n        \"userEduUg\": \"DIploma\",\n        \"userEduPg\": \"BE Computer\",\n        \"userComments\": \"String\",\n        \"userVisaStatus\": \"H4-EAD\",\n        \"userLoginEmail\": \"team77@gmail.com\"\n    },\n    \"roles\": [\n        {\n            \"roleId\": \"R03\",\n            \"userRoleStatus\": \"Active\"\n        }\n    ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Forgot Password/ConfirmEmail",
+							"id": "50283485-17b80f96-614b-4c39-b2d8-d0b476b4ef40",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{ \r\n\"userLoginEmailId\":\"team77@gmail.com\" \r\n} ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"login",
+										"forgotpassword",
+										"confirmEmail"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "50283485-f8342535-f7d0-4699-b23b-fecff66dca7a",
+									"name": "UserToken",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "\r\n{ \r\n\"userLoginEmailId\":\"team77@gmail.com\" \r\n} ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"login",
+												"forgotpassword",
+												"confirmEmail"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 24 Nov 2025 18:16:38 GMT"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "Nel",
+											"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Report-To",
+											"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=CRjpqVV3oIwocIEbtvntLxmXpZIbKZWLbHUU3qXnkvU%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764008196\"}],\"max_age\":3600}"
+										},
+										{
+											"key": "Reporting-Endpoints",
+											"value": "heroku-nel=\"https://nel.heroku.com/reports?s=CRjpqVV3oIwocIEbtvntLxmXpZIbKZWLbHUU3qXnkvU%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764008196\""
+										},
+										{
+											"key": "Server",
+											"value": "Heroku"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000 ; includeSubDomains"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 heroku-router"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Content-Length",
+											"value": "358"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4MTk2LCJleHAiOjE3NjQwMTUzOTZ9.y6Xgt3X2yxhPf4Ear8sJjL2qN860WcAKrB9KHJFIGyrzhL1ORrgZbdFAPX8Mzw5pKrCz3397FDjC2AJVC25RkQ\",\n    \"type\": \"Bearer\",\n    \"userId\": \"U126\",\n    \"email\": \"team77@gmail.com\",\n    \"roles\": [\n        \"ROLE_STUDENT\"\n    ],\n    \"status\": \"Email sent to your registered email Id\",\n    \"passwordExpired\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "ResetPasswordForAdmin",
+							"id": "50283485-8652176a-acfa-4583-bfc5-621ce4d5319a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4MTk2LCJleHAiOjE3NjQwMTUzOTZ9.y6Xgt3X2yxhPf4Ear8sJjL2qN860WcAKrB9KHJFIGyrzhL1ORrgZbdFAPX8Mzw5pKrCz3397FDjC2AJVC25RkQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{ \r\n  \"password\": \"TestUsers@1234\", \r\n  \"userLoginEmailId\": \"team77@gmail.com\" \r\n} "
+								},
+								"url": {
+									"raw": "{{baseURL}}/resetPassword ",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"resetPassword "
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "50283485-5498f5cb-7980-4b1d-a93e-8a909ccdddcb",
+									"name": "NewPassword",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"userLoginEmailId\": \"team77@gmail.com\",\r\n    \"password\": \"TestUsersall@1234\"\r\n}"
+										},
+										"url": {
+											"raw": "{{baseURL}}/resetPassword",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"resetPassword"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 24 Nov 2025 18:23:19 GMT"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "Nel",
+											"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Report-To",
+											"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=f7Wk0fEd6SIc%2B369zSkJuo69G%2Ft4wxWVvT3uhvSBvJ8%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764008599\"}],\"max_age\":3600}"
+										},
+										{
+											"key": "Reporting-Endpoints",
+											"value": "heroku-nel=\"https://nel.heroku.com/reports?s=f7Wk0fEd6SIc%2B369zSkJuo69G%2Ft4wxWVvT3uhvSBvJ8%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764008599\""
+										},
+										{
+											"key": "Server",
+											"value": "Heroku"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000 ; includeSubDomains"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 heroku-router"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"message\": \"Password saved\",\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "LoginWithAdminRole",
+							"id": "50283485-84c42777-b059-4927-b458-408dc884fe11",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userLoginEmailId\": \"team77@gmail.com\",\r\n  \"password\": \"TestUsers@1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/login",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "50283485-ad433d3a-f69d-48cd-8b73-451ed4a71140",
+									"name": "NewUserToken",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"userLoginEmailId\": \"team77@gmail.com\",\r\n    \"password\": \"TestUsersall@1234\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseURL}}/login",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 24 Nov 2025 18:25:37 GMT"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "Nel",
+											"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Report-To",
+											"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=WfsYmC7KwIVGrsJ1KAfIDTcVc4Tox%2B3kn3NhmC%2BUu70%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764008736\"}],\"max_age\":3600}"
+										},
+										{
+											"key": "Reporting-Endpoints",
+											"value": "heroku-nel=\"https://nel.heroku.com/reports?s=WfsYmC7KwIVGrsJ1KAfIDTcVc4Tox%2B3kn3NhmC%2BUu70%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764008736\""
+										},
+										{
+											"key": "Server",
+											"value": "Heroku"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000 ; includeSubDomains"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 heroku-router"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Content-Length",
+											"value": "326"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtNzdAZ21haWwuY29tIiwiaWF0IjoxNzY0MDA4NzM3LCJleHAiOjE3NjQwMzc1Mzd9.bkH5484JQ9_1aMzK17I45fE_bZb3ImVMDu9-JpOc4kjcRSf77OmNPlIFGFtSYezBhMXuR-iKAGIwp2IALRsNuQ\",\n    \"type\": \"Bearer\",\n    \"userId\": \"U126\",\n    \"email\": \"team77@gmail.com\",\n    \"roles\": [\n        \"ROLE_STUDENT\"\n    ],\n    \"status\": \"Active\",\n    \"passwordExpired\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "SetActiveLoginStatus",
+							"id": "50283485-b539899f-58ac-4438-a15d-831f31171491",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": []
+							},
+							"response": [
+								{
+									"id": "50283485-01f1bfd3-f392-42ff-a7e3-19a4a90c5501",
+									"name": "ActiveUSer132",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"loginStatus\": \"ACTIVE\",\r\n    \r\n    \"roleIds\": [\r\n        \"R01\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"RamRajiv@gmail.com\"\r\n}"
+										},
+										"url": {
+											"raw": "{{baseURL}}/users/userLogin/U132",
+											"host": [
+												"{{baseURL}}"
+											],
+											"path": [
+												"users",
+												"userLogin",
+												"U132"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, no-store, max-age=0, must-revalidate"
+										},
+										{
+											"key": "Content-Length",
+											"value": "44"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 25 Nov 2025 00:54:28 GMT"
+										},
+										{
+											"key": "Expires",
+											"value": "0"
+										},
+										{
+											"key": "Nel",
+											"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+										},
+										{
+											"key": "Pragma",
+											"value": "no-cache"
+										},
+										{
+											"key": "Report-To",
+											"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=fOOLbB3w7ccakZifQZyOZPE3%2BuVsplTl%2B3UzG8ioAE0%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764032068\"}],\"max_age\":3600}"
+										},
+										{
+											"key": "Reporting-Endpoints",
+											"value": "heroku-nel=\"https://nel.heroku.com/reports?s=fOOLbB3w7ccakZifQZyOZPE3%2BuVsplTl%2B3UzG8ioAE0%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764032068\""
+										},
+										{
+											"key": "Server",
+											"value": "Heroku"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=31536000 ; includeSubDomains"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 heroku-router"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "DENY"
+										},
+										{
+											"key": "X-Xss-Protection",
+											"value": "0"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "UserLoginEmail/Status Updated for User: U132"
+								}
+							]
+						},
+						{
+							"name": "CerateSkillUsingAdminUser",
+							"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJSYW1SYWppdkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMTAzMjcsImV4cCI6MTc2NDAzOTEyN30.8Pm7MbOQJocVbhzu17pHjub69r2Jl6_cBma5DdkPxoNnNxkRmiX7NjnomeRjKHY6NNH-RpSaaQh4ZTQeAtnd-g",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"skillName\": \"TestnG\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/SaveSkillMaster",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"SaveSkillMaster"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "50283485-4b2822b0-744d-4c11-a46d-11a6b9278173",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e8a976c7-0bd7-44ce-9be5-91c55901b9e2",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f341698-7f29-455e-928e-350f87498475",
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
 			"id": "50283485-9f883cb1-ee63-464d-9ee4-6d618e77aa09"
 		},
 		{
