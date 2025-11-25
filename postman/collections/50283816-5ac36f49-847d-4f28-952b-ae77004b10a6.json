@@ -1475,14 +1475,7 @@
 			},
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{authToken}}",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [
@@ -1491,6 +1484,11 @@
 						"value": "application/json",
 						"type": "text",
 						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer{{authToken}}",
+						"type": "text"
 					}
 				],
 				"body": {
