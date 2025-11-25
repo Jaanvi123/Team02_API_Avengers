@@ -22,7 +22,7 @@
 					"response": []
 				},
 				{
-					"name": "/login11",
+					"name": "/loginP",
 					"event": [
 						{
 							"listen": "test",
