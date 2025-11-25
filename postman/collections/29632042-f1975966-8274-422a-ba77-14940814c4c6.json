@@ -6,60 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "UserLogin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a77e8871-3170-4b21-a2f4-6af62415b487",
-						"exec": [
-							"if (pm.response.code === 200) {\r",
-							"//Extract token from response\r",
-							"const response = pm.response.json();\r",
-							"//Set token to environment\r",
-							"pm.globals.set(\"apiKey\",response.token);\r",
-							"//Captured token set to environment\r",
-							"console.log(\"ApiKey:\"+pm.collectionVariables.get(\"apiKey\"));\r",
-							"}"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"id": "29632042-574c946f-e8b9-42bf-97b5-6e0f6a1299a2",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/login",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "CreateUser",
 			"event": [
 				{
