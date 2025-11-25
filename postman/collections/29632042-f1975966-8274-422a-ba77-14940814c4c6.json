@@ -891,7 +891,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{apiKey}}",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
@@ -953,7 +953,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{apiKey}}",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
@@ -970,14 +970,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/user/U93",
+					"raw": "{{baseURL}}/users/user/33",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"user",
-						"U93"
+						"33"
 					]
 				}
 			},
@@ -1137,8 +1137,37 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userComments\": \"help\",\r\n    \"userEduPg\": \"rgdfgdfgfd\",\r\n    \"userEduUg\": \"dvfdsgA\",\r\n    \"userFirstName\": \"{{$randomFirstName}}\",\r\n    \"userLastName\": \"{{$randomLastName}}\",\r\n    \"userMiddleName\": \"Sh\",\r\n    \"userLocation\": \"Tx\",\r\n    \"userLoginEmail\": \"test333@gmail.com\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userTimeZone\": \"PST\",\r\n    \"userVisaStatus\": \"NA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{userID}}"
+					]
+				}
 			},
 			"response": []
 		},
