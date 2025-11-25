@@ -1047,6 +1047,48 @@
 			"response": []
 		},
 		{
+			"name": "Count of active and inactive users",
+			"id": "29632042-a3d105d9-46b1-4348-82f9-e984f89ec557",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/byStatus?id=all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"byStatus"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Update User Role Program Batch Status",
 			"id": "29632042-8aae03eb-a079-47c3-9c15-385c4a64c1cf",
 			"protocolProfileBehavior": {
@@ -1133,48 +1175,6 @@
 			"request": {
 				"method": "DELETE",
 				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Count of active and inactive users",
-			"id": "29632042-a3d105d9-46b1-4348-82f9-e984f89ec557",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{auth_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{baseURL}}/users/byStatus?id=all",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"users",
-						"byStatus"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "all"
-						}
-					]
-				}
 			},
 			"response": []
 		}
