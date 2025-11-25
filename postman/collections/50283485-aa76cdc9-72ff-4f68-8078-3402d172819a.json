@@ -915,7 +915,7 @@
 					"response": [
 						{
 							"id": "50283485-0ceade10-1bd7-4353-877c-d3ae0f7ef282",
-							"name": "New Request",
+							"name": "BatchAssigned",
 							"originalRequest": {
 								"method": "PUT",
 								"header": [],
