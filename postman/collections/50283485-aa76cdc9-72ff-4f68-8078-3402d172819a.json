@@ -1539,6 +1539,18 @@
 						"header": []
 					},
 					"response": []
+				},
+				{
+					"name": "GetAllRoles",
+					"id": "50283485-fa27a282-3e50-44d5-927f-b6013824de1e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "50283485-9f883cb1-ee63-464d-9ee4-6d618e77aa09"
