@@ -120,23 +120,39 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5cabcb04-4a31-4736-ac3e-df9f6d4aa457",
+								"id": "759ed3b4-f4ed-475b-b148-6b6481458e94",
 								"exec": [
 									"let json = pm.response.json();\r",
+									"pm.test(\"Status code is 415\", function () {\r",
+									"    pm.response.to.have.status(415);\r",
+									"});\r",
+									"pm.test(\"Content-Type header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b859f8c0-695a-4fda-b7e8-65c82414cff6",
+								"exec": [
+									"// Get value from CSV column \"contentType\"\r",
+									"let type = pm.variables.get(\"contentType\");   \r",
 									"\r",
-									"// Extract token from response\r",
-									"let token = json.token;\r",
+									"// Fallback if CSV value is missing\r",
+									"if (!type) {\r",
+									"    type = \"application/json\";\r",
+									"}\r",
 									"\r",
-									"// Save token to environment\r",
-									"if (token) {\r",
-									"    pm.environment.set(\"auth_token\", token);\r",
-									"    pm.globals.set(\"auth_token\", token);\r",
-									"    console.log(\"Captured token:\", token);\r",
-									"} else {\r",
-									"    pm.test(\"Token not found\", function () {\r",
-									"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
-									"    });\r",
-									"}"
+									"// Apply Content-Type header\r",
+									"pm.request.headers.upsert({\r",
+									"    key: \"Content-Type\",\r",
+									"    value: type\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -156,7 +172,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+							"raw": "{\r\n  \"userLoginEmailId\": {{userLoginEmailId}},\r\n  \"password\": {{password}}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
