@@ -717,7 +717,7 @@
 							"    //Extract message from response body\r",
 							"    let errorMsg = response.message;\r",
 							"\r",
-							"    pm.test(\"Invalid endpoint/ Bad Request : \" + errorMsg, function () {\r",
+							"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
 							"        pm.response.to.have.status(404);\r",
 							"    });\r",
 							"}\r",
