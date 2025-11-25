@@ -1409,6 +1409,43 @@
 					"response": []
 				},
 				{
+					"name": "GetActiveEmailID",
+					"id": "50283485-ca46a70c-17bf-4ec3-8304-6a59b4d087da",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/fetch-emails",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"fetch-emails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetUserDetailsbyId",
 					"id": "50283485-f106398d-7dc8-454d-88fe-c1c9374b2fec",
 					"protocolProfileBehavior": {
@@ -1538,43 +1575,6 @@
 					],
 					"path": [
 						"batches"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GetActiveEmailID",
-			"id": "50283485-ca46a70c-17bf-4ec3-8304-6a59b4d087da",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{baseURL}}/fetch-emails",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"fetch-emails"
 					]
 				}
 			},
