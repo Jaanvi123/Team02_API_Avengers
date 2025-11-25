@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "New Folder",
+			"name": "Mymodule testing",
 			"item": [
 				{
 					"name": "New Request",
@@ -18,6 +18,104 @@
 					"request": {
 						"method": "GET",
 						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "/login11",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "11cbdb29-e226-4b9c-888d-fcba52c305ea",
+								"exec": [
+									"// Get value from CSV column \"contentType\"\r",
+									"let type = pm.variables.get(\"contentType\");   \r",
+									"\r",
+									"// Fallback if CSV value is missing\r",
+									"if (!type) {\r",
+									"    type = \"application/json\";\r",
+									"}\r",
+									"\r",
+									"// Apply Content-Type header\r",
+									"pm.request.headers.upsert({\r",
+									"    key: \"Content-Type\",\r",
+									"    value: type\r",
+									"});\r",
+									"\r",
+									"// Optional debug\r",
+									"console.log(\"Using Content-Type:\", type);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "87ba107d-0e3a-4337-a30b-b2675e008511",
+								"exec": [
+									"let json = pm.response.json();\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"// Extract token from response\r",
+									"let token = json.token;\r",
+									"\r",
+									"// Save token to environment\r",
+									"if (token) {\r",
+									"    pm.environment.set(\"auth_token\", token);\r",
+									"    pm.globals.set(\"auth_token\", token);\r",
+									"    console.log(\"Captured token:\", token);\r",
+									"} else {\r",
+									"    pm.test(\"Token not found\", function () {\r",
+									"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "50283836-0a0ce390-ea53-42cd-9687-209185cddc10",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userLoginEmailId\": {{userLoginEmailId}},\r\n  \"password\": {{password}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
 					},
 					"response": []
 				}
@@ -67,104 +165,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/login",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/login11",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "11cbdb29-e226-4b9c-888d-fcba52c305ea",
-						"exec": [
-							"// Get value from CSV column \"contentType\"\r",
-							"let type = pm.variables.get(\"contentType\");   \r",
-							"\r",
-							"// Fallback if CSV value is missing\r",
-							"if (!type) {\r",
-							"    type = \"application/json\";\r",
-							"}\r",
-							"\r",
-							"// Apply Content-Type header\r",
-							"pm.request.headers.upsert({\r",
-							"    key: \"Content-Type\",\r",
-							"    value: type\r",
-							"});\r",
-							"\r",
-							"// Optional debug\r",
-							"console.log(\"Using Content-Type:\", type);\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "87ba107d-0e3a-4337-a30b-b2675e008511",
-						"exec": [
-							"let json = pm.response.json();\r",
-							"\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 400\", function () {\r",
-							"    pm.response.to.have.status(400);\r",
-							"});\r",
-							"\r",
-							"// Extract token from response\r",
-							"let token = json.token;\r",
-							"\r",
-							"// Save token to environment\r",
-							"if (token) {\r",
-							"    pm.environment.set(\"auth_token\", token);\r",
-							"    pm.globals.set(\"auth_token\", token);\r",
-							"    console.log(\"Captured token:\", token);\r",
-							"} else {\r",
-							"    pm.test(\"Token not found\", function () {\r",
-							"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
-							"    });\r",
-							"}"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"id": "50283836-0a0ce390-ea53-42cd-9687-209185cddc10",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": {{userLoginEmailId}},\r\n  \"password\": {{password}}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
