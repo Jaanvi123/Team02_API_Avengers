@@ -1143,7 +1143,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Update User Login Status",
 			"id": "29632042-d2effab7-cb96-450a-9b7a-2077b1fc841a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
