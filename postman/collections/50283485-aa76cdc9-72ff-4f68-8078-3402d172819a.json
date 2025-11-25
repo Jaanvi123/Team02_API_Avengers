@@ -614,6 +614,18 @@
 					]
 				},
 				{
+					"name": "SetPassword",
+					"id": "50283485-b539899f-58ac-4438-a15d-831f31171491",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
 					"name": "CerateSkillUsingUser",
 					"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
 					"protocolProfileBehavior": {
@@ -798,18 +810,6 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "SetPassword",
-			"id": "50283485-b539899f-58ac-4438-a15d-831f31171491",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "PUT",
 				"header": []
 			},
 			"response": []
