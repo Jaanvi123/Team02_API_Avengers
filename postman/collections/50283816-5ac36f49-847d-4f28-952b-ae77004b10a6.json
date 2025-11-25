@@ -1119,7 +1119,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMDU0MzEsImV4cCI6MTc2NDAzNDIzMX0.UZd042ArndSESLnrAYUnOvHcb02CueoFfvmY_Vq0FCNZtvQtJemjfJIQq-420TXYkiEi1i0MBNei3hCMu59vNA",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
