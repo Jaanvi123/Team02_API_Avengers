@@ -1893,14 +1893,33 @@
 			"name": "ProgramBatches",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "Get All Batches",
 					"id": "50283485-add0fd5a-44e0-4aa1-b616-0d70481bf205",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwOTc1NzUsImV4cCI6MTc2NDEyNjM3NX0.njn-epszjIU3DRO0lcumCVj3yVVmEg8rI8ua4vCZwQbYcd8rkiVJNMgjnhVajnRFW8sog6ifzYLhjf7cmMt5Sw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/batches",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"batches"
+							]
+						}
 					},
 					"response": []
 				}
