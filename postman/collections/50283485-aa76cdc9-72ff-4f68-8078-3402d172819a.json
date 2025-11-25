@@ -1613,6 +1613,18 @@
 					"response": []
 				},
 				{
+					"name": "Get Users for Program",
+					"id": "50283485-39860501-86a5-408f-9b85-3967864527c6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
 					"name": "GetUserBatchId by User Id",
 					"id": "50283485-1570895b-8a4e-45df-9ff8-2d83a0009475",
 					"protocolProfileBehavior": {
@@ -1670,7 +1682,7 @@
 				},
 				{
 					"name": "New Request",
-					"id": "50283485-39860501-86a5-408f-9b85-3967864527c6",
+					"id": "50283485-2d6fa209-c0e2-4a48-be53-3740d31ca4f7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
