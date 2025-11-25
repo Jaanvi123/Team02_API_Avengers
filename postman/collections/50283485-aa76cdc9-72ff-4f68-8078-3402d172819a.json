@@ -1335,11 +1335,6 @@
 			"name": "UserModule",
 			"item": [
 				{
-					"name": "New Folder",
-					"item": [],
-					"id": "50283485-df5ae2cf-bb03-4c5a-8d8c-383f7108529a"
-				},
-				{
 					"name": "Get All Users",
 					"id": "50283485-3eb01b40-d204-484f-bb4f-307e4e40c69c",
 					"protocolProfileBehavior": {
