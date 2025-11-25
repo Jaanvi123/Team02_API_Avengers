@@ -592,7 +592,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{apiKey}}",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
@@ -609,14 +609,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/programBatch/33",
+					"raw": "{{baseURL}}/users/programBatch/{{batchId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"programBatch",
-						"33"
+						"{{batchId}}"
 					]
 				}
 			},
