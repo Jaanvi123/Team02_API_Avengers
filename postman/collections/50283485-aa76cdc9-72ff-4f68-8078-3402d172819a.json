@@ -903,7 +903,7 @@
 					]
 				},
 				{
-					"name": "New Request",
+					"name": "UpdateUserRoleProgramBatchStatus",
 					"id": "50283485-10661e80-61a3-40b4-a850-475e3b86bbf4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
