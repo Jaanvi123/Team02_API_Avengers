@@ -1046,6 +1046,18 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "29632042-b1a37c99-1d54-4da4-a2b2-193d88894833",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": []
+			},
+			"response": []
 		}
 	],
 	"event": [
