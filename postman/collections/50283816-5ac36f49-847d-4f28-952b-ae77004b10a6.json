@@ -61,8 +61,21 @@
 					"script": {
 						"id": "c39af9f8-34d6-4ea5-8059-3c80d74e87c2",
 						"exec": [
-							"// Generate a unique program name to avoid duplicates\r",
-							"pm.environment.set(\"programName\", \"ProgramAuto\");\r",
+							"// Generate a random alphabetic suffix (no numbers)\r",
+							"function randomString(length) {\r",
+							"    let chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\";\r",
+							"    let result = \"\";\r",
+							"    for (let i = 0; i < length; i++) {\r",
+							"        result += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+							"    }\r",
+							"    return result;\r",
+							"}\r",
+							"\r",
+							"// Program name: Program-<random letters>\r",
+							"let progName = \"Program-\" + randomString(5);\r",
+							"\r",
+							"pm.environment.set(\"programName\", progName);\r",
+							"\r",
 							""
 						],
 						"type": "text/javascript",
