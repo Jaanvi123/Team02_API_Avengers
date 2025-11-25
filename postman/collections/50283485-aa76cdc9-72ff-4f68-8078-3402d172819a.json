@@ -1409,7 +1409,7 @@
 					"response": []
 				},
 				{
-					"name": "GetActiveEmailIDOf",
+					"name": "GetEmalOfUsersWith",
 					"id": "50283485-ca46a70c-17bf-4ec3-8304-6a59b4d087da",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
