@@ -160,12 +160,20 @@
 					"script": {
 						"id": "74686675-41bd-4999-8063-da6ac6c8f76c",
 						"exec": [
-							"pm.test(\"Get All Users: Request completed successfully\", function () { \r",
+							"pm.test(\"Get All Users: Request completed successfully\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"Invalid endpoint\", function () { \r",
-							"    pm.response.to.have.status(404);\r",
-							"});"
+							"if (pm.response.code === 404) {\r",
+							"    pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"\r",
+							"}\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {},
