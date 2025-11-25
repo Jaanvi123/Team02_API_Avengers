@@ -9,7 +9,7 @@
 			"name": "UserLogin",
 			"item": [
 				{
-					"name": "CreateNewUser",
+					"name": "CreateNewUserAsAdmin",
 					"id": "50283485-2425eb6c-8632-40f0-955a-dbdc12f2c8f0",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
