@@ -774,14 +774,11 @@
 				}
 			],
 			"id": "50283485-4b2822b0-744d-4c11-a46d-11a6b9278173",
-			"auth": {
-				"type": "noauth"
-			},
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "42d83458-de86-4404-abc2-e0d9f4f74bcb",
+						"id": "e8a976c7-0bd7-44ce-9be5-91c55901b9e2",
 						"type": "text/javascript",
 						"packages": {},
 						"requests": {},
@@ -793,7 +790,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "25e433cc-12a0-49ef-b347-b90a2c2a98ca",
+						"id": "5f341698-7f29-455e-928e-350f87498475",
 						"type": "text/javascript",
 						"packages": {},
 						"requests": {},
