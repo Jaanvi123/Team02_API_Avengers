@@ -1356,8 +1356,38 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/users/activeUsers",
+					"protocol": "https",
+					"host": [
+						"lms-hackathon-nov-2025-8dd40899c026",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"lms",
+						"users",
+						"activeUsers"
+					]
+				}
 			},
 			"response": []
 		},
@@ -1368,8 +1398,33 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/batches",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
 			},
 			"response": []
 		},
@@ -1381,7 +1436,31 @@
 			},
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"programDescription\": \"Use of AI\",\r\n    \"programName\": \"Robotics\",\r\n    \"programStatus\": \"Active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/saveprogram",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"saveprogram"
+					]
+				}
 			},
 			"response": []
 		},
