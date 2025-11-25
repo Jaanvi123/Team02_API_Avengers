@@ -735,7 +735,7 @@
 					]
 				},
 				{
-					"name": "CerateSkillUsingUser",
+					"name": "CerateSkillUsingAdminUser",
 					"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
