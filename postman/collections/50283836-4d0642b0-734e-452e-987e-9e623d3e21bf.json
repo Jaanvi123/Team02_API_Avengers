@@ -125,6 +125,7 @@
 									"pm.test(\"Status code is 415\", function () {\r",
 									"    pm.response.to.have.status(415);\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Content-Type header is present\", function () {\r",
 									"    pm.response.to.have.header(\"Content-Type\");\r",
 									"});"
@@ -211,11 +212,10 @@
 							"script": {
 								"id": "940d6859-f9d0-4b18-8ab1-f261afb6ec63",
 								"exec": [
-									"let json = pm.response.json();\r",
-									"\r",
 									"pm.test(\"Status code is 400\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Content-Type header is present\", function () {\r",
 									"    pm.response.to.have.header(\"Content-Type\");\r",
 									"});"
