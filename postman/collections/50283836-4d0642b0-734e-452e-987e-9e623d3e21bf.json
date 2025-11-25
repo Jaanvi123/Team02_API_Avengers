@@ -158,6 +158,68 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/login2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88d50b58-235f-4665-8426-1506e2f8b43a",
+						"exec": [
+							"let json = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 415\", function () {\r",
+							"    pm.response.to.have.status(415);\r",
+							"});\r",
+							"// Extract token from response\r",
+							"let token = json.token;\r",
+							"\r",
+							"// Save token to environment\r",
+							"if (token) {\r",
+							"    pm.environment.set(\"auth_token\", token);\r",
+							"    pm.globals.set(\"auth_token\", token);\r",
+							"    console.log(\"Captured token:\", token);\r",
+							"} else {\r",
+							"    pm.test(\"Token not found\", function () {\r",
+							"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "50283836-ae23a597-e155-451e-93dd-771f8c1c35c4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
