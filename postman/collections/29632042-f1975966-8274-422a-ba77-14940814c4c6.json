@@ -672,7 +672,11 @@
 							"pm.test(\"Get User by Program: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							""
+							"if (pm.response.code === 404) {\r",
+							"    pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"}"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -818,7 +822,11 @@
 							"pm.test(\"Get Users by roleId V2: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							""
+							"if (pm.response.code === 404) {\r",
+							"    pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"}"
 						],
 						"type": "text/javascript",
 						"packages": {},
