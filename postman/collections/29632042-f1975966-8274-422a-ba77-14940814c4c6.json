@@ -1002,7 +1002,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Update User",
 			"id": "29632042-abe07a36-2c00-4af7-b8d6-3cb012a888a2",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
