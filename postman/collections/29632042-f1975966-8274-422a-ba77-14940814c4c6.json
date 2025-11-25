@@ -73,7 +73,7 @@
 							"pm.test(\"User successfully created\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
 							"    //Extract userId from user object in response\r",
-							"    pm.collectionVariables.set(\"userID\", response.user.userId)\r",
+							"    pm.globals.set(\"userID\", response.user.userId)\r",
 							"});\r",
 							"if (pm.response.code === 400) {\r",
 							"    //Extract message from response body\r",
