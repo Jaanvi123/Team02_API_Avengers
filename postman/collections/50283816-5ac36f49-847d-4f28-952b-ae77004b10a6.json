@@ -49,7 +49,9 @@
 							"});\r",
 							"\r",
 							"// Save programId for future calls\r",
-							"pm.environment.set(\"programId\", res.programId);"
+							"let res = pm.response.json();\r",
+							"pm.globals.set(\"programId\", res.programId);\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {},
