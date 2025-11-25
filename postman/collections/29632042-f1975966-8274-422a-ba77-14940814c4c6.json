@@ -884,7 +884,11 @@
 							"pm.test(\"Get User BatchId by User Id: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							""
+							"if (pm.response.code === 404) {\r",
+							"    pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"}"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -943,7 +947,11 @@
 							"pm.test(\"Get User details by Id: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							""
+							"if (pm.response.code === 404) {\r",
+							"    pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"}"
 						],
 						"type": "text/javascript",
 						"packages": {},
