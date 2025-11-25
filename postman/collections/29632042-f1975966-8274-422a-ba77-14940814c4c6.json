@@ -916,13 +916,35 @@
 			"response": []
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "bcf2d09b-93fb-4c05-9c4e-fec4ea8442cd",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "22331ab0-9dc2-42a2-bb7e-6e462001cd15",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "randomPhNumber",
-			"value": ""
-		},
-		{
-			"key": "userEmail",
 			"value": ""
 		},
 		{
