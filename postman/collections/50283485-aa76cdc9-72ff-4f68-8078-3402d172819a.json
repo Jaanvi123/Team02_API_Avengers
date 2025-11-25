@@ -1580,18 +1580,6 @@
 					"response": []
 				},
 				{
-					"name": "GetUserBatchId by User Id",
-					"id": "50283485-1570895b-8a4e-45df-9ff8-2d83a0009475",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
 					"name": "Get Users By Program Batches",
 					"id": "50283485-7b54e761-e779-442d-8fe2-13a8bb7ed607",
 					"protocolProfileBehavior": {
@@ -1621,6 +1609,18 @@
 								"24"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserBatchId by User Id",
+					"id": "50283485-1570895b-8a4e-45df-9ff8-2d83a0009475",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				},
