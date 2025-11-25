@@ -903,6 +903,18 @@
 					]
 				},
 				{
+					"name": "New Request",
+					"id": "50283485-10661e80-61a3-40b4-a850-475e3b86bbf4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
 					"name": "CerateSkillUsingAdminUser",
 					"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
 					"protocolProfileBehavior": {
