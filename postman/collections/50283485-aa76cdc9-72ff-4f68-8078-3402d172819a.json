@@ -1675,6 +1675,45 @@
 					"response": []
 				},
 				{
+					"name": "Get User Details By User Id",
+					"id": "50283485-f106398d-7dc8-454d-88fe-c1c9374b2fec",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/users/details/U155",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"details",
+								"U155"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetUsersByStatus",
 					"id": "50283485-c6ed3adc-b249-46d3-90da-3f8043491628",
 					"protocolProfileBehavior": {
@@ -1688,45 +1727,6 @@
 				}
 			],
 			"id": "50283485-9f883cb1-ee63-464d-9ee4-6d618e77aa09"
-		},
-		{
-			"name": "Get User Details By User Id",
-			"id": "50283485-f106398d-7dc8-454d-88fe-c1c9374b2fec",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{baseURL}}/users/details/U155",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"users",
-						"details",
-						"U155"
-					]
-				}
-			},
-			"response": []
 		},
 		{
 			"name": "GetAllBatches",
