@@ -772,7 +772,7 @@
 			"response": []
 		},
 		{
-			"name": "All Users with roles Copy",
+			"name": "All Users by roleId",
 			"event": [
 				{
 					"listen": "test",
