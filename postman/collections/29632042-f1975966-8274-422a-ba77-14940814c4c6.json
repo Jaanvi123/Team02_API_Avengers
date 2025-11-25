@@ -726,7 +726,7 @@
 							"    const response = pm.response.json();\r",
 							"    //Extract message from response body\r",
 							"    let errorMsg = response.message;\r",
-							"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
+							"    pm.test(\"Invalid endpoint : \" + errorMsg, function () {\r",
 							"        pm.expect(response).to.not.have.property('message');\r",
 							"    });\r",
 							"\r",
