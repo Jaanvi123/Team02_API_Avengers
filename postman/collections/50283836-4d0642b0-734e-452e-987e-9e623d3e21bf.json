@@ -122,7 +122,6 @@
 							"script": {
 								"id": "759ed3b4-f4ed-475b-b148-6b6481458e94",
 								"exec": [
-									"let json = pm.response.json();\r",
 									"pm.test(\"Status code is 415\", function () {\r",
 									"    pm.response.to.have.status(415);\r",
 									"});\r",
