@@ -1377,6 +1377,38 @@
 					"response": []
 				},
 				{
+					"name": "GetAllActiveUsers",
+					"id": "50283485-e5ba1669-3ec9-47fc-8ec5-e43f04b99ac3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/activeUsers",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"activeUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetUserDetailsbyId",
 					"id": "50283485-f106398d-7dc8-454d-88fe-c1c9374b2fec",
 					"protocolProfileBehavior": {
@@ -1468,38 +1500,6 @@
 					"request": {
 						"method": "GET",
 						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "GetAllActiveUsers",
-					"id": "50283485-e5ba1669-3ec9-47fc-8ec5-e43f04b99ac3",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/users/activeUsers",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"users",
-								"activeUsers"
-							]
-						}
 					},
 					"response": []
 				}
