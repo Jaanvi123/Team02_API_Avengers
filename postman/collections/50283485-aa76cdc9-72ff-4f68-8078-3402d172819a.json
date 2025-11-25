@@ -1386,19 +1386,39 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Gets Users byRoleIdV2",
 					"id": "50283485-2f71a3be-023a-4480-a3c8-23ec43f43c1d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/v2/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "GetUsersByStatus",
 					"id": "50283485-c6ed3adc-b249-46d3-90da-3f8043491628",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
