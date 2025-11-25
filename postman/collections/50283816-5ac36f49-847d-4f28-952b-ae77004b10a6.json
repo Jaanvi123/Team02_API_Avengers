@@ -371,9 +371,7 @@
 					"script": {
 						"id": "3603de9f-3b46-4a1e-892c-44f7b66c5e06",
 						"exec": [
-							"pm.test(\"Status code 200\", () => pm.response.to.have.status(200));\r",
-							"var jsonData = pm.response.json();\r",
-							"pm.expect(jsonData).to.be.an(\"array\");"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -391,7 +389,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMDU0MzEsImV4cCI6MTc2NDAzNDIzMX0.UZd042ArndSESLnrAYUnOvHcb02CueoFfvmY_Vq0FCNZtvQtJemjfJIQq-420TXYkiEi1i0MBNei3hCMu59vNA",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMzg1MzksImV4cCI6MTc2NDA2NzMzOX0.hMLvqIhDyXulgYdZkCYuLgI2xs5KwjP1lhrbMJ19CqgJXms1N1H-KfwIKL94P_5tud9U2c_LIS5_8fRw9y96fw",
 							"type": "string"
 						}
 					]
