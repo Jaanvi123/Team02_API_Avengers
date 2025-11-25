@@ -1335,7 +1335,7 @@
 			"name": "New Folder",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "GetUserDetailsbyId",
 					"id": "50283485-f106398d-7dc8-454d-88fe-c1c9374b2fec",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
