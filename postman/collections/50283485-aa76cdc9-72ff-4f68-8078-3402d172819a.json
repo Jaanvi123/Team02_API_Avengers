@@ -699,8 +699,38 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb25hdGhhbkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA3NjUsImV4cCI6MTc2NDEwOTU2NX0.H0XHU3WcTSMCysrJMKVSxM1na8yqZW9-G168UNPJtxavV5RStf9QJl6CX80nXGMI1XlN2XWzd3dbO5Q2hYlscQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
-						"header": []
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"loginStatus\": \"ACTIVE\",\r\n    \r\n    \"roleIds\": [\r\n        \"R01\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"Jonathan@gmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/userLogin/U155",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"userLogin",
+								"U155"
+							]
+						}
 					},
 					"response": [
 						{
@@ -820,8 +850,38 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKb25hdGhhbkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA3NjUsImV4cCI6MTc2NDEwOTU2NX0.H0XHU3WcTSMCysrJMKVSxM1na8yqZW9-G168UNPJtxavV5RStf9QJl6CX80nXGMI1XlN2XWzd3dbO5Q2hYlscQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userRoleList\": [\r\n        {\r\n            \"roleId\": \"R01\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/roleId/U155",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"roleId",
+								"U155"
+							]
+						}
 					},
 					"response": [
 						{
