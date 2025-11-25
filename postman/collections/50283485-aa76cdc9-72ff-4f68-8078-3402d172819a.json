@@ -1472,7 +1472,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "GetAllActiveUsers",
 					"id": "50283485-e5ba1669-3ec9-47fc-8ec5-e43f04b99ac3",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
