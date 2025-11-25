@@ -1335,6 +1335,11 @@
 			"name": "UserModule",
 			"item": [
 				{
+					"name": "New Folder",
+					"item": [],
+					"id": "50283485-df5ae2cf-bb03-4c5a-8d8c-383f7108529a"
+				},
+				{
 					"name": "Get All Users",
 					"id": "50283485-3eb01b40-d204-484f-bb4f-307e4e40c69c",
 					"protocolProfileBehavior": {
@@ -1712,58 +1717,9 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "GetUsersByStatus",
-					"id": "50283485-c6ed3adc-b249-46d3-90da-3f8043491628",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
 				}
 			],
 			"id": "50283485-9f883cb1-ee63-464d-9ee4-6d618e77aa09"
-		},
-		{
-			"name": "GetAllBatches",
-			"id": "50283485-6be18e16-7fc0-4f4f-b8b6-b19b9d01ef13",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{baseURL}}/batches",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"batches"
-					]
-				}
-			},
-			"response": []
 		},
 		{
 			"name": "CreateNewProgram",
