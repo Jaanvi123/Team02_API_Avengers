@@ -163,7 +163,9 @@
 							"pm.test(\"Get All Users: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							""
+							"pm.test(\"Invalid endpoint\", function () { \r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -198,12 +200,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users",
+					"raw": "{{baseURL}}/users1",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"users"
+						"users1"
 					]
 				}
 			},
