@@ -1344,6 +1344,47 @@
 								"disableBodyPruning": true
 							},
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userComments\": \"Updated the User\",\r\n    \"userEduPg\": \"BE Electrical\",\r\n    \"userEduUg\": \"Diploma\",\r\n    \"userFirstName\": \"Ram\",\r\n    \"userId\": \"\",\r\n    \"userLastName\": \"Palash\",\r\n    \"userMiddleName\": \"M\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/jram\",\r\n    \"userLocation\": \"Connecticut\",\r\n    \"userLoginEmail\":\"Jonathan@gmail.com\" ,\r\n    \"userPhoneNumber\": \"+91 8512457201\",\r\n    \"userTimeZone\": \"PST\",\r\n    \"userVisaStatus\": \"US-Citizen\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/users/U155",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"users",
+										"U155"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"id": "50283485-8c2fc112-a637-427b-b571-1d0eab07a4c0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
 								"method": "GET",
 								"header": []
 							},
