@@ -1418,6 +1418,11 @@
 					"script": {
 						"id": "aa635f13-9df9-4a69-acfa-e9f00118b36f",
 						"exec": [
+							"pm.request.headers.add({\r",
+							"    key: \"Authorization\",\r",
+							"    value: \"Bearer \" + pm.environment.get(\"authToken\")\r",
+							"});\r",
+							"\r",
 							"// Generate random alphabetic string\r",
 							"function randomString(len) {\r",
 							"    const chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\";\r",
