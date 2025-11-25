@@ -1436,6 +1436,37 @@
 						"packages": {},
 						"requests": {}
 					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c87b083f-c804-4716-adc7-9e1a3d4efb9a",
+						"exec": [
+							"// If success (200 OK)\r",
+							"if (pm.response.code === 200) {\r",
+							"\r",
+							"    pm.test(\"Response contains required fields\", function () {\r",
+							"        pm.expect(res).to.have.property(\"skillId\");\r",
+							"        pm.expect(res).to.have.property(\"skillName\");\r",
+							"        pm.expect(res).to.have.property(\"creationTime\");\r",
+							"        pm.expect(res).to.have.property(\"lastModTime\");\r",
+							"    });\r",
+							"     // Save skillId globally for chaining\r",
+							"    pm.globals.set(\"skillId\", res.skillId);\r",
+							"}\r",
+							"// If Bad Request (400)\r",
+							"if (pm.response.code === 400) {\r",
+							"    pm.test(\"Check error message exists\", function () {\r",
+							"        pm.expect(res).to.have.property(\"message\");\r",
+							"    });\r",
+							"\r",
+							"    console.warn(\"Bad Request:\", res.message);\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
 			],
 			"id": "50283816-f95c09a2-dccc-4ee8-8068-b6eb94d479db",
