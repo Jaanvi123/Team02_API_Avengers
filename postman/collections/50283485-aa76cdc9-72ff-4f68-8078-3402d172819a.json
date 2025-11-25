@@ -1270,6 +1270,18 @@
 			"response": []
 		},
 		{
+			"name": "GetAllBatches",
+			"id": "50283485-6be18e16-7fc0-4f4f-b8b6-b19b9d01ef13",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
 			"name": "CreateNewProgram",
 			"id": "50283485-0eff6d75-b552-455e-a996-88ed3de339e3",
 			"protocolProfileBehavior": {
@@ -1289,18 +1301,6 @@
 			},
 			"request": {
 				"method": "POST",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "GetAllBatches",
-			"id": "50283485-6be18e16-7fc0-4f4f-b8b6-b19b9d01ef13",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
 				"header": []
 			},
 			"response": []
