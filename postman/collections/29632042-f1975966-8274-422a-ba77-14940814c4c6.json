@@ -727,7 +727,7 @@
 							"    //Extract message from response body\r",
 							"    let errorMsg = response.message;\r",
 							"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
-							"        pm.response.body.includes(\"message\");\r",
+							"        pm.expect(response).to.not.have.property('message');\r",
 							"    });\r",
 							"\r",
 							"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
@@ -745,8 +745,13 @@
 				{
 					"listen": "prerequest",
 					"script": {
+						"id": "4b0582aa-3c1e-4d6e-9b2b-b3e2593cbb04",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
 						"packages": {},
-						"type": "text/javascript"
+						"requests": {}
 					}
 				}
 			],
