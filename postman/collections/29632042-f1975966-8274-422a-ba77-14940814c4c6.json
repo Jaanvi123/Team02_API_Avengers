@@ -292,6 +292,11 @@
 							"pm.test(\"Get Active user emails: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"}\r",
 							""
 						],
 						"type": "text/javascript",
@@ -327,12 +332,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/fetch-emails",
+					"raw": "{{baseURL}}/fetch-emails1",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"fetch-emails"
+						"fetch-emails1"
 					]
 				}
 			},
