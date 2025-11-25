@@ -52,7 +52,7 @@
 									"    //Extract message from response body\r",
 									"    let errorMsg = json.message;\r",
 									"\r",
-									"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
+									"    pm.test(\"UNSUPPORTED_MEDIA_TYPE : \" + errorMsg, function () {\r",
 									"        pm.response.to.have.status(415);\r",
 									"    });\r",
 									"}"
