@@ -686,7 +686,7 @@
 			"response": []
 		},
 		{
-			"name": "All Users by roleId",
+			"name": "All Users with roles",
 			"event": [
 				{
 					"listen": "test",
