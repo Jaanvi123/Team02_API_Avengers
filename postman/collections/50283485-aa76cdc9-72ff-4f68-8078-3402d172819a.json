@@ -462,7 +462,7 @@
 					]
 				},
 				{
-					"name": "LoginWithUser&NewPassword",
+					"name": "LoginWithAdminRole",
 					"id": "50283485-84c42777-b059-4927-b458-408dc884fe11",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
