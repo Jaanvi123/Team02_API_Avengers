@@ -1412,6 +1412,32 @@
 		},
 		{
 			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aa635f13-9df9-4a69-acfa-e9f00118b36f",
+						"exec": [
+							"// Generate random alphabetic string\r",
+							"function randomString(len) {\r",
+							"    const chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\";\r",
+							"    let result = \"\";\r",
+							"    for (let i = 0; i < len; i++) {\r",
+							"        result += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+							"    }\r",
+							"    return result;\r",
+							"}\r",
+							"\r",
+							"// Create unique skill name\r",
+							"let skillName = \"Skill-\" + randomString(5);\r",
+							"pm.environment.set(\"skillName\", skillName);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283816-f95c09a2-dccc-4ee8-8068-b6eb94d479db",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -1438,7 +1464,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n\"skillName\": \"abacus\" \r\n   \r\n} \r\n ",
+					"raw": "{ \r\n\"skillName\": \"{{skillName}}\"   \r\n\r\n} \r\n ",
 					"options": {
 						"raw": {
 							"language": "json"
