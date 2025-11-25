@@ -721,11 +721,14 @@
 							"});\r",
 							"\r",
 							"if (pm.response.code === 404) {\r",
-							"  \r",
+							"\r",
 							"    //Extract response from Json body of API response\r",
 							"    const response = pm.response.json();\r",
 							"    //Extract message from response body\r",
 							"    let errorMsg = response.message;\r",
+							"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
+							"        pm.response.body.includes(\"message\");\r",
+							"    });\r",
 							"\r",
 							"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
 							"        pm.response.to.have.status(404);\r",
@@ -737,6 +740,13 @@
 						"type": "text/javascript",
 						"packages": {},
 						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
 					}
 				}
 			],
