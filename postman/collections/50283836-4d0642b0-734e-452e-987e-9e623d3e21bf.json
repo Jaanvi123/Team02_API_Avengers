@@ -10,18 +10,6 @@
 			"name": "Mymodule testing",
 			"item": [
 				{
-					"name": "New Request",
-					"id": "50283836-e53197a8-7cc4-4224-a70c-aab91aa5e0e4",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
 					"name": "/loginP1",
 					"event": [
 						{
