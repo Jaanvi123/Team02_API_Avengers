@@ -151,7 +151,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{apiKey}}",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
