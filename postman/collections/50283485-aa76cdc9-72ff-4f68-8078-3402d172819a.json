@@ -1636,7 +1636,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Get Users By Program Batches",
 					"id": "50283485-7b54e761-e779-442d-8fe2-13a8bb7ed607",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
