@@ -1160,13 +1160,19 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/byStatus",
+					"raw": "{{baseURL}}/users/byStatus?Id=all",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"byStatus"
+					],
+					"query": [
+						{
+							"key": "Id",
+							"value": "all"
+						}
 					]
 				}
 			},
