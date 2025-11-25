@@ -332,12 +332,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/fetch-emails1",
+					"raw": "{{baseURL}}/fetch-emails",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"fetch-emails1"
+						"fetch-emails"
 					]
 				}
 			},
@@ -416,6 +416,11 @@
 							"pm.test(\"Get User info by UserId: Request completed successfully\", function () { \r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"}\r",
 							""
 						],
 						"type": "text/javascript",
