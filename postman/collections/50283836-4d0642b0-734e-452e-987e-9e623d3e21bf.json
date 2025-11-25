@@ -186,26 +186,16 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "88d50b58-235f-4665-8426-1506e2f8b43a",
+								"id": "940d6859-f9d0-4b18-8ab1-f261afb6ec63",
 								"exec": [
 									"let json = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Status code is 415\", function () {\r",
-									"    pm.response.to.have.status(415);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
-									"// Extract token from response\r",
-									"let token = json.token;\r",
-									"\r",
-									"// Save token to environment\r",
-									"if (token) {\r",
-									"    pm.environment.set(\"auth_token\", token);\r",
-									"    pm.globals.set(\"auth_token\", token);\r",
-									"    console.log(\"Captured token:\", token);\r",
-									"} else {\r",
-									"    pm.test(\"Token not found\", function () {\r",
-									"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
-									"    });\r",
-									"}"
+									"pm.test(\"Content-Type header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -215,8 +205,25 @@
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "50eceb66-fe25-4603-9438-72e1ec2a20f6",
+								"exec": [
+									"// Get value from CSV column \"contentType\"\r",
+									"let type = pm.variables.get(\"contentType\");   \r",
+									"\r",
+									"// Fallback if CSV value is missing\r",
+									"if (!type) {\r",
+									"    type = \"application/json\";\r",
+									"}\r",
+									"\r",
+									"// Apply Content-Type header\r",
+									"pm.request.headers.upsert({\r",
+									"    key: \"Content-Type\",\r",
+									"    value: type\r",
+									"});"
+								],
+								"type": "text/javascript",
 								"packages": {},
-								"type": "text/javascript"
+								"requests": {}
 							}
 						}
 					],
@@ -230,6 +237,15 @@
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userLoginEmailId\": {{userLoginEmailId}},\r\n  \"password\": {{password}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "{{baseURL}}/login",
 							"host": [
