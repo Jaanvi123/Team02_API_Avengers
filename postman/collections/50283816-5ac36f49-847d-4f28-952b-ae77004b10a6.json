@@ -1374,6 +1374,20 @@
 		},
 		{
 			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a591aa7a-3d3d-479e-bb55-4f83e782c7ff",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283816-48996613-5a53-446d-a41c-b66e016b1273",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -1418,10 +1432,7 @@
 					"script": {
 						"id": "aa635f13-9df9-4a69-acfa-e9f00118b36f",
 						"exec": [
-							"pm.request.headers.add({\r",
-							"    key: \"Authorization\",\r",
-							"    value: \"Bearer \" + pm.environment.get(\"authToken\")\r",
-							"});\r",
+							"\r",
 							"\r",
 							"// Generate random alphabetic string\r",
 							"function randomString(len) {\r",
@@ -1484,7 +1495,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{authtoken}}",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
@@ -1496,11 +1507,6 @@
 						"value": "application/json",
 						"type": "text",
 						"disabled": true
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer{{authToken}}",
-						"type": "text"
 					}
 				],
 				"body": {
