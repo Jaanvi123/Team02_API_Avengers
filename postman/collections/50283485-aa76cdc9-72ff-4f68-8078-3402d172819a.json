@@ -1604,7 +1604,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Gets Count Of Active And Inactive Users",
 					"id": "50283485-49b1653a-5ca7-4ca8-8001-d31db531ff4c",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
