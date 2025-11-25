@@ -115,7 +115,7 @@
 					"response": []
 				},
 				{
-					"name": "/login1",
+					"name": "/loginN1",
 					"event": [
 						{
 							"listen": "test",
