@@ -10,7 +10,7 @@
 			"name": "Mymodule testing",
 			"item": [
 				{
-					"name": "/loginP1",
+					"name": "/login1",
 					"event": [
 						{
 							"listen": "test",
