@@ -706,9 +706,22 @@
 					"script": {
 						"id": "5140a68d-a891-44ed-821f-9d21f7486d0a",
 						"exec": [
-							"pm.test(\"Get Users by roleId: Request completed successfully\", function () { \r",
+							"pm.test(\"Get Users by roleId: Request completed successfully\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"  \r",
+							"    //Extract response from Json body of API response\r",
+							"    const response = pm.response.json();\r",
+							"    //Extract message from response body\r",
+							"    let errorMsg = response.message;\r",
+							"\r",
+							"    pm.test(\"Invalid endpoint/ Bad Request : \" + errorMsg, function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"}\r",
+							"\r",
 							""
 						],
 						"type": "text/javascript",
