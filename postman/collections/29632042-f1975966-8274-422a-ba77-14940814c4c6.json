@@ -30,6 +30,7 @@
 							"    });\r",
 							"}\r",
 							"pm.test(\"Mandatory fields in Response body\", function () {\r",
+							"    pm.expect(response).to.have.property(\"userId\");\r",
 							"    pm.expect(response).to.have.property(\"userFirstName\");\r",
 							"    pm.expect(response).to.have.property(\"userLastName\");\r",
 							"    pm.expect(response).to.have.property(\"userLocation\");\r",
