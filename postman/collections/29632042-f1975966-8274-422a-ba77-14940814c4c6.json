@@ -1160,7 +1160,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/byStatus?Id=all",
+					"raw": "{{baseURL}}/users/byStatus?id=R04",
 					"host": [
 						"{{baseURL}}"
 					],
@@ -1170,8 +1170,8 @@
 					],
 					"query": [
 						{
-							"key": "Id",
-							"value": "all"
+							"key": "id",
+							"value": "R04"
 						}
 					]
 				}
