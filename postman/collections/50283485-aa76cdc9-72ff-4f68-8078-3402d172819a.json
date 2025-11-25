@@ -820,7 +820,7 @@
 					"response": [
 						{
 							"id": "50283485-e35351d0-4dea-4409-8c38-e7955ffa2553",
-							"name": "New Request",
+							"name": "401",
 							"originalRequest": {
 								"method": "POST",
 								"header": [
