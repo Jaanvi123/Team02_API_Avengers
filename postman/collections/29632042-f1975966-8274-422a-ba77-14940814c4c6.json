@@ -744,14 +744,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/roles/R01",
+					"raw": "{{baseURL}}/users/roles/{{roleId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"roles",
-						"R01"
+						"{{roleId}}"
 					]
 				}
 			},
