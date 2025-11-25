@@ -1335,8 +1335,21 @@
 			"name": "UserModule",
 			"item": [
 				{
-					"name": "PUT Requests",
-					"item": [],
+					"name": "User Module-PUT Requests",
+					"item": [
+						{
+							"name": "New Request",
+							"id": "50283485-e2461645-07b7-4100-ac09-4a1685960545",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "50283485-4ae57291-4cea-4de0-ac20-2ed7417680c8"
 				},
 				{
