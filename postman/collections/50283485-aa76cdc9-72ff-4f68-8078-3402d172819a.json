@@ -805,18 +805,6 @@
 			"name": "Login",
 			"item": [
 				{
-					"name": "New Request",
-					"id": "50283485-2dfafbb3-0c61-4e8e-b530-99d098b3dde5",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
 					"name": "Login",
 					"id": "50283485-ba504a7b-1a88-4c64-896e-cc14d9502f46",
 					"protocolProfileBehavior": {
