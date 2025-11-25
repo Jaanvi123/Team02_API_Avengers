@@ -62,8 +62,8 @@
 						"id": "c39af9f8-34d6-4ea5-8059-3c80d74e87c2",
 						"exec": [
 							"// Generate a unique program name to avoid duplicates\r",
-							"let random = Math.floor(Math.random() * 10000);\r",
-							"pm.environment.set(\"programName\", \"Program_\" + random);"
+							"pm.environment.set(\"programName\", \"ProgramAuto\");\r",
+							""
 						],
 						"type": "text/javascript",
 						"packages": {},
