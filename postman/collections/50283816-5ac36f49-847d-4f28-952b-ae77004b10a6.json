@@ -371,7 +371,23 @@
 					"script": {
 						"id": "3603de9f-3b46-4a1e-892c-44f7b66c5e06",
 						"exec": [
-							""
+							"// Validate status code is 200\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"// Validate required fields in each program\r",
+							"pm.test(\"Each Program has required fields\", function () {\r",
+							"    const programs = pm.response.json();\r",
+							"    \r",
+							"    programs.forEach(p => {\r",
+							"        pm.expect(p).to.have.property(\"programId\");\r",
+							"        pm.expect(p).to.have.property(\"programName\");\r",
+							"        pm.expect(p).to.have.property(\"programDescription\");\r",
+							"        pm.expect(p).to.have.property(\"programStatus\");\r",
+							"        pm.expect(p).to.have.property(\"creationTime\");\r",
+							"        pm.expect(p).to.have.property(\"lastModTime\");\r",
+							"    });\r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {},
