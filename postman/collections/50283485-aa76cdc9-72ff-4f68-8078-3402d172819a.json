@@ -1592,6 +1592,39 @@
 					"response": []
 				},
 				{
+					"name": "Get Users By Program Batches",
+					"id": "50283485-7b54e761-e779-442d-8fe2-13a8bb7ed607",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/programBatch/24",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"programBatch",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Gets Users byRoleIdV2",
 					"id": "50283485-2f71a3be-023a-4480-a3c8-23ec43f43c1d",
 					"protocolProfileBehavior": {
@@ -1632,39 +1665,6 @@
 					"request": {
 						"method": "GET",
 						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Get Users By Program Batches",
-					"id": "50283485-7b54e761-e779-442d-8fe2-13a8bb7ed607",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/users/programBatch/24",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"users",
-								"programBatch",
-								"24"
-							]
-						}
 					},
 					"response": []
 				}
