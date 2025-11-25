@@ -53,7 +53,7 @@
 			]
 		},
 		{
-			"name": "UserLogin",
+			"name": "AdminUserLogin",
 			"item": [
 				{
 					"name": "CreateNewUserAsAdmin",
