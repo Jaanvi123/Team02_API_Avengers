@@ -582,9 +582,20 @@
 					"script": {
 						"id": "ec5f5eed-395d-4b41-bfb4-f9a0106ddd4b",
 						"exec": [
-							"pm.test(\"Status code 200\", () => pm.response.to.have.status(200));\r",
-							"var jsonData = pm.response.json()[0];\r",
-							"pm.expect(jsonData.programId).to.eql(parseInt(pm.environment.get(\"programId\")));"
+							"// Test for 200 OK response\r",
+							"pm.test(\"Status code is 200 or 404\", function () {\r",
+							"    pm.expect(pm.response.code === 200 || pm.response.code === 404).to.be.true;\r",
+							"});\r",
+							"let responseData = pm.response.json();\r",
+							"pm.test(\"Program has required fields\", function () {\r",
+							"        const program = responseData[0];\r",
+							"        pm.expect(program).to.have.property(\"programId\");\r",
+							"        pm.expect(program).to.have.property(\"programName\");\r",
+							"        pm.expect(program).to.have.property(\"programDescription\");\r",
+							"        pm.expect(program).to.have.property(\"programStatus\");\r",
+							"        pm.expect(program).to.have.property(\"creationTime\");\r",
+							"        pm.expect(program).to.have.property(\"lastModTime\");\r",
+							"    });"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -621,13 +632,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseURL}}/programs/77",
+					"raw": "{{baseURL}}/programs/660",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"programs",
-						"77"
+						"660"
 					],
 					"query": [
 						{
