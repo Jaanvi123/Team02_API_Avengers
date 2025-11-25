@@ -919,7 +919,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "bcf2d09b-93fb-4c05-9c4e-fec4ea8442cd",
+				"id": "4386d302-a0bc-4c79-b9b3-cdf9cbe1bcee",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -931,7 +931,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "22331ab0-9dc2-42a2-bb7e-6e462001cd15",
+				"id": "f02a5abe-8571-4b65-9e62-502b2324f4ad",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -944,10 +944,6 @@
 	"variable": [
 		{
 			"key": "randomPhNumber",
-			"value": ""
-		},
-		{
-			"key": "userID",
 			"value": ""
 		}
 	]
