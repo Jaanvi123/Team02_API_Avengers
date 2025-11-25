@@ -1572,7 +1572,7 @@
 					"response": []
 				},
 				{
-					"name": "Get All Users By Role",
+					"name": "Get All Users With Role",
 					"id": "50283485-c89f26e1-31b4-43fd-b124-154a70ca8fea",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
