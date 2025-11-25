@@ -1625,14 +1625,35 @@
 					"response": []
 				},
 				{
-					"name": "GetUserBatchId by User Id",
-					"id": "50283485-1570895b-8a4e-45df-9ff8-2d83a0009475",
+					"name": "Gets Users By Role Id",
+					"id": "50283485-2d6fa209-c0e2-4a48-be53-3740d31ca4f7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/roles/R01",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"roles",
+								"R01"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1669,8 +1690,8 @@
 					"response": []
 				},
 				{
-					"name": "GetUsersByStatus",
-					"id": "50283485-c6ed3adc-b249-46d3-90da-3f8043491628",
+					"name": "GetUserBatchId by User Id",
+					"id": "50283485-1570895b-8a4e-45df-9ff8-2d83a0009475",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1681,35 +1702,14 @@
 					"response": []
 				},
 				{
-					"name": "Gets Users By Role Id",
-					"id": "50283485-2d6fa209-c0e2-4a48-be53-3740d31ca4f7",
+					"name": "GetUsersByStatus",
+					"id": "50283485-c6ed3adc-b249-46d3-90da-3f8043491628",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/users/roles/R01",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"users",
-								"roles",
-								"R01"
-							]
-						}
+						"header": []
 					},
 					"response": []
 				}
