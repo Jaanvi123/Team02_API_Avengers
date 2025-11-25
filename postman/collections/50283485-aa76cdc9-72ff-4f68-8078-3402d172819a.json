@@ -1335,6 +1335,48 @@
 			"name": "New Folder",
 			"item": [
 				{
+					"name": "GetAllUsers",
+					"id": "50283485-3eb01b40-d204-484f-bb4f-307e4e40c69c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/users/activeUsers",
+							"protocol": "https",
+							"host": [
+								"lms-hackathon-nov-2025-8dd40899c026",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"lms",
+								"users",
+								"activeUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetUserDetailsbyId",
 					"id": "50283485-f106398d-7dc8-454d-88fe-c1c9374b2fec",
 					"protocolProfileBehavior": {
@@ -1431,48 +1473,6 @@
 				}
 			],
 			"id": "50283485-9f883cb1-ee63-464d-9ee4-6d618e77aa09"
-		},
-		{
-			"name": "GetAllUsers",
-			"id": "50283485-3eb01b40-d204-484f-bb4f-307e4e40c69c",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/users/activeUsers",
-					"protocol": "https",
-					"host": [
-						"lms-hackathon-nov-2025-8dd40899c026",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"lms",
-						"users",
-						"activeUsers"
-					]
-				}
-			},
-			"response": []
 		},
 		{
 			"name": "GetAllBatches",
