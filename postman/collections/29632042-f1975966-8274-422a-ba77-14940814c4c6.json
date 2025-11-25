@@ -654,7 +654,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{apiKey}}",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
@@ -671,14 +671,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/programs/13",
+					"raw": "{{baseURL}}/users/programs/1",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"programs",
-						"13"
+						"1"
 					]
 				}
 			},
