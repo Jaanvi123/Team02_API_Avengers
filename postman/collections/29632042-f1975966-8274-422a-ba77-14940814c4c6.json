@@ -1220,8 +1220,38 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"userRoleList\": [ \r\n    { \r\n      \"roleId\": \"R01\", \r\n      \"userRoleStatus\": \"Active\" \r\n    } \r\n  ] \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roleId/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roleId",
+						"{{userID}}"
+					]
+				}
 			},
 			"response": []
 		},
