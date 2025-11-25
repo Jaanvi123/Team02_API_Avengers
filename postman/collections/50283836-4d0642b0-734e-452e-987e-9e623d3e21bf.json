@@ -68,37 +68,6 @@
 			"response": []
 		},
 		{
-			"name": "logoutlms",
-			"id": "50283836-8a0bbf35-b6a3-4f8f-a486-f075b70291da",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjM4NTA4MjgsImV4cCI6MTc2Mzg3OTYyOH0.7mUESvBudM4vRfW9O9NM57L-WKXK7421QGLIhWVmHY865FLUW4j4uHXMREFRrP2jtmjUwY3zzYoCc4O2Arp3LA",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/logoutlms",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"logoutlms"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "/login1",
 			"event": [
 				{
@@ -154,6 +123,37 @@
 					],
 					"path": [
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logoutlms",
+			"id": "50283836-8a0bbf35-b6a3-4f8f-a486-f075b70291da",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjM4NTA4MjgsImV4cCI6MTc2Mzg3OTYyOH0.7mUESvBudM4vRfW9O9NM57L-WKXK7421QGLIhWVmHY865FLUW4j4uHXMREFRrP2jtmjUwY3zzYoCc4O2Arp3LA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/logoutlms",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"logoutlms"
 					]
 				}
 			},
