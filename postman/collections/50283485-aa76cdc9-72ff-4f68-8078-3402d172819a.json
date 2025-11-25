@@ -862,14 +862,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/users/roleId/U155",
+							"raw": "{{baseURL}}/users/roleId/U62",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"users",
 								"roleId",
-								"U155"
+								"U62"
 							]
 						}
 					},
@@ -1005,7 +1005,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"programId\": 2,\r\n    \"roleId\": \"R01\",\r\n    \"userId\": \"U155\",\r\n    \"userRoleProgramBatches\": [\r\n        {\r\n            \"batchId\": 24,\r\n            \"userRoleProgramBatchStatus\": \"Active\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"programId\": 102,\r\n    \"roleId\": \"R01\",\r\n    \"userId\": \"U62\",\r\n    \"userRoleProgramBatches\": [\r\n        {\r\n            \"batchId\": 67,\r\n            \"userRoleProgramBatchStatus\": \"Active\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1013,14 +1013,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/users/roleProgramBatchStatus/U155",
+							"raw": "{{baseURL}}/users/roleProgramBatchStatus/U62",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"users",
 								"roleProgramBatchStatus",
-								"U155"
+								"U62"
 							]
 						}
 					},
@@ -1139,27 +1139,38 @@
 					"name": "CerateSkillUsingAdminUser",
 					"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
 					"protocolProfileBehavior": {
-						"disableBodyPruning": true
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
 					},
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwOTgwNzAsImV4cCI6MTc2NDEyNjg3MH0.uHqpKi6IP7Z149LQjG0TXhdB0bCH-ivzXmZj43HsVRo4mUXH8i6cbDDRoRqO-3nPlH14g2iKQITnZI48BWnpDA",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [
 							{
-								"key": "Content-Type",
-								"value": "application/json"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJSYW1SYWppdkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMTAzMjcsImV4cCI6MTc2NDAzOTEyN30.8Pm7MbOQJocVbhzu17pHjub69r2Jl6_cBma5DdkPxoNnNxkRmiX7NjnomeRjKHY6NNH-RpSaaQh4ZTQeAtnd-g",
+								"key": "Accept",
+								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"skillName\": \"TestnG\"\r\n}"
+							"raw": "{\r\n    \"skillName\": \"SCDFnewversion\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{baseURL}}/SaveSkillMaster",
