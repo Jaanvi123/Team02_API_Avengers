@@ -200,12 +200,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users1",
+					"raw": "{{baseURL}}/users",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"users1"
+						"users"
 					]
 				}
 			},
