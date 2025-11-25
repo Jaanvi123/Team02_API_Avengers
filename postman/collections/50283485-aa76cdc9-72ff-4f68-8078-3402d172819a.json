@@ -1548,6 +1548,38 @@
 					"response": []
 				},
 				{
+					"name": "Gets Count Of Active And Inactive Users",
+					"id": "50283485-49b1653a-5ca7-4ca8-8001-d31db531ff4c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/byStatus",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"byStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GetUserBatchId by User Id",
 					"id": "50283485-1570895b-8a4e-45df-9ff8-2d83a0009475",
 					"protocolProfileBehavior": {
@@ -1600,38 +1632,6 @@
 					"request": {
 						"method": "GET",
 						"header": []
-					},
-					"response": []
-				},
-				{
-					"name": "Gets Count Of Active And Inactive Users",
-					"id": "50283485-49b1653a-5ca7-4ca8-8001-d31db531ff4c",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/users/byStatus",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"users",
-								"byStatus"
-							]
-						}
 					},
 					"response": []
 				}
