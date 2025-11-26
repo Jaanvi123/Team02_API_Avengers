@@ -398,6 +398,79 @@
 			"response": []
 		},
 		{
+			"name": "Team02-Login Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cabcb04-4a31-4736-ac3e-df9f6d4aa457",
+						"exec": [
+							"let json = pm.response.json();\r",
+							"\r",
+							"// Extract token from response\r",
+							"let token = json.token;\r",
+							"\r",
+							"// Save token to environment\r",
+							"if (token) {\r",
+							"    //pm.environment.set(\"team2_auth_token\", token);\r",
+							"    pm.globals.set(\"team2_auth_token\", token);\r",
+							"    console.log(\"Captured token:\", token);\r",
+							"} else {\r",
+							"    pm.test(\"Token not found\", function () {\r",
+							"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7a714c49-b9f4-4133-ad8a-2798a14438b3",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283836-68987797-3839-4fbd-9dd0-5fd04c27b2be",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Forgot Password/Confirm Email",
 			"event": [
 				{
