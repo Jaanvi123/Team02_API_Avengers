@@ -7,6 +7,31 @@
 	"item": [
 		{
 			"name": "Create User- Admin",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0ad80286-ff0c-43b9-964b-6115807ce19a",
+						"exec": [
+							"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
+							"console.log(\"raw phone:\" + rawPhoneNumber);\r",
+							"\r",
+							"//Replace '-' from the random generated phone number.\r",
+							"const cleanedPhoneNumber = +rawPhoneNumber.replace(/-/g, '');\r",
+							"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \" + cleanedPhoneNumber);\r",
+							"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
+							"\r",
+							"//Generate random email. API only accepts @gmail.com\r",
+							"pm.globals.set('userEmail', pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"@gmail.com\");\r",
+							"console.log(pm.globals.get('userEmail'));\r",
+							"console.log(pm.request.body.raw);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-493a0b2e-116b-4784-a022-2ce3ba68c37b",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -22,6 +47,16 @@
 							"language": "json"
 						}
 					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roleStatus",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roleStatus"
+					]
 				}
 			},
 			"response": []
