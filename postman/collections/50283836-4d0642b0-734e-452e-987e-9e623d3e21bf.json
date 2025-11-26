@@ -333,21 +333,6 @@
 						"id": "5cabcb04-4a31-4736-ac3e-df9f6d4aa457",
 						"exec": [
 							"let json = pm.response.json();\r",
-							"let currentEnvironment = pm.environment.name;\r",
-							"let roleId = pm.environment.get(\"roleId\");\r",
-							"    if (currentEnvironment === \"Team02_LMS_API_Admin\") {\r",
-							"        if (roleId === \"R01\"){\r",
-							"        pm.environment.set(\"adminUserEmail\", response.user.userLoginEmail)\r",
-							"    }};\r",
-							"    if (currentEnvironment === \"Team02_LMS_API_Staff\") {\r",
-							"       if (roleId === \"R02\"){\r",
-							"        pm.environment.set(\"staffUserEmail\", response.user.userLoginEmail)\r",
-							"    }};\r",
-							"    if (currentEnvironment === \"Team02_LMS_API_Student\") {\r",
-							"        if (roleId === \"R03\"){\r",
-							"        pm.environment.set(\"studentUserEmail\", response.user.userLoginEmail)\r",
-							"    }};\r",
-							"\r",
 							"\r",
 							"// Extract token from response\r",
 							"let token = json.token;\r",
@@ -366,6 +351,13 @@
 						"type": "text/javascript",
 						"packages": {},
 						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
 					}
 				}
 			],
