@@ -6,105 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Create User- Admin",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "0ad80286-ff0c-43b9-964b-6115807ce19a",
-						"exec": [
-							"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
-							"console.log(\"raw phone:\" + rawPhoneNumber);\r",
-							"\r",
-							"//Replace '-' from the random generated phone number.\r",
-							"const cleanedPhoneNumber = +rawPhoneNumber.replace(/-/g, '');\r",
-							"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \" + cleanedPhoneNumber);\r",
-							"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
-							"\r",
-							"//Generate random email. API only accepts @gmail.com\r",
-							"pm.globals.set('userEmail', pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"@gmail.com\");\r",
-							"console.log(pm.globals.get('userEmail'));\r",
-							"console.log(pm.request.body.raw);"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "23e2c8a5-5398-4e2d-bab1-f94d2c9697df",
-						"exec": [
-							"//Extract response from Json body of API response\r",
-							"const response = pm.response.json();\r",
-							"let currentEnvironment = pm.environment.name;\r",
-							"\r",
-							"if(currentEnvironment === \"Team02_LMS_API_Admin\"){\r",
-							"    pm.environment.set(\"adminUserId\", response.user.userId)\r",
-							"     pm.environment.set(\"adminUserEmail\", response.user.userLoginEmail)\r",
-							"}\r",
-							"\r",
-							"pm.test(\"User successfully created\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
-							"    //Extract userId from user object in response\r",
-							"    pm.globals.set(\"userID\", response.user.userId)\r",
-							"});\r",
-							"if (pm.response.code === 400) {\r",
-							"    //Extract message from response body\r",
-							"    let errorMsg = response.message;\r",
-							"\r",
-							"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
-							"        pm.response.to.have.status(400);\r",
-							"    });\r",
-							"}"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"id": "29632042-493a0b2e-116b-4784-a022-2ce3ba68c37b",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{auth_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"userComments\": \"whenisclass\",\r\n    \"userEduPg\": \"dvdsv\",\r\n    \"userEduUg\": \"hjfgngfngnvb\",\r\n    \"userFirstName\": \"Yogi\",\r\n    \"userLastName\": \"SSh\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/123456\",\r\n    \"userLocation\": \"USA\",\r\n    \"userMiddleName\": \"P\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"R01\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"CST\",\r\n    \"userVisaStatus\": \"H4\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"{{userEmail}}\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Active\"\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/users/roleStatus",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"users",
-						"roleStatus"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Create New- User",
 			"event": [
 				{
@@ -114,7 +15,12 @@
 						"exec": [
 							"//Extract response from Json body of API response\r",
 							"const response = pm.response.json();\r",
+							"let currentEnvironment = pm.environment.name;\r",
 							"\r",
+							"if(currentEnvironment === \"Team02_LMS_API_Admin\"){\r",
+							"    pm.environment.set(\"adminUserId\", response.user.userId)\r",
+							"     pm.environment.set(\"adminUserEmail\", response.user.userLoginEmail)\r",
+							"}\r",
 							"pm.test(\"User successfully created\", function () {\r",
 							"    pm.response.to.have.status(201);\r",
 							"    //Extract userId from user object in response\r",
@@ -193,72 +99,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"userComments\": \"whatisthis\",\r\n    \"userEduPg\": \"retreg\",\r\n    \"userEduUg\": \"bgbfvsdvds\",\r\n    \"userFirstName\": \"Julie\",\r\n    \"userLastName\": \"Kar\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/456\",\r\n    \"userLocation\": \"USA\",\r\n    \"userMiddleName\": \"A\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"R03\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"IST\",\r\n    \"userVisaStatus\": \"NA\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"{{userEmail}}\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Active\"\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/users/roleStatus",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"users",
-						"roleStatus"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create User- Staff",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "5dc9a8dc-b752-4f20-a9df-55752d9b1603",
-						"exec": [
-							"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
-							"console.log(\"raw phone:\" + rawPhoneNumber);\r",
-							"\r",
-							"//Replace '-' from the random generated phone number.\r",
-							"const cleanedPhoneNumber = +rawPhoneNumber.replace(/-/g, '');\r",
-							"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \" + cleanedPhoneNumber);\r",
-							"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
-							"\r",
-							"//Generate random email. API only accepts @gmail.com\r",
-							"pm.globals.set('userEmail', pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"@gmail.com\");\r",
-							"console.log(pm.globals.get('userEmail'));\r",
-							"console.log(pm.request.body.raw);"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"id": "29632042-080a070a-c6d5-4e83-8f05-7c4dadeee3fc",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{auth_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"userComments\": \"iknowwhatyoudid\",\r\n    \"userEduPg\": \"xdvxvf\",\r\n    \"userEduUg\": \"erfjkhdskvjnds\",\r\n    \"userFirstName\": \"YogS\",\r\n    \"userLastName\": \"Lam\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/123\",\r\n    \"userLocation\": \"USA\",\r\n    \"userMiddleName\": \"S\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"R02\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"PST\",\r\n    \"userVisaStatus\": \"H4-EAD\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"{{userEmail}}\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Active\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
