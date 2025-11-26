@@ -830,14 +830,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/programs/1",
+					"raw": "{{baseURL}}/users/programs/{{programId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"programs",
-						"1"
+						"{{programId}}"
 					]
 				}
 			},
