@@ -1,0 +1,1671 @@
+{
+	"info": {
+		"_postman_id": "29632042-f1975966-8274-422a-ba77-14940814c4c6",
+		"name": "User Module-Yogini",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create New- User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fd1a2aec-714d-4824-91b3-010e5836a37c",
+						"exec": [
+							"//Extract response from Json body of API response\r",
+							"const response = pm.response.json();\r",
+							"//let currentEnvironment = pm.environment.name;\r",
+							"\r",
+							"if (pm.response.code === 201) {\r",
+							"    //Extract userId from user object in response\r",
+							"    pm.environment.set(\"userId\", response.user.userId);\r",
+							"}\r",
+							"\r",
+							"pm.test(\"User successfully created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0c137e93-f629-4515-b654-324eb28c662d",
+						"exec": [
+							"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
+							"console.log(\"raw phone:\" + rawPhoneNumber);\r",
+							"let currentEnvironment = pm.environment.name;\r",
+							"\r",
+							"//Replace '-' from the random generated phone number.\r",
+							"const cleanedPhoneNumber = +rawPhoneNumber.replace(/-/g, '');\r",
+							"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \" + cleanedPhoneNumber);\r",
+							"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
+							"\r",
+							"//Generate random email. API only accepts @gmail.com\r",
+							"pm.environment.set(\"userEmail\", pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"@gmail.com\");\r",
+							"console.log(pm.environment.get('userEmail'));\r",
+							"console.log(pm.request.body.raw);\r",
+							"\r",
+							"if (currentEnvironment===\"Team02_LMS_API_Admin\")\r",
+							"{\r",
+							"    pm.environment.set(\"roleId\", \"R01\");\r",
+							"}\r",
+							"if (currentEnvironment===\"Team02_LMS_API_Staff\")\r",
+							"{\r",
+							"    pm.environment.set(\"roleId\", \"R02\");\r",
+							"}\r",
+							"if (currentEnvironment===\"Team02_LMS_API_Student\")\r",
+							"{\r",
+							"    pm.environment.set(\"roleId\", \"R03\");\r",
+							"}\r",
+							"/*\r",
+							"let requestData = JSON.parse(pm.request.body.raw);\r",
+							"let mandatoryField1 = ['userFirstName'];\r",
+							"let mandatoryField2 = ['userLastName'];\r",
+							"let mandatoryField3 = ['userPhoneNumber'];\r",
+							"\r",
+							"pm.test(\"Check userFirstName\", () => {\r",
+							"    pm.expect(requestData).to.have.keys(mandatoryField1);\r",
+							"});\r",
+							"\r",
+							"*/\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b636a9e8-1137-4374-baf0-9c661fed012a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{team2_auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userComments\": \"whatisthis\",\r\n    \"userEduPg\": \"retreg\",\r\n    \"userEduUg\": \"bgbfvsdvds\",\r\n    \"userFirstName\": \"Juliee\",\r\n    \"userLastName\": \"Kar\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/456\",\r\n    \"userLocation\": \"USA\",\r\n    \"userMiddleName\": \"A\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"{{roleId}}\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"IST\",\r\n    \"userVisaStatus\": \"NA\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"{{userEmail}}\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Active\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roleStatus",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roleStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74686675-41bd-4999-8063-da6ac6c8f76c",
+						"exec": [
+							"pm.test(\"Get All Users: Request completed successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-18eac073-ea4a-48cd-a810-aeb1447a894e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Active User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "69b9890d-f3ba-4f63-99cd-d9009a42b34b",
+						"exec": [
+							"pm.test(\"Get All Active Users: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6398d718-e0d8-4d07-9839-1603eed10b01",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-40971efd-fa24-48b5-b6db-316ddaa39d23",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/activeUsers",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"activeUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Active user emails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "146c7149-ab8f-462b-a61b-874f1e14ec1a",
+						"exec": [
+							"pm.test(\"Get Active user emails: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-ae5ce584-61f6-435f-b435-159f41c3e1f9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/fetch-emails",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"fetch-emails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Roles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39d81d66-c259-466a-8a66-25b3c0096ff6",
+						"exec": [
+							"pm.test(\"Get All Roles: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-49234f08-b2a9-4aca-b1c2-25fa06e9b10a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/roles",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Info by UserId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d429a74e-28ff-42f7-8368-3f8ea611ffb0",
+						"exec": [
+							"pm.test(\"Get User info by UserId: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-ea86b7e7-5fc2-4d49-9e07-8eebd18cdf42",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users with roles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65622bdf-a4ba-4522-b99a-b9cabd2f9930",
+						"exec": [
+							"pm.test(\"Get Users with roles: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-c179057e-b1b6-4ecd-8a9c-3a5936a43ba3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roles",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Role Status by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef6bf7fe-db48-42bb-af06-eeedb4efa2fa",
+						"exec": [
+							"pm.test(\"Get Role Status by Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-36e58e65-4449-48b8-9e85-b925fbb5e6ec",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/byStatus?id=all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"byStatus"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Role Program Batch Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b44dfa75-b3a3-4375-ae0e-085357286678",
+						"exec": [
+							"pm.test(\"User has been successfully assigned to Program/Batches\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-8aae03eb-a079-47c3-9c15-385c4a64c1cf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " { \r\n  \"programId\": \"{{programId}}\", \r\n  \"roleId\": \"R03\", \r\n  \"userId\": \"{{userID}}\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{batchId}},\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roleProgramBatchStatus/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roleProgramBatchStatus",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User by Program Batches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "72804111-e202-4938-9b3b-c1b6ebac9fef",
+						"exec": [
+							"pm.test(\"User by Program Batches: Request successfully completed\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-1171d1e4-9746-4549-b0b8-ee6fe1ef3e01",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/programBatch/{{batchId}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"programBatch",
+						"{{batchId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User by Program",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63796c17-1b92-47ee-9907-71e61a33775f",
+						"exec": [
+							"pm.test(\"Get User by Program: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b3d5f304-a85f-4f1a-bc9c-75c76bf73929",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/programs/{{programId}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"programs",
+						"{{programId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Users with roles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5140a68d-a891-44ed-821f-9d21f7486d0a",
+						"exec": [
+							"pm.test(\"Get Users by roleId: Request completed successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"\r",
+							"    //Extract response from Json body of API response\r",
+							"    const response = pm.response.json();\r",
+							"    //Extract message from response body\r",
+							"    let errorMsg = response.message;\r",
+							"   /* pm.test(\"Invalid endpoint\", function () {\r",
+							"        pm.expect(response).to.have.property('message');\r",
+							"    });*/\r",
+							"\r",
+							"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
+							"        pm.response.to.have.status(404);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4b0582aa-3c1e-4d6e-9b2b-b3e2593cbb04",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-8158d9c6-2315-483c-99b7-64f00314f800",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roles",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Users by roleId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5140a68d-a891-44ed-821f-9d21f7486d0a",
+						"exec": [
+							"pm.test(\"Get Users by roleId: Request completed successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4b0582aa-3c1e-4d6e-9b2b-b3e2593cbb04",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-55d36f8d-57b0-4ba6-a82f-11ff190e7054",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roles/{{roleId}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roles",
+						"{{roleId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users by roleId V2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "25d9c3ba-cd3e-407c-aa06-7ae5f437a709",
+						"exec": [
+							"pm.test(\"Get Users by roleId V2: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-dfa7dbe8-ce9b-4272-8c2a-52af7ddfd11d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User BatchId by User Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e70bb013-5ead-4722-961e-085a85e0b1e4",
+						"exec": [
+							"pm.test(\"Get User BatchId by User Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b31dda86-b1b5-4309-8cea-df104641635b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/user/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"user",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Details by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d3358d4f-01a6-4f3a-945f-68a58aaf6fe5",
+						"exec": [
+							"pm.test(\"Get User details by Id: Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b9ad76c9-efad-4773-9717-8009b2a30dfc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/details/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"details",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Count of active and inactive users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef59e873-162d-4359-981b-f1020057fe8a",
+						"exec": [
+							"pm.test(\"Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-a3d105d9-46b1-4348-82f9-e984f89ec557",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/byStatus?id=all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"byStatus"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "14fa6f03-da74-46f0-848c-e2f5128f9342",
+						"exec": [
+							"pm.test(\"User has been successfully updated\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-abe07a36-2c00-4af7-b8d6-3cb012a888a2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userComments\": \"help\",\r\n    \"userEduPg\": \"rgdfgdfgfd\",\r\n    \"userEduUg\": \"dvfdsgA\",\r\n    \"userFirstName\": \"{{$randomFirstName}}\",\r\n    \"userLastName\": \"{{$randomLastName}}\",\r\n    \"userMiddleName\": \"Sh\",\r\n    \"userLocation\": \"Tx\",\r\n    \"userLoginEmail\": \"test333@gmail.com\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userTimeZone\": \"PST\",\r\n    \"userVisaStatus\": \"NA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Login Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d46e1d9b-698e-45b6-ada6-a0c1c9eea94e",
+						"exec": [
+							"pm.test(\"User loginStatus has been successfully updated\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-d2effab7-cb96-450a-9b7a-2077b1fc841a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmail\": \"54554@gmail.com\",\r\n  \"loginStatus\": \"Active\",\r\n  \"status\": \"Active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/userLogin/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"userLogin",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User role Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df162181-14fb-4b52-a875-0c3a6545c41d",
+						"exec": [
+							"pm.test(\"User role has been successfully updated.\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-83e5ca28-76f0-4057-a970-e5136c1fb74c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n  \"userRoleList\": [ \r\n    { \r\n      \"roleId\": \"R01\", \r\n      \"userRoleStatus\": \"Active\" \r\n    } \r\n  ] \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roleId/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roleId",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "26c02912-f1a1-49b6-b1bb-f4278cf48ead",
+						"exec": [
+							"pm.test(\"User has been inactivated successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-b1a37c99-1d54-4da4-a2b2-193d88894833",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/{{userID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"{{userID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "dac303b4-5762-493b-9d61-7d2bf3ee8c22",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4ea19d1d-0126-411d-b327-ebd2e006d510",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "randomPhNumber",
+			"value": ""
+		},
+		{
+			"key": "roleId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "userEmail",
+			"value": ""
+		}
+	]
+}

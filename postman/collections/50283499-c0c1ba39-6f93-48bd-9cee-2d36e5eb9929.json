@@ -1,0 +1,564 @@
+{
+	"info": {
+		"_postman_id": "50283499-c0c1ba39-6f93-48bd-9cee-2d36e5eb9929",
+		"name": "Program Batch Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateNewBatch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1fc631ea-f96a-40dc-8244-80feedcb07b4",
+						"exec": [
+							"// 1. Status should be 201\r",
+							"pm.test(\"Status code is 201 - Batch created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// 2. Parse JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// 3. Check batchId exists\r",
+							"pm.test(\"Response contains batchId\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"batchId\");\r",
+							"    pm.expect(jsonData.batchId).to.be.a(\"number\");\r",
+							"});\r",
+							"\r",
+							"// 4. Save batchId and batchName to environment for next requests\r",
+							"//pm.environment.set(\"batchId\", jsonData.batchId);\r",
+							"//pm.environment.set(\"batchName\", jsonData.batchName);\r",
+							"\r",
+							"// 4. Save to GLOBAL variables\r",
+							"pm.globals.set(\"batchId\", jsonData.batchId);\r",
+							"pm.globals.set(\"batchName\", jsonData.batchName);\r",
+							"\r",
+							"// Optional console logs\r",
+							"console.log(\"Global batchId saved:\", jsonData.batchId);\r",
+							"console.log(\"Global batchName saved:\", jsonData.batchName);\r",
+							"\r",
+							"// 5. Check batchName matches request\r",
+							"let requestBody = JSON.parse(pm.request.body.raw);\r",
+							"pm.test(\"Batch name matches request\", function () {\r",
+							"    pm.expect(jsonData.batchName).to.eql(requestBody.batchName);\r",
+							"});\r",
+							"\r",
+							"// 6. Basic mandatory fields check\r",
+							"pm.test(\"Response contains mandatory fields\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"batchStatus\");\r",
+							"    pm.expect(jsonData).to.have.property(\"programId\");\r",
+							"    pm.expect(jsonData).to.have.property(\"batchNoOfClasses\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0639ee61-dadb-4db8-8cec-a1402043890a",
+						"exec": [
+							"// Get program name from environment\r",
+							"const programName = pm.environment.get(\"programName\") || \"SDET\";\r",
+							"\r",
+							"// Generate a random sequence between 1 and 99\r",
+							"const seq = Math.floor(Math.random() * 99) + 1;\r",
+							"\r",
+							"// Build batch name like SDET1, SDET25 etc.\r",
+							"const batchName = programName + seq;\r",
+							"\r",
+							"// Save to environment for use in body & later requests\r",
+							"pm.environment.set(\"batchSequence\", seq);\r",
+							"pm.environment.set(\"batchName\", batchName);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283499-2cc572f9-4f32-4a78-ab87-8bd6de9a6dc8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"batchDescription\": \"Weekday evening batch\",\r\n    \"batchName\": \"{{batchName}}\",\r\n    \"batchNoOfClasses\": 25,\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\": \"{{programId}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/batches",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "50283499-f2606aa0-37b7-43d9-8c48-ba84b7b15dab",
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"SDET first batch\",\r\n    \"batchName\": \"SDET1\",\r\n    \"batchNoOfClasses\": 20,\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/batches",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"batches"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 25 Nov 2025 07:31:38 GMT"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=X3lJGuUjIFWkSWCjA50Ep3rbbMGG%2FourfuSbUkMOx3Y%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764055898\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=X3lJGuUjIFWkSWCjA50Ep3rbbMGG%2FourfuSbUkMOx3Y%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764055898\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Content-Length",
+							"value": "164"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"batchId\": 44,\n    \"batchName\": \"SDET1\",\n    \"batchDescription\": \"SDET first batch\",\n    \"batchStatus\": \"Active\",\n    \"batchNoOfClasses\": 20,\n    \"programId\": 1,\n    \"programName\": \"LMSHAHackthonone\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetAllBatches",
+			"id": "50283499-4de78a9f-48c6-4e8b-883a-eb5715d4ff25",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwNTU4NjYsImV4cCI6MTc2NDA4NDY2Nn0.O-OYd3WthbV_OmPf1VP6Yvt10iBVMSR3kmBWWJlyB9UaTKVlmxGyQL0z3XMEmj8gx6V9mUAHZmuB71Ya0-b5Iw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/batches",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"batches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBYBatchId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae0f7312-eb9f-43ed-b442-abb797d1333d",
+						"exec": [
+							"// Status code check – should be 200\r",
+							"pm.test(\"Status code is 200 - Batch fetched successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Parse response JSON\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// Handle array response\r",
+							"let resp = Array.isArray(jsonData) ? jsonData[0] : jsonData;\r",
+							"\r",
+							"// Verify batchId matches global\r",
+							"pm.test(\"batchId matches global variable\", function () {\r",
+							"    let globalId = Number(pm.globals.get(\"batchId\"));\r",
+							"    pm.expect(resp.batchId).to.eql(globalId);\r",
+							"});\r",
+							"\r",
+							"// Verify batchName matches global\r",
+							"pm.test(\"batchName matches global variable\", function () {\r",
+							"    let globalName = pm.globals.get(\"batchName\");\r",
+							"    pm.expect(resp.batchName).to.eql(globalName);\r",
+							"});\r",
+							"\r",
+							"// Check response fields exist\r",
+							"pm.test(\"Response contains mandatory fields\", function () {\r",
+							"    pm.expect(resp).to.have.property(\"batchDescription\");\r",
+							"    pm.expect(resp).to.have.property(\"batchNoOfClasses\");\r",
+							"    pm.expect(resp).to.have.property(\"batchStatus\");\r",
+							"    pm.expect(resp).to.have.property(\"programId\");\r",
+							"    pm.expect(resp).to.have.property(\"programName\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "baef6de5-b746-421a-8d7c-e901c298ec33",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283499-7021c5c8-f112-4f87-96f0-803e6efd2c39",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwNTkxMzksImV4cCI6MTc2NDA4NzkzOX0.NjmgfDVv-lGJvadEYfZy4JwOFeOmj07E9vd1FYswPNzvrtDEnTy4TWx8caIMuPEKVOnxlX6_-HTusvVcRLqzAQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"batchDescription\": \"string\",\r\n        \"batchId\": 0,\r\n        \"batchName\": \"string\",\r\n        \"batchNoOfClasses\": 0,\r\n        \"batchStatus\": \"string\",\r\n        \"programId\": 0,\r\n        \"programName\": \"string\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/batches/batchId/9999999",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"batches",
+						"batchId",
+						"9999999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBatchByBatchName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "99e2d30e-2cbc-46c8-88d0-6ff1fa1c6a10",
+						"exec": [
+							"// 1. Status code 200\r",
+							"pm.test(\"Status code is 200 - Batch found\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 2. Parse JSON response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// 3. Handle array or single object response\r",
+							"let resp = Array.isArray(jsonData) ? jsonData[0] : jsonData;\r",
+							"\r",
+							"// 4. Validate required fields\r",
+							"pm.test(\"Response contains all required fields\", function () {\r",
+							"    pm.expect(resp).to.have.property(\"batchDescription\");\r",
+							"    pm.expect(resp).to.have.property(\"batchId\");\r",
+							"    pm.expect(resp).to.have.property(\"batchName\");\r",
+							"    pm.expect(resp).to.have.property(\"batchNoOfClasses\");\r",
+							"    pm.expect(resp).to.have.property(\"batchStatus\");\r",
+							"    pm.expect(resp).to.have.property(\"programId\");\r",
+							"    pm.expect(resp).to.have.property(\"programName\");\r",
+							"});\r",
+							"\r",
+							"// 5. Validate batchName matches global variable\r",
+							"pm.test(\"batchName matches global variable\", function () {\r",
+							"    let globalName = pm.globals.get(\"batchName\");\r",
+							"    pm.expect(resp.batchName).to.eql(globalName);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283499-e7b5585d-adec-4504-a748-b9bd18195c13",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwNTkxMzksImV4cCI6MTc2NDA4NzkzOX0.NjmgfDVv-lGJvadEYfZy4JwOFeOmj07E9vd1FYswPNzvrtDEnTy4TWx8caIMuPEKVOnxlX6_-HTusvVcRLqzAQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"batchDescription\": \"string\",\r\n        \"batchId\": 0,\r\n        \"batchName\": \"string\",\r\n        \"batchNoOfClasses\": 0,\r\n        \"batchStatus\": \"string\",\r\n        \"programId\": 0,\r\n        \"programName\": \"string\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/batches/batchName/INVALID9999",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"batches",
+						"batchName",
+						"INVALID9999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBatchByProgramId",
+			"id": "50283499-bf4d32dd-cae1-4b3d-9e22-ea3dd0c94a6f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateByBatchId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a58ffd3-a670-45bf-bae6-fe3892bc428a",
+						"exec": [
+							"// 1. Status should be 200\r",
+							"pm.test(\"Status code is 200 - Batch updated\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// 2. Parse response\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// 3. Validate all required fields exist\r",
+							"pm.test(\"Response contains all batch fields\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"batchDescription\");\r",
+							"    pm.expect(jsonData).to.have.property(\"batchId\");\r",
+							"    pm.expect(jsonData).to.have.property(\"batchName\");\r",
+							"    pm.expect(jsonData).to.have.property(\"batchNoOfClasses\");\r",
+							"    pm.expect(jsonData).to.have.property(\"batchStatus\");\r",
+							"    pm.expect(jsonData).to.have.property(\"programId\");\r",
+							"    pm.expect(jsonData).to.have.property(\"programName\");\r",
+							"});\r",
+							"\r",
+							"// 4. batchId in response must match global batchId\r",
+							"pm.test(\"batchId matches global batchId\", function () {\r",
+							"    const globalBatchId = Number(pm.globals.get(\"batchId\"));\r",
+							"    pm.expect(jsonData.batchId).to.eql(globalBatchId);\r",
+							"});\r",
+							"\r",
+							"// 5. programId in response must match global programId\r",
+							"pm.test(\"programId matches global programId\", function () {\r",
+							"    const globalProgramId = Number(pm.globals.get(\"programId\"));\r",
+							"    pm.expect(jsonData.programId).to.eql(globalProgramId);\r",
+							"});\r",
+							"\r",
+							"// 6. Validate updated values match request body\r",
+							"let requestBody = JSON.parse(pm.request.body.raw);\r",
+							"\r",
+							"pm.test(\"Updated fields match request body\", function () {\r",
+							"    pm.expect(jsonData.batchDescription).to.eql(requestBody.batchDescription);\r",
+							"    pm.expect(jsonData.batchNoOfClasses).to.eql(requestBody.batchNoOfClasses);\r",
+							"    pm.expect(jsonData.batchStatus).to.eql(requestBody.batchStatus);\r",
+							"    pm.expect(jsonData.batchName).to.eql(requestBody.batchName);\r",
+							"});\r",
+							"\r",
+							"// 7. (Optional) Update globals for new values if you want to use them later\r",
+							"pm.globals.set(\"batchStatus\", jsonData.batchStatus);\r",
+							"pm.globals.set(\"batchDescription\", jsonData.batchDescription);\r",
+							"pm.globals.set(\"batchNoOfClasses\", jsonData.batchNoOfClasses);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283499-ffc62813-8b5e-4ce0-b22c-b0cfa669684e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwNTkxMzksImV4cCI6MTc2NDA4NzkzOX0.NjmgfDVv-lGJvadEYfZy4JwOFeOmj07E9vd1FYswPNzvrtDEnTy4TWx8caIMuPEKVOnxlX6_-HTusvVcRLqzAQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"batchDescription\": \"Updated weekday evening batch\",\r\n    \"batchId\": {{batchId}},\r\n    \"batchName\": \"{{batchName}}\",\r\n    \"batchNoOfClasses\": 30,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": 1,\r\n    \"programName\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/batches/{{batchId}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"batches",
+						"{{batchId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBatchByBatchId",
+			"id": "50283499-e4982e1d-6d62-41e2-b074-cb990f0f6a89",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
