@@ -1517,58 +1517,6 @@
 			"response": []
 		},
 		{
-			"name": "Login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "a591aa7a-3d3d-479e-bb55-4f83e782c7ff",
-						"exec": [
-							""
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"id": "50283816-48996613-5a53-446d-a41c-b66e016b1273",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}"
-				},
-				"url": {
-					"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/login",
-					"protocol": "https",
-					"host": [
-						"lms-hackathon-nov-2025-8dd40899c026",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"lms",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "addnewskill",
 			"event": [
 				{
