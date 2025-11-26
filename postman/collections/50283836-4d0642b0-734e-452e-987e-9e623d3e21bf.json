@@ -925,7 +925,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "b5f8ede1-db11-4fe3-9f19-1b6c14a31c45",
+				"id": "629242ca-41a2-476c-a182-5b5c91ed1aeb",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -937,7 +937,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a4b612e6-0e81-41d2-8547-ff8b3d285f3c",
+				"id": "2e7e6110-6747-4170-b000-e64df754c0f1",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -945,12 +945,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "randomPassword",
-			"value": ""
 		}
 	]
 }
