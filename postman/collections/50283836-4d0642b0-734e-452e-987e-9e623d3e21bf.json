@@ -579,7 +579,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "forgotpassword",
 			"id": "50283836-a9baa484-1cb3-4bbc-b6dc-f2723080d487",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
