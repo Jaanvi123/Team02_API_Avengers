@@ -37,6 +37,7 @@
 							"    //Extract userId from user object in response\r",
 							"    pm.globals.set(\"userID\", response.user.userId)\r",
 							"});\r",
+							"\r",
 							"if (pm.response.code === 400) {\r",
 							"    //Extract message from response body\r",
 							"    let errorMsg = response.message;\r",
