@@ -20,7 +20,6 @@
 							"if (pm.response.code === 201) {\r",
 							"    //Extract userId from user object in response\r",
 							"    pm.environment.set(\"userId\", response.user.userId);\r",
-							"\r",
 							"}\r",
 							"\r",
 							"pm.test(\"User successfully created\", function () {\r",
