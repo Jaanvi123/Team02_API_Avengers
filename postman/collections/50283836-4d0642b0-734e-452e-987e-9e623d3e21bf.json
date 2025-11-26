@@ -536,7 +536,7 @@
 			"response": []
 		},
 		{
-			"name": "forgotpassword",
+			"name": "login/forgotpassword/confirmEmail",
 			"event": [
 				{
 					"listen": "test",
