@@ -42,7 +42,7 @@
 							"\r",
 							"if(currentEnvironment === \"Team02_LMS_API_Admin\"){\r",
 							"    pm.environment.set(\"adminUserID\", response.user.userId)\r",
-							"     pm.environment.set(\"adminUserID\", response.userLogin.userLoginEmail)\r",
+							"     pm.environment.set(\"adminUserID\", response.user.userLoginEmail)\r",
 							"}\r",
 							"\r",
 							"pm.test(\"User successfully created\", function () {\r",
