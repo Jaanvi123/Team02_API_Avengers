@@ -19,7 +19,7 @@
 							"\r",
 							"if (pm.response.code === 201) {\r",
 							"\r",
-							" if (response.roles[0].roleId === \"R02\") {\r",
+							" if (response.roles[0].roleId === \"R01\") {\r",
 							"        pm.environment.set(\"userId\", response.user.userId);\r",
 							"        pm.environment.set(\"userEmail\", response.user.userLoginEmail);\r",
 							"        pm.environment.set(\"roleId\", response.roles[0].roleId);\r",
