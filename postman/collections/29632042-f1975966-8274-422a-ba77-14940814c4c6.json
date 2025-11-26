@@ -1413,6 +1413,37 @@
 		},
 		{
 			"name": "Update User Login Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d46e1d9b-698e-45b6-ada6-a0c1c9eea94e",
+						"exec": [
+							"pm.test(\"User loginStatus has been successfully updated\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-d2effab7-cb96-450a-9b7a-2077b1fc841a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
