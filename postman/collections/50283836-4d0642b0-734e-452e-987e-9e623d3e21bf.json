@@ -398,7 +398,7 @@
 			"response": []
 		},
 		{
-			"name": "Team02-Login Copy",
+			"name": "User Sign In",
 			"event": [
 				{
 					"listen": "test",
