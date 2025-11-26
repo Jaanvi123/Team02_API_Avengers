@@ -446,13 +446,135 @@
 		},
 		{
 			"name": "resetPassword",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1e34c52e-1b93-417a-a294-ba578b35b761",
+						"exec": [
+							"let currentEnvironment = pm.environment.name;\r",
+							"let roleId = pm.environment.get(\"roleId\");\r",
+							"// Extract token from response\r",
+							"let token = json.token;\r",
+							"\r",
+							"    if (currentEnvironment === \"Team02_LMS_API_Admin\") {\r",
+							"        if (roleId === \"R01\"){\r",
+							"        if (token) {\r",
+							"            pm.environment.set(\"auth_token\", token);\r",
+							"            pm.globals.set(\"auth_token\", token);\r",
+							"            console.log(\"Captured token:\", token);\r",
+							"            } else {\r",
+							"                pm.test(\"Token not found\", function () {\r",
+							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"                });\r",
+							"            }\r",
+							"        }};\r",
+							"    if (currentEnvironment === \"Team02_LMS_API_Staff\") {\r",
+							"       if (roleId === \"R02\"){\r",
+							"        if (token) {\r",
+							"            pm.environment.set(\"auth_token\", token);\r",
+							"            pm.globals.set(\"auth_token\", token);\r",
+							"            console.log(\"Captured token:\", token);\r",
+							"            } else {\r",
+							"                pm.test(\"Token not found\", function () {\r",
+							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"                });\r",
+							"            }\r",
+							"        }};\r",
+							"    if (currentEnvironment === \"Team02_LMS_API_Student\") {\r",
+							"        if (roleId === \"R03\"){\r",
+							"        if (token) {\r",
+							"            pm.environment.set(\"auth_token\", token);\r",
+							"            pm.globals.set(\"auth_token\", token);\r",
+							"            console.log(\"Captured token:\", token);\r",
+							"            } else {\r",
+							"                pm.test(\"Token not found\", function () {\r",
+							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"                });\r",
+							"            }\r",
+							"        }};\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1b692dc3-4d04-41a6-a313-792a01835e21",
+						"exec": [
+							"// Function to generate random password\r",
+							"function generatePassword(length) {\r",
+							"    const uppercase = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\r",
+							"    const lowercase = \"abcdefghijklmnopqrstuvwxyz\";\r",
+							"    const numbers   = \"0123456789\";\r",
+							"    const special   = \"!@#$%^&*()-_=+<>?\";\r",
+							"\r",
+							"    const allChars = uppercase + lowercase + numbers + special;\r",
+							"\r",
+							"    let password = \"\";\r",
+							"\r",
+							"    // Ensure password has at least one of each type\r",
+							"    password += uppercase.charAt(Math.floor(Math.random() * uppercase.length));\r",
+							"    password += lowercase.charAt(Math.floor(Math.random() * lowercase.length));\r",
+							"    password += numbers.charAt(Math.floor(Math.random() * numbers.length));\r",
+							"    password += special.charAt(Math.floor(Math.random() * special.length));\r",
+							"\r",
+							"    // Add random characters\r",
+							"    for (let i = password.length; i < length; i++) {\r",
+							"        password += allChars.charAt(Math.floor(Math.random() * allChars.length));\r",
+							"    }\r",
+							"\r",
+							"    // Shuffle to avoid predictable pattern\r",
+							"    password = password.split('').sort(() => Math.random() - 0.5).join('');\r",
+							"\r",
+							"    return password;\r",
+							"}\r",
+							"\r",
+							"// Generate password of length 12 (you can change length)\r",
+							"let newPassword = generatePassword(12);\r",
+							"\r",
+							"// Save password in collection variable\r",
+							"pm.collectionVariables.set(\"randomPassword\", newPassword);\r",
+							"\r",
+							"console.log(\"Generated Password:\", newPassword);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283836-106165aa-e876-412f-a1b4-d5ab95aa3be2",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"{{studentUserEmail}}\",\r\n  \"password\": \"{{randomPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/resetPassword",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"resetPassword"
+					]
+				}
 			},
 			"response": []
 		}
