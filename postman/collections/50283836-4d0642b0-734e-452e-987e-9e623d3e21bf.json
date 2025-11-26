@@ -545,6 +545,7 @@
 						"exec": [
 							"let currentEnvironment = pm.environment.name;\r",
 							"let roleId = pm.environment.get(\"roleId\");\r",
+							"let json = pm.response.json();\r",
 							"// Extract token from response\r",
 							"let token = json.token;\r",
 							"\r",
