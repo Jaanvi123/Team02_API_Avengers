@@ -445,7 +445,7 @@
 			"response": []
 		},
 		{
-			"name": "resetpassword",
+			"name": "Reset Password",
 			"event": [
 				{
 					"listen": "test",
