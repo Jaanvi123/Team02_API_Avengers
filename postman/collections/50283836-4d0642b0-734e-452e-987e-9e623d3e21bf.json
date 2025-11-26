@@ -766,5 +766,11 @@
 				]
 			}
 		}
+	],
+	"variable": [
+		{
+			"key": "randomPassword",
+			"value": ""
+		}
 	]
 }
