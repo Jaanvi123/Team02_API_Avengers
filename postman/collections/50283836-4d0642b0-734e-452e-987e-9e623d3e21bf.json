@@ -481,6 +481,7 @@
 							"let json = pm.response.json();\r",
 							"let token = json.token;\r",
 							"\r",
+							"if (pm.response.code === 201) {\r",
 							"// Save token to environment\r",
 							"if (token) {\r",
 							"    pm.environment.set(\"auth_token\", token);\r",
@@ -489,7 +490,11 @@
 							"    pm.test(\"Token not found\", function () {\r",
 							"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
 							"    });\r",
-							"}"
+							"}\r",
+							"}\r",
+							"pm.test(\"Token successfully generated\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {},
