@@ -30,6 +30,39 @@
 						"packages": {},
 						"requests": {}
 					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "23e2c8a5-5398-4e2d-bab1-f94d2c9697df",
+						"exec": [
+							"//Extract response from Json body of API response\r",
+							"const response = pm.response.json();\r",
+							"let currentEnvironment = pm.environment.name;\r",
+							"\r",
+							"if(currentEnvironment === \"Team02_LMS_API_Admin\"){\r",
+							"    pm.environment.set(\"adminUserID\", response.user.userId)\r",
+							"     pm.environment.set(\"adminUserID\", response.userLogin.userLoginEmail)\r",
+							"}\r",
+							"\r",
+							"pm.test(\"User successfully created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"    //Extract userId from user object in response\r",
+							"    pm.globals.set(\"userID\", response.user.userId)\r",
+							"});\r",
+							"if (pm.response.code === 400) {\r",
+							"    //Extract message from response body\r",
+							"    let errorMsg = response.message;\r",
+							"\r",
+							"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
 				}
 			],
 			"id": "29632042-493a0b2e-116b-4784-a022-2ce3ba68c37b",
