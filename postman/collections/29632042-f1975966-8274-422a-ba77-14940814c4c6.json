@@ -220,9 +220,18 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"if (pm.response.code === 404) {\r",
-							"    pm.test(\"Invalid endpoint\", function () {\r",
-							"        pm.response.to.have.status(404);\r",
-							"    });\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
 							"}\r",
 							""
 						],
@@ -234,8 +243,13 @@
 				{
 					"listen": "prerequest",
 					"script": {
+						"id": "6398d718-e0d8-4d07-9839-1603eed10b01",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
 						"packages": {},
-						"type": "text/javascript"
+						"requests": {}
 					}
 				}
 			],
