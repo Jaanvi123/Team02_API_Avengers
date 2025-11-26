@@ -413,7 +413,7 @@
 							"// Save token to environment\r",
 							"if (token) {\r",
 							"    //pm.environment.set(\"team2_auth_token\", token);\r",
-							"    pm.globals.set(\"team2_auth_token\", token);\r",
+							"    pm.environment.set(\"auth_token\", token);\r",
 							"    console.log(\"Captured token:\", token);\r",
 							"} else {\r",
 							"    pm.test(\"Token not found\", function () {\r",
@@ -451,7 +451,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"\"\r\n}",
+					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{randomPassword}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
