@@ -657,6 +657,37 @@
 		},
 		{
 			"name": "Update User Role Program Batch Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b44dfa75-b3a3-4375-ae0e-085357286678",
+						"exec": [
+							"pm.test(\"User has been successfully assigned to Program/Batches\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-8aae03eb-a079-47c3-9c15-385c4a64c1cf",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
