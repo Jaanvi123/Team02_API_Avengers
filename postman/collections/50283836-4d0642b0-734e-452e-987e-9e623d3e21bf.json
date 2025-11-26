@@ -450,51 +450,8 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "1e34c52e-1b93-417a-a294-ba578b35b761",
+						"id": "58db170a-bd1f-49a4-bba1-5f953b8ed103",
 						"exec": [
-							"let currentEnvironment = pm.environment.name;\r",
-							"let roleId = pm.environment.get(\"roleId\");\r",
-							"// Extract token from response\r",
-							"let token = json.token;\r",
-							"\r",
-							"    if (currentEnvironment === \"Team02_LMS_API_Admin\") {\r",
-							"        if (roleId === \"R01\"){\r",
-							"        if (token) {\r",
-							"            pm.environment.set(\"auth_token\", token);\r",
-							"            pm.globals.set(\"auth_token\", token);\r",
-							"            console.log(\"Captured token:\", token);\r",
-							"            } else {\r",
-							"                pm.test(\"Token not found\", function () {\r",
-							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
-							"                });\r",
-							"            }\r",
-							"        }};\r",
-							"    if (currentEnvironment === \"Team02_LMS_API_Staff\") {\r",
-							"       if (roleId === \"R02\"){\r",
-							"        if (token) {\r",
-							"            pm.environment.set(\"auth_token\", token);\r",
-							"            pm.globals.set(\"auth_token\", token);\r",
-							"            console.log(\"Captured token:\", token);\r",
-							"            } else {\r",
-							"                pm.test(\"Token not found\", function () {\r",
-							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
-							"                });\r",
-							"            }\r",
-							"        }};\r",
-							"    if (currentEnvironment === \"Team02_LMS_API_Student\") {\r",
-							"        if (roleId === \"R03\"){\r",
-							"        if (token) {\r",
-							"            pm.environment.set(\"auth_token\", token);\r",
-							"            pm.globals.set(\"auth_token\", token);\r",
-							"            console.log(\"Captured token:\", token);\r",
-							"            } else {\r",
-							"                pm.test(\"Token not found\", function () {\r",
-							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
-							"                });\r",
-							"            }\r",
-							"        }};\r",
-							"\r",
-							"\r",
 							""
 						],
 						"type": "text/javascript",
@@ -505,7 +462,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "1b692dc3-4d04-41a6-a313-792a01835e21",
+						"id": "ebc6f702-01e5-4a42-9200-3d96fcc74ba8",
 						"exec": [
 							"// Function to generate random password\r",
 							"function generatePassword(length) {\r",
@@ -559,7 +516,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"{{studentUserEmail}}\",\r\n  \"password\": \"{{randomPassword}}\"\r\n}",
+					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{randomPassword}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -580,13 +537,95 @@
 		},
 		{
 			"name": "forgotpassword",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65628fdd-6063-4298-893e-efbc0be0c437",
+						"exec": [
+							"let currentEnvironment = pm.environment.name;\r",
+							"let roleId = pm.environment.get(\"roleId\");\r",
+							"// Extract token from response\r",
+							"let token = json.token;\r",
+							"\r",
+							"    if (currentEnvironment === \"Team02_LMS_API_Admin\") {\r",
+							"        if (roleId === \"R01\"){\r",
+							"        if (token) {\r",
+							"            pm.environment.set(\"auth_token\", token);\r",
+							"                console.log(\"Captured token:\", token);\r",
+							"            } else {\r",
+							"                pm.test(\"Token not found\", function () {\r",
+							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"                });\r",
+							"            }\r",
+							"        }};\r",
+							"    if (currentEnvironment === \"Team02_LMS_API_Staff\") {\r",
+							"       if (roleId === \"R02\"){\r",
+							"        if (token) {\r",
+							"            pm.environment.set(\"auth_token\", token);\r",
+							"            console.log(\"Captured token:\", token);\r",
+							"            } else {\r",
+							"                pm.test(\"Token not found\", function () {\r",
+							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"                });\r",
+							"            }\r",
+							"        }};\r",
+							"    if (currentEnvironment === \"Team02_LMS_API_Student\") {\r",
+							"        if (roleId === \"R03\"){\r",
+							"        if (token) {\r",
+							"            pm.environment.set(\"auth_token\", token);\r",
+							"                console.log(\"Captured token:\", token);\r",
+							"            } else {\r",
+							"                pm.test(\"Token not found\", function () {\r",
+							"                    pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"                });\r",
+							"            }\r",
+							"        }};"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283836-a9baa484-1cb3-4bbc-b6dc-f2723080d487",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userLoginEmailId\": \"{{userEmail}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login",
+						"forgotpassword",
+						"confirmEmail"
+					]
+				}
 			},
 			"response": []
 		}
