@@ -398,7 +398,7 @@
 			"response": []
 		},
 		{
-			"name": "logoutlms",
+			"name": "User log out",
 			"event": [
 				{
 					"listen": "test",
