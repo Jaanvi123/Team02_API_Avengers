@@ -774,7 +774,7 @@
 							"let newPassword = generatePassword(12);\r",
 							"\r",
 							"// Save password in collection variable\r",
-							"pm.collectionVariables.set(\"randomPassword\", newPassword);\r",
+							"pm.environment.set(\"randomPassword\", newPassword);\r",
 							"\r",
 							"console.log(\"Generated Password:\", newPassword);\r",
 							""
