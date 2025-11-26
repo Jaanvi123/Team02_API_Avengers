@@ -18,12 +18,12 @@
 							"//let currentEnvironment = pm.environment.name;\r",
 							"\r",
 							"if (pm.response.code === 201) {\r",
-							"    if (response.roles[0].roleId === \"R01\") {\r",
-							"        \r",
-							"        pm.environment.set(\"adminUserId\", response.user.userId);\r",
-							"        pm.environment.set(\"adminUserEmail\", response.user.userLoginEmail);\r",
-							"        pm.environment.set(\"adminRoleId\", response.roles[0].roleId);\r",
-							"    };\r",
+							"\r",
+							"        pm.environment.set(\"userId\", response.user.userId);\r",
+							"        pm.environment.set(\"userEmail\", response.user.userLoginEmail);\r",
+							"        pm.environment.set(\"roleId\", response.roles[0].roleId);\r",
+							"\r",
+							"    /*\r",
 							"    if (response.roles[0].roleId === \"R02\") {\r",
 							"    \r",
 							"        pm.environment.set(\"staffUserId\", response.user.userId);\r",
@@ -35,7 +35,7 @@
 							"        pm.environment.set(\"studentUserId\", response.user.userId);\r",
 							"        pm.environment.set(\"studentUserEmail\", response.user.userLoginEmail);\r",
 							"        pm.environment.set(\"studentRoleId\", response.roles[0].roleId);\r",
-							"    };\r",
+							"    };*/\r",
 							"}\r",
 							"\r",
 							"pm.test(\"User successfully created\", function () {\r",
@@ -111,7 +111,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{auth_token}}",
+							"value": "{{team2_auth_token}}",
 							"type": "string"
 						}
 					]
