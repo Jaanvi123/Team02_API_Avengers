@@ -325,7 +325,7 @@
 			"id": "50283836-bb9e5845-00b4-4bac-a545-94fe78a0f015"
 		},
 		{
-			"name": "team2User Sign In",
+			"name": "Team02-Login",
 			"event": [
 				{
 					"listen": "test",
