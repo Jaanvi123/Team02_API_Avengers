@@ -1179,14 +1179,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/user/33",
+					"raw": "{{baseURL}}/users/user/{{userID}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"user",
-						"33"
+						"{{userID}}"
 					]
 				}
 			},
