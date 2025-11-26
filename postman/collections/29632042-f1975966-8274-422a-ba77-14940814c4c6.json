@@ -1267,6 +1267,38 @@
 		},
 		{
 			"name": "Count of active and inactive users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef59e873-162d-4359-981b-f1020057fe8a",
+						"exec": [
+							"pm.test(\"Request completed successfully\", function () { \r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const response = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "29632042-a3d105d9-46b1-4348-82f9-e984f89ec557",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
