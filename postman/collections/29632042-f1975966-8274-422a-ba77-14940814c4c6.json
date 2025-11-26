@@ -1266,6 +1266,18 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "Create User- Staff",
+			"id": "29632042-080a070a-c6d5-4e83-8f05-7c4dadeee3fc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	],
 	"event": [
