@@ -146,7 +146,7 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"if (pm.response.status = 404) {\r",
+							"if (pm.response.code === 404) {\r",
 							"    const responseBody = pm.response.text();\r",
 							"    if (responseBody == \"Invalid endpoint\") {\r",
 							"        pm.test(\"Invalid End Point Check\", function () {\r",
@@ -197,12 +197,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users",
+					"raw": "{{baseURL}}/users1",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"users"
+						"users1"
 					]
 				}
 			},
