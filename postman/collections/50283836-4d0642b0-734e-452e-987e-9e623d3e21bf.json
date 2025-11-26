@@ -643,7 +643,7 @@
 			]
 		},
 		{
-			"name": "ForgotPassword Confirm Email",
+			"name": "Forgot Password/Confirm Email",
 			"event": [
 				{
 					"listen": "test",
