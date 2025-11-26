@@ -448,7 +448,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "resetPassword",
 			"id": "50283836-106165aa-e876-412f-a1b4-d5ab95aa3be2",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
