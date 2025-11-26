@@ -1495,6 +1495,7 @@
 							"pm.test(\"User role has been successfully updated.\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
+							"\r",
 							"if (pm.response.code === 404) {\r",
 							"    const responseBody = pm.response.text();\r",
 							"    if (responseBody == \"Invalid endpoint\") {\r",
