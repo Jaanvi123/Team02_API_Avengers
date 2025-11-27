@@ -1254,14 +1254,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/details/{{userID}}",
+					"raw": "{{baseURL}}/users/details/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"details",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
