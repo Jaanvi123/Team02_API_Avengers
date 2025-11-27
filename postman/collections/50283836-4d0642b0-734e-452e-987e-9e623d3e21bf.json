@@ -634,6 +634,10 @@
 		{
 			"key": "randomPassword",
 			"value": ""
+		},
+		{
+			"key": "auth_token_type",
+			"value": ""
 		}
 	]
 }
