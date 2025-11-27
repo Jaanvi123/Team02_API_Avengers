@@ -1181,14 +1181,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/user/{{userID}}",
+					"raw": "{{baseURL}}/users/user/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"user",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
