@@ -700,7 +700,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{auth_token}}",
+							"value": "{{team2_auth_token}}",
 							"type": "string"
 						}
 					]
@@ -709,7 +709,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " { \r\n  \"programId\": \"{{programId}}\", \r\n  \"roleId\": \"R03\", \r\n  \"userId\": \"{{userID}}\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{batchId}},\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+					"raw": " { \r\n  \"programId\": \"{{programId}}\", \r\n  \"roleId\": \"{{roleId}}\", \r\n  \"userId\": \"{{userId}}\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{batchId}},\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -717,14 +717,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/roleProgramBatchStatus/{{userID}}",
+					"raw": "{{baseURL}}/users/roleProgramBatchStatus/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"roleProgramBatchStatus",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
