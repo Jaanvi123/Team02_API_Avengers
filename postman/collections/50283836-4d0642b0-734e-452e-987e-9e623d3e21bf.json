@@ -654,53 +654,6 @@
 			]
 		},
 		{
-			"name": "User log out",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "7761c226-f018-4fa2-b945-27b202ea006b",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"id": "50283836-8a0bbf35-b6a3-4f8f-a486-f075b70291da",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{auth_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/logoutlms",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"logoutlms"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Reset Password",
 			"event": [
 				{
@@ -897,6 +850,53 @@
 					"body": "{\n    \"message\": \"Password saved\",\n    \"success\": true\n}"
 				}
 			]
+		},
+		{
+			"name": "User log out",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7761c226-f018-4fa2-b945-27b202ea006b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283836-8a0bbf35-b6a3-4f8f-a486-f075b70291da",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/logoutlms",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"logoutlms"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
