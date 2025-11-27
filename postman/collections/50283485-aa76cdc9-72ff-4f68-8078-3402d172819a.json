@@ -205,37 +205,6 @@
 			"response": []
 		},
 		{
-			"name": "Update Skill by Skill Id Copy",
-			"id": "50283485-e9ffed90-5fa9-4f3a-9bbc-3312dc34511a",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"skillName\": \"string\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/updateSkills/{Skillid}",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"updateSkills",
-						"{Skillid}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get All Skill Master",
 			"id": "50283485-68870073-6995-4edf-bcfe-4a0b7ae8e3cf",
 			"protocolProfileBehavior": {
@@ -281,28 +250,6 @@
 		{
 			"name": "Delete Skill by Skill Id",
 			"id": "50283485-57269a0a-5c92-4917-8d6f-8c31be3c4142",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/deletebySkillId/{skillId}",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"deletebySkillId",
-						"{skillId}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Skill by Skill Id Copy",
-			"id": "50283485-69fca948-bf0a-42a4-a023-8b570d119455",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
