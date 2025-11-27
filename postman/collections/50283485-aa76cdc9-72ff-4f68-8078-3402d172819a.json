@@ -425,6 +425,27 @@
 			"response": []
 		},
 		{
+			"name": "Get All Skill Master Copy",
+			"id": "50283485-421b1451-c68a-48cb-945b-e45d9e2bf1c3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/allSkillMaster ",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"allSkillMaster "
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get  Skill by skill name",
 			"id": "50283485-4f0f6543-856b-46fc-bd1d-8ead8dee04fb",
 			"protocolProfileBehavior": {
@@ -447,8 +468,52 @@
 			"response": []
 		},
 		{
+			"name": "Get  Skill by skill name Copy",
+			"id": "50283485-c47c4e20-6f61-4b5c-808d-d49a40b3e261",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/skills/skillMasterName ",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"skills",
+						"skillMasterName "
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Skill by Skill Id",
 			"id": "50283485-57269a0a-5c92-4917-8d6f-8c31be3c4142",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/deletebySkillId/{skillId}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"deletebySkillId",
+						"{skillId}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Skill by Skill Id Copy",
+			"id": "50283485-69fca948-bf0a-42a4-a023-8b570d119455",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
