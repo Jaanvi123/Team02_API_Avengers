@@ -226,7 +226,7 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Get  Skill by skill name",
 			"id": "50283485-4f0f6543-856b-46fc-bd1d-8ead8dee04fb",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
