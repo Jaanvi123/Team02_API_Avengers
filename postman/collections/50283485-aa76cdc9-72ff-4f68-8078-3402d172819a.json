@@ -174,7 +174,7 @@
 			]
 		},
 		{
-			"name": "New Request",
+			"name": "Update Skill by Skill Id",
 			"id": "50283485-1620d097-55e1-4b98-acb8-c4d831c46d45",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
