@@ -1546,14 +1546,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/roleId/{{userID}}",
+					"raw": "{{baseURL}}/users/roleId/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"roleId",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
