@@ -537,7 +537,7 @@
 							"let newPassword = generatePassword(8, 32);\r",
 							"\r",
 							"// Store it in environment\r",
-							"pm.environment.set(\"randomPassword\", newPassword);\r",
+							"pm.environment.set(\"password\", newPassword);\r",
 							"\r",
 							"console.log(\"Generated Password:\", newPassword);\r",
 							""
@@ -567,7 +567,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{randomPassword}}\"\r\n}",
+					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
