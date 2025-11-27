@@ -373,6 +373,37 @@
 			"response": []
 		},
 		{
+			"name": "Update Skill by Skill Id Copy",
+			"id": "50283485-e9ffed90-5fa9-4f3a-9bbc-3312dc34511a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"skillName\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/updateSkills/{Skillid}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"updateSkills",
+						"{Skillid}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get All Skill Master",
 			"id": "50283485-68870073-6995-4edf-bcfe-4a0b7ae8e3cf",
 			"protocolProfileBehavior": {
