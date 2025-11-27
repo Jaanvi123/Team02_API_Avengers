@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "CerateSkillUsingAdminUser",
+			"name": "Cerate Skill Using Admin User",
 			"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true,
@@ -172,52 +172,6 @@
 					"body": null
 				}
 			]
-		},
-		{
-			"name": "CreateProgramBatch",
-			"id": "50283485-28a4e32f-0d9d-482b-b23b-c1f5f65540b0",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwODA0MjcsImV4cCI6MTc2NDEwOTIyN30.Wuuy2xYF1kfBWPd1ikXgQH-RvBNMjpYkrC8rfwfYWHSIDc9WQxSQvM2_sHEbizfAHe84YcDJF3VHoYtPn7I--g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"batchDescription\": \"SkillBatch\",\r\n    \"batchName\": \"RoboYouth\",\r\n    \"batchNoOfClasses\": 15,\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\": 102\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/batches",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"batches"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [
