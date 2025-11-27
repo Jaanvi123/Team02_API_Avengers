@@ -254,8 +254,18 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/deletebySkillId/{skillId}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"deletebySkillId",
+						"{skillId}"
+					]
+				}
 			},
 			"response": []
 		}
