@@ -190,7 +190,7 @@
 							"    pm.test(\"Token captured and saved\", function () {\r",
 							"      pm.expect(pm.globals.get(\"team2_auth_token\")).to.equal(token);\r",
 							"    });\r",
-							"    pm.console.log(\"Captured token:\", tokenType ? `${tokenType} ${token}` : token);\r",
+							"    console.log(\"Captured token:\", tokenType ? `${tokenType} ${token}` : token);\r",
 							"  }\r",
 							"}\r",
 							"\r",
