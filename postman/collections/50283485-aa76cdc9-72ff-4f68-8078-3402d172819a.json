@@ -233,6 +233,28 @@
 			},
 			"request": {
 				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/skills/skillMasterName ",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"skills",
+						"skillMasterName "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Skill by Skill Id",
+			"id": "50283485-57269a0a-5c92-4917-8d6f-8c31be3c4142",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
 				"header": []
 			},
 			"response": []
