@@ -1465,7 +1465,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmail\": \"54554@gmail.com\",\r\n  \"loginStatus\": \"Active\",\r\n  \"status\": \"Active\"\r\n}",
+					"raw": "{\r\n  \"userLoginEmail\": \"{{userEmail}}\",\r\n  \"loginStatus\": \"Active\",\r\n  \"status\": \"Active\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1473,14 +1473,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/userLogin/{{userID}}",
+					"raw": "{{baseURL}}/users/userLogin/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"userLogin",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
