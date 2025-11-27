@@ -212,6 +212,27 @@
 			},
 			"request": {
 				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/allSkillMaster ",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"allSkillMaster "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"id": "50283485-4f0f6543-856b-46fc-bd1d-8ead8dee04fb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
 				"header": []
 			},
 			"response": []
