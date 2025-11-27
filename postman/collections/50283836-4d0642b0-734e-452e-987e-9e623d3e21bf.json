@@ -370,224 +370,6 @@
 			"response": []
 		},
 		{
-			"name": "Team02-User Sign In Copy",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "5cabcb04-4a31-4736-ac3e-df9f6d4aa457",
-						"exec": [
-							"// Safely parse JSON, if any\r",
-							"let json = {};\r",
-							"try {\r",
-							"  json = pm.response.json();\r",
-							"} catch (e) {\r",
-							"  json = {};\r",
-							"}\r",
-							"\r",
-							"// Validate Status Code (200 OK)\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"  pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"// Only proceed if status is 200\r",
-							"if (pm.response.code === 200) {\r",
-							"  // Extract fields\r",
-							"  const token = json.token;\r",
-							"  const tokenType = json.type; // e.g., \"Bearer\"\r",
-							"\r",
-							"  // Basic token presence check\r",
-							"  pm.test(\"Token is present in response\", function () {\r",
-							"    pm.expect(token, \"Response did not contain 'token' field\").to.exist;\r",
-							"  });\r",
-							"\r",
-							"  // Save token and type to environment\r",
-							"  if (token) {\r",
-							"    pm.globals.set(\"team2_auth_token\", token);\r",
-							"    if (tokenType) pm.collectionVariables.set(\"auth_token_type\", tokenType);\r",
-							"    pm.test(\"Token captured and saved\", function () {\r",
-							"      pm.expect(pm.globals.get(\"team2_auth_token\")).to.equal(token);\r",
-							"    });\r",
-							"    console.log(\"Captured token:\", tokenType ? `${tokenType} ${token}` : token);\r",
-							"  }\r",
-							"}\r",
-							"\r",
-							"// Optional: Summary of expected fields (customize as needed)\r",
-							"pm.test(\"Response has expected auth fields\", function () {\r",
-							"  pm.expect(json).to.be.an(\"object\");\r",
-							"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
-							"  pm.expect(json, \"Missing type\").to.have.property(\"type\");\r",
-							"  pm.expect(json, \"Missing userId\").to.have.property(\"userId\");\r",
-							"  pm.expect(json, \"Missing email\").to.have.property(\"email\");\r",
-							"  pm.expect(json, \"Missing roles\").to.have.property(\"roles\");\r",
-							"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
-							"  pm.expect(json, \"Missing passwordExpired\").to.have.property(\"passwordExpired\");\r",
-							"});\r",
-							"pm.test('status is either \"Active\" or \"Inactive\"', function () {\r",
-							"    pm.expect(json, 'Response should be a JSON object').to.be.an('object');\r",
-							"    pm.expect(json, 'Missing status').to.have.property('status');\r",
-							"    pm.expect(json.status, 'status should be a string').to.be.a('string');\r",
-							"\r",
-							"    const allowed = ['Active', 'Inactive'];\r",
-							"    pm.expect(allowed, `status must be one of ${allowed.join(', ')}`).to.include(json.status);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "7a714c49-b9f4-4133-ad8a-2798a14438b3",
-						"exec": [
-							"// Pre-request validation for raw JSON body",
-							"// - Parses and validates the body",
-							"// - Resolves optional {{userEmail}} and {{password}} before validation",
-							"// - Fails fast with clear messages",
-							"// - Logs a concise success summary",
-							"// - Normalizes JSON formatting",
-							"// - Sets a transient flag request_is_valid=true when valid",
-							"",
-							"(function () {",
-							"  // Clear transient validity flag at the start",
-							"  pm.globals.unset(\"request_is_valid\");",
-							"",
-							"  function isEmail(value) {",
-							"    const re = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/; // simple and effective",
-							"    return typeof value === 'string' && re.test(value);",
-							"  }",
-							"",
-							"  function failFast(message) {",
-							"    pm.expect.fail(message);",
-							"  }",
-							"",
-							"  // Verify body mode",
-							"  pm.test(\"Body mode is raw JSON\", function () {",
-							"    pm.expect(pm.request.body && pm.request.body.mode, 'Request body mode should be raw').to.eql('raw');",
-							"  });",
-							"",
-							"  // Pull raw body",
-							"  let raw = pm.request.body && pm.request.body.raw;",
-							"",
-							"  pm.test(\"Raw body exists and is non-empty\", function () {",
-							"    pm.expect(raw, 'Raw body must exist').to.exist;",
-							"    pm.expect(typeof raw, 'Raw body must be a string').to.eql('string');",
-							"    pm.expect(raw.trim().length > 0, 'Raw body must not be empty').to.be.true;",
-							"  });",
-							"",
-							"  // Optionally resolve {{userEmail}} and {{password}}",
-							"  try {",
-							"    const vars = pm.variables || pm; // safety",
-							"    const mappings = [",
-							"      { placeholder: '{{userEmail}}', value: vars.has && vars.has('userEmail') ? vars.get('userEmail') : undefined },",
-							"      { placeholder: '{{password}}', value: vars.has && vars.has('password') ? vars.get('password') : undefined }",
-							"    ];",
-							"    mappings.forEach(m => {",
-							"      if (m.value !== undefined && typeof raw === 'string' && raw.includes(m.placeholder)) {",
-							"        raw = raw.replaceAll(m.placeholder, String(m.value));",
-							"      }",
-							"    });",
-							"  } catch (e) {",
-							"    failFast('Failed to resolve optional variables: ' + e.message);",
-							"  }",
-							"",
-							"  // Parse JSON",
-							"  let body;",
-							"  try {",
-							"    body = JSON.parse(raw);",
-							"  } catch (e) {",
-							"    failFast('Body must be valid JSON: ' + e.message);",
-							"  }",
-							"",
-							"  // Shape validation",
-							"  pm.test('Body is an object (not array)', function () {",
-							"    pm.expect(body && typeof body, 'Body must parse to an object').to.eql('object');",
-							"    pm.expect(Array.isArray(body), 'Body must not be an array').to.be.false;",
-							"  });",
-							"",
-							"  // Required props",
-							"  pm.test('Required fields present', function () {",
-							"    pm.expect(body, 'Missing userLoginEmailId').to.have.property('userLoginEmailId');",
-							"    pm.expect(body, 'Missing password').to.have.property('password');",
-							"  });",
-							"",
-							"  const email = body.userLoginEmailId;",
-							"  const pwd = body.password;",
-							"",
-							"  // userLoginEmailId validation",
-							"  pm.test('userLoginEmailId is a valid email string', function () {",
-							"    pm.expect(typeof email, 'userLoginEmailId must be a string').to.eql('string');",
-							"    pm.expect(String(email).trim().length > 0, 'userLoginEmailId must not be empty').to.be.true;",
-							"    pm.expect(isEmail(email), 'userLoginEmailId must be a valid email').to.be.true;",
-							"  });",
-							"",
-							"  // password validation",
-							"  pm.test('password is a non-empty string with min length 8', function () {",
-							"    pm.expect(typeof pwd, 'password must be a string').to.eql('string');",
-							"    pm.expect(String(pwd).length > 0, 'password must not be empty').to.be.true;",
-							"    pm.expect(String(pwd).length, 'password must be at least 8 characters').to.be.at.least(8);",
-							"  });",
-							"",
-							"  // Normalize/canonicalize JSON formatting with only required keys in expected order",
-							"  try {",
-							"    const canonical = JSON.stringify({",
-							"      userLoginEmailId: email,",
-							"      password: pwd",
-							"    });",
-							"    if (canonical && pm.request.body && typeof pm.request.body.update === 'function') {",
-							"      pm.request.body.update(canonical);",
-							"    }",
-							"  } catch (e) {",
-							"    // Do not fail on normalization issues",
-							"  }",
-							"",
-							"  // Mark valid for downstream scripts",
-							"  pm.globals.set('request_is_valid', 'true');",
-							"",
-							"  // Concise success log",
-							"  console.log('Pre-request validation: OK', { email: email, passwordLength: String(pwd).length });",
-							"})();"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"id": "50283836-494be8ee-59d8-4cd5-ad8b-62f755105572",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/login",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "User Sign In",
 			"event": [
 				{
@@ -669,6 +451,118 @@
 				}
 			],
 			"id": "50283836-68987797-3839-4fbd-9dd0-5fd04c27b2be",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Sign In Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d22209c0-96ae-4d14-8f1e-34b27c087a0d",
+						"exec": [
+							"// Safely parse JSON, if any\r",
+							"let json = {};\r",
+							"try {\r",
+							"  json = pm.response.json();\r",
+							"} catch (e) {\r",
+							"  json = {};\r",
+							"}\r",
+							"\r",
+							"// Validate Status Code (200 OK)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Only proceed if status is 200\r",
+							"if (pm.response.code === 200) {\r",
+							"  // Extract fields\r",
+							"  const token = json.token;\r",
+							"  const tokenType = json.type; // e.g., \"Bearer\"\r",
+							"\r",
+							"  // Basic token presence check\r",
+							"  pm.test(\"Token is present in response\", function () {\r",
+							"    pm.expect(token, \"Response did not contain 'token' field\").to.exist;\r",
+							"  });\r",
+							"\r",
+							"  // Save token and type to environment\r",
+							"  if (token) {\r",
+							"    pm.environment.set(\"auth_token\", token);\r",
+							"    if (tokenType) pm.collectionVariables.set(\"auth_token_type\", tokenType);\r",
+							"    pm.test(\"Token captured and saved\", function () {\r",
+							"      pm.expect(pm.environment.get(\"auth_token\")).to.equal(token);\r",
+							"    });\r",
+							"    console.log(\"Captured token:\", tokenType ? `${tokenType} ${token}` : token);\r",
+							"  }\r",
+							"}\r",
+							"\r",
+							"// Optional: Summary of expected fields (customize as needed)\r",
+							"pm.test(\"Response has expected auth fields\", function () {\r",
+							"  pm.expect(json).to.be.an(\"object\");\r",
+							"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
+							"  pm.expect(json, \"Missing type\").to.have.property(\"type\");\r",
+							"  pm.expect(json, \"Missing userId\").to.have.property(\"userId\");\r",
+							"  pm.expect(json, \"Missing email\").to.have.property(\"email\");\r",
+							"  pm.expect(json, \"Missing roles\").to.have.property(\"roles\");\r",
+							"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
+							"  pm.expect(json, \"Missing passwordExpired\").to.have.property(\"passwordExpired\");\r",
+							"});\r",
+							"pm.test('status is either \"Active\" or \"Inactive\"', function () {\r",
+							"    pm.expect(json, 'Response should be a JSON object').to.be.an('object');\r",
+							"    pm.expect(json, 'Missing status').to.have.property('status');\r",
+							"    pm.expect(json.status, 'status should be a string').to.be.a('string');\r",
+							"\r",
+							"    const allowed = ['Active', 'Inactive'];\r",
+							"    pm.expect(allowed, `status must be one of ${allowed.join(', ')}`).to.include(json.status);\r",
+							"}); "
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "690a05ad-6f8c-4957-acf2-14f2699d67c4",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283836-51699000-01a5-461d-8e0e-11f8a9037f85",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
