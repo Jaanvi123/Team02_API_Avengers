@@ -205,28 +205,6 @@
 			"response": []
 		},
 		{
-			"name": "Get  Skill by skill name",
-			"id": "50283485-4f0f6543-856b-46fc-bd1d-8ead8dee04fb",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/skills/skillMasterName ",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"skills",
-						"skillMasterName "
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get All Skill Master",
 			"id": "50283485-ad0d9ca2-ea2b-4c0b-bf9e-9f99049a6bde",
 			"protocolProfileBehavior": {
@@ -252,6 +230,28 @@
 					],
 					"path": [
 						"allSkillMaster"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get  Skill by skill name",
+			"id": "50283485-4f0f6543-856b-46fc-bd1d-8ead8dee04fb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/skills/skillMasterName ",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"skills",
+						"skillMasterName "
 					]
 				}
 			},
