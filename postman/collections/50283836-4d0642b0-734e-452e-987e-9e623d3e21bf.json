@@ -156,6 +156,13 @@
 							"script": {
 								"id": "cedde928-261b-41b5-9445-6ddec37b44d6",
 								"exec": [
+									"let resBody = {};\r",
+									"try {\r",
+									"    resBody = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    // Response is not JSON or empty\r",
+									"    resBody = {};\r",
+									"}\r",
 									"//Extract response from Json body of API response\r",
 									"let json = pm.response.json();\r",
 									"\r",
@@ -167,7 +174,7 @@
 									"\r",
 									"    // Save token to environment\r",
 									"if (token) {\r",
-									"      pm.globals.set(\"auth_token\", token);\r",
+									"      pm.collectionVariables.set(\"auth_token\", token);\r",
 									"    console.log(\"Captured token:\", token);\r",
 									"} else {\r",
 									"    pm.test(\"Token not found\", function () {\r",
@@ -179,27 +186,19 @@
 									"pm.test(\"Content-Type header is present\", function () {\r",
 									"    pm.response.to.have.header(\"Content-Type\");\r",
 									"});\r",
+									"    if (pm.response.code === 415) {\r",
+									"    let errorMsg = resBody.message || \"No message provided\";\r",
+									"\r",
+									"    pm.test(\"UNSUPPORTED_MEDIA_TYPE : \" + errorMsg, function () {\r",
+									"        pm.response.to.have.status(415);\r",
+									"    });\r",
+									"}\r",
 									"if (pm.response.code === 400) {\r",
 									"    //Extract message from response body\r",
 									"    let errorMsg = json.message;\r",
 									"\r",
 									"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
 									"        pm.response.to.have.status(400);\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"let resBody = {};\r",
-									"try {\r",
-									"    resBody = pm.response.json();\r",
-									"} catch (e) {\r",
-									"    // Response is not JSON or empty\r",
-									"    resBody = {};\r",
-									"}\r",
-									"    if (pm.response.code === 415) {\r",
-									"    let errorMsg = resBody.message || \"No message provided\";\r",
-									"\r",
-									"    pm.test(\"UNSUPPORTED_MEDIA_TYPE : \" + errorMsg, function () {\r",
-									"        pm.response.to.have.status(415);\r",
 									"    });\r",
 									"}"
 								],
@@ -255,14 +254,7 @@
 					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{auth_token}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [],
