@@ -94,9 +94,7 @@
 					"id": "50283836-0a0ce390-ea53-42cd-9687-209185cddc10",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true,
-						"disabledSystemHeaders": {
-							"content-type": true
-						}
+						"disabledSystemHeaders": {}
 					},
 					"request": {
 						"auth": {
