@@ -227,6 +227,37 @@
 			"response": []
 		},
 		{
+			"name": "Get All Skill Master",
+			"id": "50283485-ad0d9ca2-ea2b-4c0b-bf9e-9f99049a6bde",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQzNjM0MzYsImV4cCI6MTc2NDM5MjIzNn0.AqYIb0m2cJG35LJtGJhKUXdPODx874nmLRtJc7vCEPjAdgMXE8vVC7Xw9ilhr3a-Uozv7YRS1Wx-FtekOD6MMg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/allSkillMaster",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"allSkillMaster"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete Skill by Skill Id",
 			"id": "50283485-57269a0a-5c92-4917-8d6f-8c31be3c4142",
 			"protocolProfileBehavior": {
@@ -245,18 +276,6 @@
 						"{skillId}"
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "A",
-			"id": "50283485-ad0d9ca2-ea2b-4c0b-bf9e-9f99049a6bde",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
 			},
 			"response": []
 		}
