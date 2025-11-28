@@ -147,6 +147,145 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "CSV User Sign In Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cedde928-261b-41b5-9445-6ddec37b44d6",
+								"exec": [
+									"//Extract response from Json body of API response\r",
+									"let json = pm.response.json();\r",
+									"\r",
+									"// Extract token from response\r",
+									"let token = json.token;\r",
+									"\r",
+									"pm.test(\"Existing User logged in successfully\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    // Save token to environment\r",
+									"if (token) {\r",
+									"      pm.globals.set(\"auth_token\", token);\r",
+									"    console.log(\"Captured token:\", token);\r",
+									"} else {\r",
+									"    pm.test(\"Token not found\", function () {\r",
+									"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
+									"    });\r",
+									"}\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"if (pm.response.code === 400) {\r",
+									"    //Extract message from response body\r",
+									"    let errorMsg = json.message;\r",
+									"\r",
+									"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
+									"        pm.response.to.have.status(400);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"let resBody = {};\r",
+									"try {\r",
+									"    resBody = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    // Response is not JSON or empty\r",
+									"    resBody = {};\r",
+									"}\r",
+									"    if (pm.response.code === 415) {\r",
+									"    let errorMsg = resBody.message || \"No message provided\";\r",
+									"\r",
+									"    pm.test(\"UNSUPPORTED_MEDIA_TYPE : \" + errorMsg, function () {\r",
+									"        pm.response.to.have.status(415);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6a1190c9-d28d-4169-9f56-1925e211d6a2",
+								"exec": [
+									"// Get value from CSV column \"contentType\"\r",
+									"let type = pm.variables.get(\"contentType\");   \r",
+									"let mime = \"\";\r",
+									"\r",
+									"switch(type) {\r",
+									"    case \"javascript\":\r",
+									"        mime = \"application/javascript\";\r",
+									"        break;\r",
+									"    case \"xml\":\r",
+									"        mime = \"application/xml\";\r",
+									"        break;\r",
+									"    case \"html\":\r",
+									"        mime = \"text/html\";\r",
+									"        break;\r",
+									"    case \"json\":\r",
+									"        mime = \"application/json\";\r",
+									"        break;        \r",
+									"}\r",
+									"\r",
+									"pm.request.headers.upsert({\r",
+									"    key: \"Content-Type\",\r",
+									"    value: mime\r",
+									"});\r",
+									"\r",
+									"// Optional debug\r",
+									"console.log(\"Using Content-Type:\", mime);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "50283836-78018a99-651a-432b-939c-3fd405099fec",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userLoginEmailId\": \"{{userLoginEmailId}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "50283836-bb9e5845-00b4-4bac-a545-94fe78a0f015"
