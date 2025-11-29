@@ -578,7 +578,7 @@
 					"response": []
 				},
 				{
-					"name": "Admin-User Sign-Ramya",
+					"name": "User Login-Ramya",
 					"event": [
 						{
 							"listen": "test",
