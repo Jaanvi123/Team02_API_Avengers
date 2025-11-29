@@ -6,16 +6,304 @@
 	},
 	"item": [
 		{
-			"name": "Create New Skill",
-			"id": "50283485-ba504a7b-1a88-4c64-896e-cc14d9502f46",
+			"name": "Cerate Skill Using Admin User",
+			"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"skillName\": \"SCDFnewversion\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/SaveSkillMaster",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"SaveSkillMaster"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "50283485-e35351d0-4dea-4409-8c38-e7955ffa2553",
+					"name": "401",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": " Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJSYW1SYWppdkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMzMzOTksImV4cCI6MTc2NDA2MjE5OX0.q1JjzJFu8qNb3aWDU5o0QGwWF4-0xGIl_hiaJe86rydkOYNL9FjvGBTSj6ECqgLjH4T1L5-2BG0pZI2xKnA_CA",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"skillName\": \"SCDFnewversion\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/SaveSkillMaster",
+							"protocol": "https",
+							"host": [
+								"lms-hackathon-nov-2025-8dd40899c026",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"lms",
+								"SaveSkillMaster"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 25 Nov 2025 14:38:17 GMT"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=cRD0NieiGezEbWCgiqkkr3vh7bkgRKLNxZJXd%2FFzpVw%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764081497\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=cRD0NieiGezEbWCgiqkkr3vh7bkgRKLNxZJXd%2FFzpVw%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764081497\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000 ; includeSubDomains"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "0"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Update Skill by Skill Id",
+			"id": "50283485-1620d097-55e1-4b98-acb8-c4d831c46d45",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"skillName\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/updateSkills/{Skillid}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"updateSkills",
+						"{Skillid}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Skill Master",
+			"id": "50283485-ad0d9ca2-ea2b-4c0b-bf9e-9f99049a6bde",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQzNjM0MzYsImV4cCI6MTc2NDM5MjIzNn0.AqYIb0m2cJG35LJtGJhKUXdPODx874nmLRtJc7vCEPjAdgMXE8vVC7Xw9ilhr3a-Uozv7YRS1Wx-FtekOD6MMg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/allSkillMaster",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"allSkillMaster"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get  Skill by skill name",
+			"id": "50283485-4f0f6543-856b-46fc-bd1d-8ead8dee04fb",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/skills/skillMasterName ",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"skills",
+						"skillMasterName "
+					]
+				}
 			},
 			"response": []
+		},
+		{
+			"name": "Delete Skill by Skill Id",
+			"id": "50283485-57269a0a-5c92-4917-8d6f-8c31be3c4142",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/deletebySkillId/{skillId}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"deletebySkillId",
+						"{skillId}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5c2f853f-622b-4c15-bfbd-186e0d270816",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "17592ed0-74a1-42d7-b96b-5561602155dc",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
