@@ -233,6 +233,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "c73b7504-1c6e-443e-a7e3-87acf98c2186",
 								"exec": [
 									"//Extract response from Json body of API response\r",
 									"const response = pm.response.json();\r",
@@ -241,6 +242,7 @@
 									"if (pm.response.code === 201) {\r",
 									"    //Extract userId from user object in response\r",
 									"    pm.environment.set(\"userId\", response.user.userId);\r",
+									"    pm.environment.set(\"userEmail\".response.user.userLoginEmail);\r",
 									"}\r",
 									"\r",
 									"pm.test(\"User successfully created\", function () {\r",
@@ -270,13 +272,13 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "c73b7504-1c6e-443e-a7e3-87acf98c2186"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "b9e89991-d980-4b38-b2e2-bf26d76b191f",
 								"exec": [
 									"//Generate random Phone number \r",
 									"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
@@ -322,8 +324,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "b9e89991-d980-4b38-b2e2-bf26d76b191f"
+								"requests": {}
 							}
 						}
 					],
