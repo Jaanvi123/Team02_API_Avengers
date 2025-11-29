@@ -705,8 +705,7 @@
 							"        try {",
 							"            payload = JSON.parse(resolved);",
 							"        } catch (e) {",
-							"            // If not valid JSON, do not block; just allow request to proceed",
-							"            return;",
+							"            throw new Error(\"Invalid JSON body — cannot process guard logic\");",
 							"        }",
 							"",
 							"        // 4) Check condition and throw to halt execution",
@@ -791,7 +790,7 @@
 					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
 					"options": {
 						"raw": {
-							"language": "json"
+							"language": "text"
 						}
 					}
 				},
