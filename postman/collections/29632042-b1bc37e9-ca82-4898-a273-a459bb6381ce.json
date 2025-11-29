@@ -4159,15 +4159,121 @@
 				},
 				{
 					"name": "DeleteBatchByBatchId-Shital",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2027a880-7c9e-4e2c-9ad3-90cfa2d259e4",
+								"exec": [
+									"let status = pm.response.code;\r",
+									"let json;\r",
+									"let requestedId = pm.environment.get(\"batchId\");\r",
+									"\r",
+									"// Try parsing JSON safely\r",
+									"try {\r",
+									"    json = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    pm.test(\"Response is valid JSON\", function () {\r",
+									"        pm.expect.fail(\"Response is not valid JSON: \" + e);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// ==========================\r",
+									"// ✅ CASE 1: 200 OK\r",
+									"// ==========================\r",
+									"if (status === 200) {\r",
+									"\r",
+									"    pm.test(\"Status code is 200 OK\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Delete response has message and success fields\", function () {\r",
+									"        pm.expect(json).to.have.property(\"message\");\r",
+									"        pm.expect(json).to.have.property(\"success\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Success should be true for successful delete\", function () {\r",
+									"        pm.expect(json.success).to.eql(true);\r",
+									"    });\r",
+									"\r",
+									"    // Optional: log message\r",
+									"    console.log(\"✔ 200 OK – Batch deleted. ID:\", requestedId, \"Message:\", json.message);\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"// ==========================\r",
+									"// ✅ CASE 2: 404 NOT FOUND\r",
+									"// ==========================\r",
+									"else if (status === 404) {\r",
+									"\r",
+									"    pm.test(\"Status code is 404 Not Found\", function () {\r",
+									"        pm.response.to.have.status(404);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Error response has message and success fields\", function () {\r",
+									"        pm.expect(json).to.have.property(\"message\");\r",
+									"        pm.expect(json).to.have.property(\"success\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Success should be false when batch not found\", function () {\r",
+									"        pm.expect(json.success).to.eql(false);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Error message indicates batch not found\", function () {\r",
+									"        pm.expect(json.message.toLowerCase()).to.include(\"not found\");\r",
+									"    });\r",
+									"\r",
+									"    console.log(\"❌ 404 Not Found – Batch with ID\", requestedId, \"does not exist. Message:\", json.message);\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"// ==========================\r",
+									"// ⚠ ANY OTHER STATUS\r",
+									"// ==========================\r",
+									"else {\r",
+									"    pm.test(\"Unexpected status code\", function () {\r",
+									"        pm.expect.fail(\"Expected 200 or 404, but got: \" + status);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "29632042-3f089d1e-6930-4702-a69a-4b982588c866",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
-						"url": {
+						"body": {
+							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseURL}}/batches/{{batchId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"batches",
+								"{{batchId}}"
+							]
 						}
 					},
 					"response": []
