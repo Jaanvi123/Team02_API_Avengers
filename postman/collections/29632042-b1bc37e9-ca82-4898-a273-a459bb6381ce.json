@@ -4678,6 +4678,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "b1afab5e-6b07-44b1-9af7-f355c8b92735",
 								"exec": [
 									"pm.test(\"User has been inactivated successfully\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -4697,12 +4698,11 @@
 									"        });\r",
 									"    }\r",
 									"}\r",
-									"pm.environment.clear();"
+									"//pm.environment.clear();"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "b1afab5e-6b07-44b1-9af7-f355c8b92735"
+								"requests": {}
 							}
 						}
 					],
