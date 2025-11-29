@@ -40,7 +40,12 @@
 							"        });\r",
 							"    }\r",
 							"}\r",
-							""
+							"if (pm.response.code === 400) {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"}"
 						],
 						"type": "text/javascript",
 						"packages": {},
@@ -66,29 +71,20 @@
 							"console.log(pm.environment.get('userEmail'));\r",
 							"console.log(pm.request.body.raw);\r",
 							"\r",
-							"if (currentEnvironment===\"Team02_LMS_API_Admin\")\r",
-							"{\r",
+							"if (currentEnvironment === \"Team02_LMS_API_Admin\") {\r",
 							"    pm.environment.set(\"roleId\", \"R01\");\r",
 							"}\r",
-							"if (currentEnvironment===\"Team02_LMS_API_Staff\")\r",
-							"{\r",
+							"if (currentEnvironment === \"Team02_LMS_API_Staff\") {\r",
 							"    pm.environment.set(\"roleId\", \"R02\");\r",
 							"}\r",
-							"if (currentEnvironment===\"Team02_LMS_API_Student\")\r",
-							"{\r",
+							"if (currentEnvironment === \"Team02_LMS_API_Student\") {\r",
 							"    pm.environment.set(\"roleId\", \"R03\");\r",
 							"}\r",
-							"/*\r",
-							"let requestData = JSON.parse(pm.request.body.raw);\r",
-							"let mandatoryField1 = ['userFirstName'];\r",
-							"let mandatoryField2 = ['userLastName'];\r",
-							"let mandatoryField3 = ['userPhoneNumber'];\r",
 							"\r",
-							"pm.test(\"Check userFirstName\", () => {\r",
-							"    pm.expect(requestData).to.have.keys(mandatoryField1);\r",
-							"});\r",
-							"\r",
-							"*/\r",
+							"pm.test(\"Mandatory Fields Check\", () => {\r",
+							"    let requestData = JSON.parse(pm.request.body.raw)\r",
+							"    pm.expect(requestData).to.have.keys(['userFirstName'])\r",
+							"})\r",
 							""
 						],
 						"type": "text/javascript",
@@ -116,7 +112,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userComments\": \"whatisthis\",\r\n    \"userEduPg\": \"retreg\",\r\n    \"userEduUg\": \"bgbfvsdvds\",\r\n    \"userFirstName\": \"Juliee\",\r\n    \"userLastName\": \"Kar\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/456\",\r\n    \"userLocation\": \"USA\",\r\n    \"userMiddleName\": \"A\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"{{roleId}}\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"IST\",\r\n    \"userVisaStatus\": \"NA\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"{{userEmail}}\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Active\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"userComments\": \"whatisthis\",\r\n    \"userEduPg\": \"retreg\",\r\n    \"userEduUg\": \"bgbfvsdvds\",\r\n    \"userFirstName\": \"\",\r\n    \"userLastName\": \"Kar\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/456\",\r\n    \"userLocation\": \"USA\",\r\n    \"userMiddleName\": \"A\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"{{roleId}}\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"IST\",\r\n    \"userVisaStatus\": \"NA\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"{{userEmail}}\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Active\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -495,13 +491,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/{{userID}}",
+					"raw": "{{baseURL}}/users/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
@@ -700,7 +696,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{auth_token}}",
+							"value": "{{team2_auth_token}}",
 							"type": "string"
 						}
 					]
@@ -709,7 +705,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " { \r\n  \"programId\": \"{{programId}}\", \r\n  \"roleId\": \"R03\", \r\n  \"userId\": \"{{userID}}\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{batchId}},\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+					"raw": " { \r\n  \"programId\": \"{{programId}}\", \r\n  \"roleId\": \"{{roleId}}\", \r\n  \"userId\": \"{{userId}}\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{batchId}},\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -717,14 +713,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/roleProgramBatchStatus/{{userID}}",
+					"raw": "{{baseURL}}/users/roleProgramBatchStatus/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"roleProgramBatchStatus",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
@@ -1181,14 +1177,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/user/{{userID}}",
+					"raw": "{{baseURL}}/users/user/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"user",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
@@ -1254,14 +1250,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/details/{{userID}}",
+					"raw": "{{baseURL}}/users/details/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"details",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
@@ -1401,13 +1397,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/{{userID}}",
+					"raw": "{{baseURL}}/users/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
@@ -1465,7 +1461,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmail\": \"54554@gmail.com\",\r\n  \"loginStatus\": \"Active\",\r\n  \"status\": \"Active\"\r\n}",
+					"raw": "{\r\n  \"userLoginEmail\": \"{{userEmail}}\",\r\n  \"loginStatus\": \"Active\",\r\n  \"status\": \"Active\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1473,14 +1469,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/userLogin/{{userID}}",
+					"raw": "{{baseURL}}/users/userLogin/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"userLogin",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
@@ -1546,14 +1542,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/roleId/{{userID}}",
+					"raw": "{{baseURL}}/users/roleId/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
 						"roleId",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
@@ -1614,13 +1610,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseURL}}/users/{{userID}}",
+					"raw": "{{baseURL}}/users/{{userId}}",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"users",
-						"{{userID}}"
+						"{{userId}}"
 					]
 				}
 			},
