@@ -350,7 +350,8 @@
 							"  pm.expect(json.status, \"status should be a string\").to.be.a(\"string\");",
 							"  const allowed = [\"Active\", \"Inactive\"];",
 							"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);",
-							"});"
+							"});",
+							"}"
 						],
 						"type": "text/javascript",
 						"packages": {},
