@@ -670,6 +670,139 @@
 			"response": []
 		},
 		{
+			"name": "Forgot Password/Confirm Email Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65628fdd-6063-4298-893e-efbc0be0c437",
+						"exec": [
+							"// Safely parse JSON, if any\r",
+							"let json = {};\r",
+							"try {\r",
+							"  json = pm.response.json();\r",
+							"} catch (e) {\r",
+							"  json = {};\r",
+							"}\r",
+							"\r",
+							"// Validate Status Code (200 OK)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Only proceed if status is 200\r",
+							"if (pm.response.code === 200) {\r",
+							"  // Extract fields\r",
+							"  const token = json.token;\r",
+							"\r",
+							"// Field validations\r",
+							"pm.test(\"Response has expected token\", function () {\r",
+							"  pm.expect(json).to.be.an(\"object\");\r",
+							"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
+							"  pm.expect(json.token, \"'token' should be a string\").to.be.a(\"string\");\r",
+							"  pm.expect(String(json.token).trim().length, \"'token' should not be empty\").to.be.greaterThan(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has expected type\", function () {\r",
+							"  pm.expect(json).to.be.an(\"object\");\r",
+							"  pm.expect(json, \"Missing type\").to.have.property(\"type\");\r",
+							"  pm.expect(json.type, \"'type' should be a string\").to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has expected userId\", function () {\r",
+							"  pm.expect(json).to.be.an(\"object\");\r",
+							"  pm.expect(json, \"Missing userId\").to.have.property(\"userId\");\r",
+							"  pm.expect(json.userId, \"'userId' should be a string\").to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has expected email\", function () {\r",
+							"  pm.expect(json).to.be.an(\"object\");\r",
+							"  pm.expect(json, \"Missing email\").to.have.property(\"email\");\r",
+							"  pm.expect(json.email, \"'email' should be a string\").to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response has expected roles (array of non-empty strings)\", function () {\r",
+							"  pm.expect(json).to.be.an(\"object\");\r",
+							"  pm.expect(json, \"Missing roles\").to.have.property(\"roles\");\r",
+							"  pm.expect(json.roles, \"'roles' should be an array\").to.be.an(\"array\");\r",
+							"  pm.expect(json.roles.length, \"'roles' should not be empty\").to.be.greaterThan(0);\r",
+							"  json.roles.forEach((r, i) => {\r",
+							"    pm.expect(r, `roles[${i}] should be a string`).to.be.a(\"string\");\r",
+							"    pm.expect(r.trim().length, `roles[${i}] should not be empty`).to.be.greaterThan(0);\r",
+							"  });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"passwordExpired is a boolean\", function () {\r",
+							"  pm.expect(json).to.be.an(\"object\");\r",
+							"  pm.expect(json, \"Missing passwordExpired\").to.have.property(\"passwordExpired\");\r",
+							"  pm.expect(json.passwordExpired, \"'passwordExpired' should be a boolean\").to.be.a(\"boolean\");\r",
+							"});\r",
+							"\r",
+							"pm.test('status is either \"Active\" or \"Inactive\"', function () {\r",
+							"  pm.expect(json).to.be.an(\"object\");\r",
+							"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
+							"  pm.expect(json.status, \"status should be a string\").to.be.a(\"string\");\r",
+							"  const allowed = [\"Active\", \"Inactive\"];\r",
+							"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);\r",
+							"});\r",
+							"}\r",
+							"if (pm.response.code === 400) {\r",
+							"    //Extract message from response body\r",
+							"    let errorMsg = json.message;\r",
+							"\r",
+							"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283836-e76e6d99-c7ab-4759-96e0-7ba316d6bebc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userLoginEmailId\": \"{{userEmail}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login",
+						"forgotpassword",
+						"confirmEmail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Reset Password",
 			"event": [
 				{
@@ -836,6 +969,210 @@
 				}
 			],
 			"id": "50283836-106165aa-e876-412f-a1b4-d5ab95aa3be2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/resetPassword",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"resetPassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Password Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "58db170a-bd1f-49a4-bba1-5f953b8ed103",
+						"exec": [
+							"// ------------------------------",
+							"// Response Validation Tests",
+							"// ------------------------------",
+							"",
+							"const schema = {",
+							"    type: \"object\",",
+							"    required: [\"message\", \"success\"],",
+							"    properties: {",
+							"        message: { type: \"string\" },",
+							"        success: { type: \"boolean\" }",
+							"    },",
+							"    additionalProperties: true",
+							"};",
+							"",
+							"// 1) Status 200",
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// 2) Content-Type JSON",
+							"pm.test(\"Content-Type is application/json\", () => {",
+							"    const ct = pm.response.headers.get(\"Content-Type\") || \"\";",
+							"    pm.expect(ct.toLowerCase()).to.include(\"application/json\");",
+							"});",
+							"",
+							"// 3) Parse JSON",
+							"let jsonBody;",
+							"pm.test(\"Response is valid JSON\", () => {",
+							"    try {",
+							"        jsonBody = pm.response.json();",
+							"        pm.expect(jsonBody).to.be.an(\"object\");",
+							"    } catch (err) {",
+							"        pm.expect.fail(\"Response is not valid JSON\");",
+							"    }",
+							"});",
+							"",
+							"// 4) Validate schema",
+							"pm.test(\"Response matches expected schema\", () => {",
+							"    if (!jsonBody) {",
+							"        pm.expect.fail(\"No JSON body available for schema validation\");",
+							"        return;",
+							"    }",
+							"",
+							"    // Use Postman's built-in validator if available",
+							"    if (pm.response.to.have.jsonSchema) {",
+							"        pm.response.to.have.jsonSchema(schema);",
+							"        return;",
+							"    }",
+							"",
+							"    // Fallback manual validation",
+							"    const errors = [];",
+							"",
+							"    // Required fields",
+							"    [\"message\", \"success\"].forEach(key => {",
+							"        if (!(key in jsonBody)) errors.push(`Missing required property: ${key}`);",
+							"    });",
+							"",
+							"    // Type checks",
+							"    if (typeof jsonBody.message !== \"string\") {",
+							"        errors.push(`'message' must be string`);",
+							"    }",
+							"    if (typeof jsonBody.success !== \"boolean\") {",
+							"        errors.push(`'success' must be boolean`);",
+							"    }",
+							"",
+							"    if (errors.length) pm.expect.fail(errors.join(\"\\n\"));",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ebc6f702-01e5-4a42-9200-3d96fcc74ba8",
+						"exec": [
+							"// Fail-fast guard: block execution when userLoginEmailId is \"team2@gmail.com\"",
+							"(function guardTeam2Reset() {",
+							"    try {",
+							"        // 1) Read raw body text from the request",
+							"        var raw = pm.request.body && pm.request.body.mode === 'raw' ? pm.request.body.raw : '';",
+							"        if (!raw) { return; }",
+							"",
+							"        // 2) Resolve optional variable placeholders like {{userEmail}}",
+							"        //    Use the same interpolation Postman uses for variables",
+							"        var resolved = pm.variables.replaceIn(raw);",
+							"",
+							"        // 3) Parse JSON safely",
+							"        var payload;",
+							"        try {",
+							"            payload = JSON.parse(resolved);",
+							"        } catch (e) {",
+							"            throw new Error(\"Invalid JSON body — cannot process guard logic\");",
+							"        }",
+							"",
+							"        // 4) Check condition and throw to halt execution",
+							"        if (payload && payload.userLoginEmailId === 'team2@gmail.com') {",
+							"            throw new Error('Access denied to reset Team2 password');",
+							"        }",
+							"        // 5) Otherwise, do nothing and allow the request to proceed",
+							"    } catch (err) {",
+							"        // Re-throw to ensure the run fails fast for this guard",
+							"        throw err;",
+							"    }",
+							"})();",
+							"",
+							"// Existing script retains current functionality below",
+							"function generatePassword(minLen = 8, maxLen = 32) {",
+							"    const uppercase = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\";",
+							"    const lowercase = \"abcdefghijklmnopqrstuvwxyz\";",
+							"    const numbers   = \"0123456789\";",
+							"    const special   = \"$@$!%*?&\";   // special chars allowed by your regex",
+							"",
+							"    const allChars = uppercase + lowercase + numbers + special;",
+							"",
+							"    // Random length between min and max",
+							"    const length = Math.floor(Math.random() * (maxLen - minLen + 1)) + minLen;",
+							"",
+							"    let password = \"\";",
+							"",
+							"    // Ensure the password includes each required character type",
+							"    password += uppercase[Math.floor(Math.random() * uppercase.length)];",
+							"    password += lowercase[Math.floor(Math.random() * lowercase.length)];",
+							"    password += numbers[Math.floor(Math.random() * numbers.length)];",
+							"    password += special[Math.floor(Math.random() * special.length)];",
+							"",
+							"    // Fill the remaining characters randomly",
+							"    for (let i = password.length; i < length; i++) {",
+							"        password += allChars[Math.floor(Math.random() * allChars.length)];",
+							"    }",
+							"",
+							"    // Shuffle characters so the required chars aren't predictable",
+							"    password = password",
+							"        .split(\"\")",
+							"        .sort(() => Math.random() - 0.5)",
+							"        .join(\"\");",
+							"",
+							"    return password;",
+							"}",
+							"",
+							"// Generate a valid password",
+							"let newPassword = generatePassword(8, 32);",
+							"",
+							"// Store it in environment",
+							"pm.environment.set(\"password\", newPassword);",
+							"",
+							"console.log(\"Generated Password:\", newPassword);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283836-f4a8c43d-7e16-4502-a445-3f85b589da91",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
