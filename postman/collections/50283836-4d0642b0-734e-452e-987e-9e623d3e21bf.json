@@ -354,7 +354,7 @@
 							"}",
 							"if (pm.response.code === 400) {",
 							"    //Extract message from response body",
-							"    let errorMsg = resBody.message;",
+							"    let errorMsg = json.message;",
 							"",
 							"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {",
 							"        pm.response.to.have.status(400);",
@@ -391,7 +391,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+					"raw": "{\r\n  \"userLoginEmailId\": \"team2gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
