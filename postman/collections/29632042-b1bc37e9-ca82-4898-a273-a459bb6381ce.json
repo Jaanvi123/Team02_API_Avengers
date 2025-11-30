@@ -353,7 +353,7 @@
 									"  pm.expect(json.passwordExpired, \"'passwordExpired' should be a boolean\").to.be.a(\"boolean\");\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response has expected email\", function () {\r",
+									"pm.test(\"Response has expected status\", function () {\r",
 									"  pm.expect(json).to.be.an(\"object\");\r",
 									"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
 									"  pm.expect(json.status, \"status should be a string\").to.be.a(\"string\");\r",
