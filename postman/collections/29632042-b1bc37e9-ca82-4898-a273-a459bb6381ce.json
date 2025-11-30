@@ -673,12 +673,16 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "a96e27c2-8039-4de9-ba2a-be6fa5712126",
 								"exec": [
 									"// Validate Status Code (201 Created)\r",
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
+									"pm.test(\"Status code is 401 unauthorized user\",function(){\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
 									"// Parse the response\r",
 									"\r",
 									"/*\r",
@@ -720,13 +724,13 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "a96e27c2-8039-4de9-ba2a-be6fa5712126"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "8836600c-2aaa-4632-9044-91052e00332a",
 								"exec": [
 									"// Generate a random alphabetic suffix (no numbers)\r",
 									"function randomString(length) {\r",
@@ -747,8 +751,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "8836600c-2aaa-4632-9044-91052e00332a"
+								"requests": {}
 							}
 						}
 					],
