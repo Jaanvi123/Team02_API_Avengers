@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+							"raw": "{\r\n  \"userLoginEmailId\": \"{{team2userEmail}}\",\r\n  \"password\": \"{{team2password}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
