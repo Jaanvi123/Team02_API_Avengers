@@ -725,7 +725,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"username\": \"{{Team2EmailId}}\",\n  \"password\": \"{{Team2Password}}\"\n}",
+					"raw": "{\n  \"userLoginEmailId\": \"{{team2userEmail}}\",\n  \"password\": \"{{team2password}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
