@@ -3820,6 +3820,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "8e167f20-cee2-4d7a-be6e-e3913af225cd",
 								"exec": [
 									"// Status code check – should be 200\r",
 									"pm.test(\"Status code is 200 - Batch fetched successfully\", function () {\r",
@@ -3832,15 +3833,15 @@
 									"// Handle array response\r",
 									"let resp = Array.isArray(jsonData) ? jsonData[0] : jsonData;\r",
 									"\r",
-									"// Verify batchId matches global\r",
-									"pm.test(\"batchId matches global variable\", function () {\r",
-									"    let globalId = Number(pm.globals.get(\"batchId\"));\r",
+									"// Verify batchId matches environment\r",
+									"pm.test(\"batchId matches environment variable\", function () {\r",
+									"    let globalId = Number(pm.environment.get(\"batchId\"));\r",
 									"    pm.expect(resp.batchId).to.eql(globalId);\r",
 									"});\r",
 									"\r",
-									"// Verify batchName matches global\r",
-									"pm.test(\"batchName matches global variable\", function () {\r",
-									"    let globalName = pm.globals.get(\"batchName\");\r",
+									"// Verify batchName matches environment\r",
+									"pm.test(\"batchName matches environment variable\", function () {\r",
+									"    let globalName = pm.environment.get(\"batchName\");\r",
 									"    pm.expect(resp.batchName).to.eql(globalName);\r",
 									"});\r",
 									"\r",
@@ -3855,20 +3856,19 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "8e167f20-cee2-4d7a-be6e-e3913af225cd"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "4e5dbb3e-afc1-44ff-bede-5cc3b0c28eb9",
 								"exec": [
 									""
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "4e5dbb3e-afc1-44ff-bede-5cc3b0c28eb9"
+								"requests": {}
 							}
 						}
 					],
@@ -3918,6 +3918,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "4081f7d3-111d-4240-a469-9dae2915c6fc",
 								"exec": [
 									"// 1. Status code 200\r",
 									"pm.test(\"Status code is 200 - Batch found\", function () {\r",
@@ -3941,16 +3942,16 @@
 									"    pm.expect(resp).to.have.property(\"programName\");\r",
 									"});\r",
 									"\r",
-									"// 5. Validate batchName matches global variable\r",
-									"pm.test(\"batchName matches global variable\", function () {\r",
-									"    let globalName = pm.globals.get(\"batchName\");\r",
+									"// 5. Validate batchName matches environment variable\r",
+									"pm.test(\"batchName matches environment variable\", function () {\r",
+									"\r",
+									"    let globalName = pm.environment.get(\"batchName\");\r",
 									"    pm.expect(resp.batchName).to.eql(globalName);\r",
 									"});"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "4081f7d3-111d-4240-a469-9dae2915c6fc"
+								"requests": {}
 							}
 						}
 					],
