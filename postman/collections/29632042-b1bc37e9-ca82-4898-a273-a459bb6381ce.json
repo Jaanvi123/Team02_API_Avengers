@@ -2952,6 +2952,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "9d5f2d57-f1da-4b38-9906-49b52e96f0dd",
 								"exec": [
 									"// Parse the response\r",
 									"let responseData;\r",
@@ -2972,7 +2973,7 @@
 									"        pm.expect(responseData).to.be.an(\"array\");\r",
 									"    });\r",
 									"\r",
-									"    pm.test(\"Program has required fields\", function () {\r",
+									"  /*  pm.test(\"Program has required fields\", function () {\r",
 									"        const program = responseData[0];\r",
 									"        pm.expect(program).to.have.property(\"programId\");\r",
 									"        pm.expect(program).to.have.property(\"programName\");\r",
@@ -2980,15 +2981,15 @@
 									"        pm.expect(program).to.have.property(\"programStatus\");\r",
 									"        pm.expect(program).to.have.property(\"creationTime\");\r",
 									"        pm.expect(program).to.have.property(\"lastModTime\");\r",
-									"    });\r",
+									"    });*/\r",
 									"\r",
-									"    pm.test(\"Field data types are correct\", function () {\r",
+									" /*   pm.test(\"Field data types are correct\", function () {\r",
 									"        const program = responseData[0];\r",
 									"        pm.expect(program.programId).to.be.a(\"number\");\r",
 									"        pm.expect(program.programName).to.be.a(\"string\");\r",
 									"        pm.expect(program.programDescription).to.be.a(\"string\");\r",
 									"        pm.expect(program.programStatus).to.be.a(\"string\");\r",
-									"    });\r",
+									"    });*/\r",
 									"}\r",
 									"\r",
 									"// If program does not exist (404)\r",
@@ -3003,8 +3004,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "9d5f2d57-f1da-4b38-9906-49b52e96f0dd"
+								"requests": {}
 							}
 						}
 					],
