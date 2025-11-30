@@ -4413,7 +4413,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"skillName\": \"SCDWnewversion\",\r\n    \"creationTime\": \"2025-11-20T19:39:39.762Z\",\r\n    \"lastModTime\": \"2025-11-20T19:39:39.762Z\"\r\n}",
+							"raw": "{\r\n    \"skillName\": \"SCDWTnewversion\",\r\n    \"creationTime\": \"2025-11-20T19:39:39.762Z\",\r\n    \"lastModTime\": \"2025-11-20T19:39:39.762Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
