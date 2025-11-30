@@ -579,7 +579,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+							"raw": "{\r\n  \"userLoginEmailId\": \"Simeon@gmail.com\",\r\n  \"password\": \"+LRAqX3gO!BX6n%eud7\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
