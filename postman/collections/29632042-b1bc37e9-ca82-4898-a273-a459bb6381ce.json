@@ -1115,6 +1115,8 @@
 									"pm.test(\"Status code is 401 unauthorized user\",function(){\r",
 									"    pm.response.to.have.status(401);\r",
 									"});\r",
+									"if(pm.response.code===201)\r",
+									"{\r",
 									"// 2. Parse JSON response\r",
 									"let jsonData = pm.response.json();\r",
 									"\r",
@@ -1148,7 +1150,8 @@
 									"    pm.expect(jsonData).to.have.property(\"batchStatus\");\r",
 									"    pm.expect(jsonData).to.have.property(\"programId\");\r",
 									"    pm.expect(jsonData).to.have.property(\"batchNoOfClasses\");\r",
-									"});"
+									"});\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
