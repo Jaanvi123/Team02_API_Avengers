@@ -14,6 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "f87f62f6-01bf-493b-8c2d-b353191758c1",
 								"exec": [
 									"// Safely parse JSON, if any\r",
 									"let json = {};\r",
@@ -32,167 +33,83 @@
 									"if (pm.response.code === 200) {\r",
 									"  // Extract fields\r",
 									"  const token = json.token;\r",
-									"  const tokenType = json.type; // e.g., \"Bearer\"\r",
 									"\r",
-									"  // Basic token presence check\r",
-									"  pm.test(\"Token is present in response\", function () {\r",
-									"    pm.expect(token, \"Response did not contain 'token' field\").to.exist;\r",
-									"  });\r",
-									"\r",
-									"  // Save token and type to environment\r",
-									"  if (token) {\r",
-									"    pm.globals.set(\"team2_auth_token\", token);\r",
-									"    if (tokenType) pm.collectionVariables.set(\"auth_token_type\", tokenType);\r",
-									"    pm.test(\"Token captured and saved\", function () {\r",
-									"      pm.expect(pm.globals.get(\"team2_auth_token\")).to.equal(token);\r",
-									"    });\r",
-									"    console.log(\"Captured token:\", tokenType ? `${tokenType} ${token}` : token);\r",
-									"  }\r",
-									"}\r",
-									"\r",
-									"// Optional: Summary of expected fields (customize as needed)\r",
-									"pm.test(\"Response has expected auth fields\", function () {\r",
+									"// Field validations\r",
+									"pm.test(\"Response has expected token\", function () {\r",
 									"  pm.expect(json).to.be.an(\"object\");\r",
 									"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
-									"  pm.expect(json, \"Missing type\").to.have.property(\"type\");\r",
-									"  pm.expect(json, \"Missing userId\").to.have.property(\"userId\");\r",
-									"  pm.expect(json, \"Missing email\").to.have.property(\"email\");\r",
-									"  pm.expect(json, \"Missing roles\").to.have.property(\"roles\");\r",
-									"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
-									"  pm.expect(json, \"Missing passwordExpired\").to.have.property(\"passwordExpired\");\r",
+									"  pm.expect(json.token, \"'token' should be a string\").to.be.a(\"string\");\r",
+									"  pm.expect(String(json.token).trim().length, \"'token' should not be empty\").to.be.greaterThan(0);\r",
+									"  pm.globals.set(\"team2_auth_token\", token);\r",
 									"});\r",
-									"pm.test('status is either \"Active\" or \"Inactive\"', function () {\r",
-									"    pm.expect(json, 'Response should be a JSON object').to.be.an('object');\r",
-									"    pm.expect(json, 'Missing status').to.have.property('status');\r",
-									"    pm.expect(json.status, 'status should be a string').to.be.a('string');\r",
 									"\r",
-									"    const allowed = ['Active', 'Inactive'];\r",
-									"    pm.expect(allowed, `status must be one of ${allowed.join(', ')}`).to.include(json.status);\r",
-									"});"
+									"pm.test(\"Response has expected type\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing type\").to.have.property(\"type\");\r",
+									"  pm.expect(json.type, \"'type' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected userId\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing userId\").to.have.property(\"userId\");\r",
+									"  pm.expect(json.userId, \"'userId' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected email\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing email\").to.have.property(\"email\");\r",
+									"  pm.expect(json.email, \"'email' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected roles (array of non-empty strings)\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing roles\").to.have.property(\"roles\");\r",
+									"  pm.expect(json.roles, \"'roles' should be an array\").to.be.an(\"array\");\r",
+									"  pm.expect(json.roles.length, \"'roles' should not be empty\").to.be.greaterThan(0);\r",
+									"  json.roles.forEach((r, i) => {\r",
+									"    pm.expect(r, `roles[${i}] should be a string`).to.be.a(\"string\");\r",
+									"    pm.expect(r.trim().length, `roles[${i}] should not be empty`).to.be.greaterThan(0);\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"passwordExpired is a boolean\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing passwordExpired\").to.have.property(\"passwordExpired\");\r",
+									"  pm.expect(json.passwordExpired, \"'passwordExpired' should be a boolean\").to.be.a(\"boolean\");\r",
+									"});\r",
+									"\r",
+									"pm.test('status is either \"Active\" or \"Inactive\"', function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
+									"  pm.expect(json.status, \"status should be a string\").to.be.a(\"string\");\r",
+									"  const allowed = [\"Active\", \"Inactive\"];\r",
+									"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);\r",
+									"});\r",
+									"}\r",
+									"if (pm.response.code === 400) {\r",
+									"    //Extract message from response body\r",
+									"    let errorMsg = json.message;\r",
+									"\r",
+									"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
+									"        pm.response.to.have.status(400);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "f87f62f6-01bf-493b-8c2d-b353191758c1"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "8681ba4b-3e56-4bbd-8e22-76c8f251f2c5",
 								"exec": [
-									"// Pre-request validation for raw JSON body",
-									"// - Parses and validates the body",
-									"// - Resolves optional {{userEmail}} and {{password}} before validation",
-									"// - Fails fast with clear messages",
-									"// - Logs a concise success summary",
-									"// - Normalizes JSON formatting",
-									"// - Sets a transient flag request_is_valid=true when valid",
-									"",
-									"(function () {",
-									"  // Clear transient validity flag at the start",
-									"  pm.globals.unset(\"request_is_valid\");",
-									"",
-									"  function isEmail(value) {",
-									"    const re = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/; // simple and effective",
-									"    return typeof value === 'string' && re.test(value);",
-									"  }",
-									"",
-									"  function failFast(message) {",
-									"    pm.expect.fail(message);",
-									"  }",
-									"",
-									"  // Verify body mode",
-									"  pm.test(\"Body mode is raw JSON\", function () {",
-									"    pm.expect(pm.request.body && pm.request.body.mode, 'Request body mode should be raw').to.eql('raw');",
-									"  });",
-									"",
-									"  // Pull raw body",
-									"  let raw = pm.request.body && pm.request.body.raw;",
-									"",
-									"  pm.test(\"Raw body exists and is non-empty\", function () {",
-									"    pm.expect(raw, 'Raw body must exist').to.exist;",
-									"    pm.expect(typeof raw, 'Raw body must be a string').to.eql('string');",
-									"    pm.expect(raw.trim().length > 0, 'Raw body must not be empty').to.be.true;",
-									"  });",
-									"",
-									"  // Optionally resolve {{userEmail}} and {{password}}",
-									"  try {",
-									"    const vars = pm.variables || pm; // safety",
-									"    const mappings = [",
-									"      { placeholder: '{{userEmail}}', value: vars.has && vars.has('userEmail') ? vars.get('userEmail') : undefined },",
-									"      { placeholder: '{{password}}', value: vars.has && vars.has('password') ? vars.get('password') : undefined }",
-									"    ];",
-									"    mappings.forEach(m => {",
-									"      if (m.value !== undefined && typeof raw === 'string' && raw.includes(m.placeholder)) {",
-									"        raw = raw.replaceAll(m.placeholder, String(m.value));",
-									"      }",
-									"    });",
-									"  } catch (e) {",
-									"    failFast('Failed to resolve optional variables: ' + e.message);",
-									"  }",
-									"",
-									"  // Parse JSON",
-									"  let body;",
-									"  try {",
-									"    body = JSON.parse(raw);",
-									"  } catch (e) {",
-									"    failFast('Body must be valid JSON: ' + e.message);",
-									"  }",
-									"",
-									"  // Shape validation",
-									"  pm.test('Body is an object (not array)', function () {",
-									"    pm.expect(body && typeof body, 'Body must parse to an object').to.eql('object');",
-									"    pm.expect(Array.isArray(body), 'Body must not be an array').to.be.false;",
-									"  });",
-									"",
-									"  // Required props",
-									"  pm.test('Required fields present', function () {",
-									"    pm.expect(body, 'Missing userLoginEmailId').to.have.property('userLoginEmailId');",
-									"    pm.expect(body, 'Missing password').to.have.property('password');",
-									"  });",
-									"",
-									"  const email = body.userLoginEmailId;",
-									"  const pwd = body.password;",
-									"",
-									"  // userLoginEmailId validation",
-									"  pm.test('userLoginEmailId is a valid email string', function () {",
-									"    pm.expect(typeof email, 'userLoginEmailId must be a string').to.eql('string');",
-									"    pm.expect(String(email).trim().length > 0, 'userLoginEmailId must not be empty').to.be.true;",
-									"    pm.expect(isEmail(email), 'userLoginEmailId must be a valid email').to.be.true;",
-									"  });",
-									"",
-									"  // password validation",
-									"  pm.test('password is a non-empty string with min length 8', function () {",
-									"    pm.expect(typeof pwd, 'password must be a string').to.eql('string');",
-									"    pm.expect(String(pwd).length > 0, 'password must not be empty').to.be.true;",
-									"    pm.expect(String(pwd).length, 'password must be at least 8 characters').to.be.at.least(8);",
-									"  });",
-									"",
-									"  // Normalize/canonicalize JSON formatting with only required keys in expected order",
-									"  /*",
-									"  try {",
-									"    const canonical = JSON.stringify({",
-									"      userLoginEmailId: email,",
-									"      password: pwd",
-									"    });",
-									"    if (canonical && pm.request.body && typeof pm.request.body.update === 'function') {",
-									"      pm.request.body.update(canonical);",
-									"    }",
-									"  } catch (e) {",
-									"    // Do not fail on normalization issues",
-									"  }",
-									"*/",
-									"  // Mark valid for downstream scripts",
-									"  pm.globals.set('request_is_valid', 'true');",
-									"",
-									"  // Concise success log",
-									"  console.log('Pre-request validation: OK', { email: email, passwordLength: String(pwd).length });",
-									"})();"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "8681ba4b-3e56-4bbd-8e22-76c8f251f2c5"
+								"requests": {}
 							}
 						}
 					],
@@ -208,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+							"raw": "{\r\n  \"userLoginEmailId\": \"{{team2userEmail}}\",\r\n  \"password\": \"{{team2password}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -233,6 +150,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "c73b7504-1c6e-443e-a7e3-87acf98c2186",
 								"exec": [
 									"//Extract response from Json body of API response\r",
 									"const response = pm.response.json();\r",
@@ -241,6 +159,7 @@
 									"if (pm.response.code === 201) {\r",
 									"    //Extract userId from user object in response\r",
 									"    pm.environment.set(\"userId\", response.user.userId);\r",
+									"\r",
 									"}\r",
 									"\r",
 									"pm.test(\"User successfully created\", function () {\r",
@@ -270,13 +189,13 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "c73b7504-1c6e-443e-a7e3-87acf98c2186"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "b9e89991-d980-4b38-b2e2-bf26d76b191f",
 								"exec": [
 									"//Generate random Phone number \r",
 									"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
@@ -322,8 +241,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "b9e89991-d980-4b38-b2e2-bf26d76b191f"
+								"requests": {}
 							}
 						}
 					],
@@ -372,29 +290,89 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "c11ff1a8-2366-4ea4-a985-2e334e5e8e16",
 								"exec": [
-									"let json = pm.response.json();\r",
-									"let token = json.token;\r",
+									"// Safely parse JSON, if any\r",
+									"let json = {};\r",
+									"try {\r",
+									"  json = pm.response.json();\r",
+									"} catch (e) {\r",
+									"  json = {};\r",
+									"}\r",
 									"\r",
-									"if (pm.response.code === 201) {\r",
-									"// Save token to environment\r",
-									"if (token) {\r",
-									"    pm.environment.set(\"auth_token\", token);\r",
-									"    console.log(\"Captured token:\", token);\r",
-									"} else {\r",
-									"    pm.test(\"Token not found\", function () {\r",
-									"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
-									"    });\r",
-									"}\r",
-									"}\r",
-									"pm.test(\"Token successfully generated\", function () {\r",
+									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
-									"});"
+									"});\r",
+									"\r",
+									"// Only proceed if status is 201\r",
+									"if (pm.response.code === 201) {\r",
+									"  // Extract fields\r",
+									"  const token = json.token;\r",
+									"\r",
+									"// Field validations\r",
+									"pm.test(\"Response has expected token\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
+									"  pm.expect(json.token, \"'token' should be a string\").to.be.a(\"string\");\r",
+									"  pm.expect(String(json.token).trim().length, \"'token' should not be empty\").to.be.greaterThan(0);\r",
+									"  pm.environment.set(\"auth_token\", token);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected type\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing type\").to.have.property(\"type\");\r",
+									"  pm.expect(json.type, \"'type' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected userId\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing userId\").to.have.property(\"userId\");\r",
+									"  pm.expect(json.userId, \"'userId' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected email\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing email\").to.have.property(\"email\");\r",
+									"  pm.expect(json.email, \"'email' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected roles (array of non-empty strings)\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing roles\").to.have.property(\"roles\");\r",
+									"  pm.expect(json.roles, \"'roles' should be an array\").to.be.an(\"array\");\r",
+									"  pm.expect(json.roles.length, \"'roles' should not be empty\").to.be.greaterThan(0);\r",
+									"  json.roles.forEach((r, i) => {\r",
+									"    pm.expect(r, `roles[${i}] should be a string`).to.be.a(\"string\");\r",
+									"    pm.expect(r.trim().length, `roles[${i}] should not be empty`).to.be.greaterThan(0);\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"passwordExpired is a boolean\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing passwordExpired\").to.have.property(\"passwordExpired\");\r",
+									"  pm.expect(json.passwordExpired, \"'passwordExpired' should be a boolean\").to.be.a(\"boolean\");\r",
+									"});\r",
+									"/*\r",
+									"pm.test(\"Response has expected status\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
+									"  pm.expect(json.status, \"status should be a string\").to.be.a(\"string\");\r",
+									"  const allowed = [\"Active\", \"Inactive\"];\r",
+									"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);\r",
+									"});*/\r",
+									"}\r",
+									"if (pm.response.code === 400) {\r",
+									"    //Extract message from response body\r",
+									"    let errorMsg = json.message;\r",
+									"\r",
+									"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
+									"        pm.response.to.have.status(400);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "c11ff1a8-2366-4ea4-a985-2e334e5e8e16"
+								"requests": {}
 							}
 						}
 					],
@@ -404,14 +382,7 @@
 					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{team2_auth_token}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -445,18 +416,86 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "fbb3277d-edb7-4850-96d5-a8499ac00c11",
 								"exec": [
-									""
+									"// Safely parse JSON, if any\r",
+									"let json = {};\r",
+									"try {\r",
+									"  json = pm.response.json();\r",
+									"} catch (e) {\r",
+									"  json = {};\r",
+									"}\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Only proceed if status is 200\r",
+									"if (pm.response.code === 200) {\r",
+									"/*\r",
+									"// Field validations\r",
+									"pm.test(\"Response has expected token\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
+									"  pm.expect(json.token, \"'token' should be a string\").to.be.a(\"string\");\r",
+									"  pm.expect(String(json.token).trim().length, \"'token' should not be empty\").to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected type\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing type\").to.have.property(\"type\");\r",
+									"  pm.expect(json.type, \"'type' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected userId\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing userId\").to.have.property(\"userId\");\r",
+									"  pm.expect(json.userId, \"'userId' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected email\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing email\").to.have.property(\"email\");\r",
+									"  pm.expect(json.email, \"'email' should be a string\").to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response has expected roles (array of non-empty strings)\", function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing roles\").to.have.property(\"roles\");\r",
+									"  pm.expect(json.roles, \"'roles' should be an array\").to.be.an(\"array\");\r",
+									"  pm.expect(json.roles.length, \"'roles' should not be empty\").to.be.greaterThan(0);\r",
+									"  json.roles.forEach((r, i) => {\r",
+									"    pm.expect(r, `roles[${i}] should be a string`).to.be.a(\"string\");\r",
+									"    pm.expect(r.trim().length, `roles[${i}] should not be empty`).to.be.greaterThan(0);\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"pm.test('status is either \"Active\" or \"Inactive\"', function () {\r",
+									"  pm.expect(json).to.be.an(\"object\");\r",
+									"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
+									"  pm.expect(json.status, \"status should be a string\").to.be.a(\"string\");\r",
+									"  const allowed = [\"Active\", \"Inactive\"];\r",
+									"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);\r",
+									"});*/\r",
+									"}\r",
+									"if (pm.response.code === 400) {\r",
+									"    //Extract message from response body\r",
+									"    let errorMsg = json.message;\r",
+									"\r",
+									"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
+									"        pm.response.to.have.status(400);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "fbb3277d-edb7-4850-96d5-a8499ac00c11"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "06a84440-0bb4-48b1-84a6-4524e9591785",
 								"exec": [
 									"// Fail-fast guard: block execution when userLoginEmailId is \"team2@gmail.com\"",
 									"(function guardTeam2Reset() {",
@@ -534,8 +573,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "06a84440-0bb4-48b1-84a6-4524e9591785"
+								"requests": {}
 							}
 						}
 					],
@@ -578,7 +616,7 @@
 					"response": []
 				},
 				{
-					"name": "Admin-User Sign-Ramya",
+					"name": "User Login-Ramya",
 					"event": [
 						{
 							"listen": "test",
@@ -695,12 +733,19 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "a96e27c2-8039-4de9-ba2a-be6fa5712126",
 								"exec": [
 									"// Validate Status Code (201 Created)\r",
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
+									"if (pm.response.code===401)\r",
+									"{\r",
+									"pm.test(\"Status code is 401 unauthorized user\",function(){\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"}\r",
 									"// Parse the response\r",
 									"\r",
 									"/*\r",
@@ -742,13 +787,13 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "a96e27c2-8039-4de9-ba2a-be6fa5712126"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "8836600c-2aaa-4632-9044-91052e00332a",
 								"exec": [
 									"// Generate a random alphabetic suffix (no numbers)\r",
 									"function randomString(length) {\r",
@@ -769,8 +814,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "8836600c-2aaa-4632-9044-91052e00332a"
+								"requests": {}
 							}
 						}
 					],
@@ -1057,12 +1101,19 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "d9b31c74-c6ed-43d9-b2bb-997f7ecb5463",
 								"exec": [
 									"// 1. Status should be 201\r",
 									"pm.test(\"Status code is 201 - Batch created\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
-									"\r",
+									"if (pm.response.code===401){\r",
+									"pm.test(\"Status code is 401 unauthorized user\",function(){\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"}\r",
+									"if(pm.response.code===201)\r",
+									"{\r",
 									"// 2. Parse JSON response\r",
 									"let jsonData = pm.response.json();\r",
 									"\r",
@@ -1071,6 +1122,7 @@
 									"    pm.expect(jsonData).to.have.property(\"batchId\");\r",
 									"    pm.expect(jsonData.batchId).to.be.a(\"number\");\r",
 									"});\r",
+									"\r",
 									"\r",
 									"// 4. Save batchId and batchName to environment for next requests\r",
 									"pm.environment.set(\"batchId\", jsonData.batchId);\r",
@@ -1095,17 +1147,18 @@
 									"    pm.expect(jsonData).to.have.property(\"batchStatus\");\r",
 									"    pm.expect(jsonData).to.have.property(\"programId\");\r",
 									"    pm.expect(jsonData).to.have.property(\"batchNoOfClasses\");\r",
-									"});"
+									"});\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "d9b31c74-c6ed-43d9-b2bb-997f7ecb5463"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "240449b8-afd0-4c55-84b9-c35ba78b0bbc",
 								"exec": [
 									"// Get program name from environment\r",
 									"const programName = pm.environment.get(\"programName\") || \"SDET\";\r",
@@ -1122,8 +1175,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "240449b8-afd0-4c55-84b9-c35ba78b0bbc"
+								"requests": {}
 							}
 						}
 					],
@@ -1269,6 +1321,108 @@
 							"cookie": [],
 							"responseTime": null,
 							"body": "{\n    \"batchId\": 44,\n    \"batchName\": \"SDET1\",\n    \"batchDescription\": \"SDET first batch\",\n    \"batchStatus\": \"Active\",\n    \"batchNoOfClasses\": 20,\n    \"programId\": 1,\n    \"programName\": \"LMSHAHackthonone\"\n}"
+						},
+						{
+							"id": "29632042-dec0687b-152a-4460-8ae7-52b05b5f6a6d",
+							"name": "CreateProgramBatch-Shital",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"batchDescription\": \"Weekday evening batch\",\r\n    \"batchName\": \"{{batchName}}\",\r\n    \"batchNoOfClasses\": 25,\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\": \"{{programId}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/batches",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"batches"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 30 Nov 2025 18:09:58 GMT"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Nel",
+									"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=A1hKYAVTrTfDmj%2Bswao40mQ%2FQC2uLlbMiYfqAqVXOg8%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764526198\"}],\"max_age\":3600}"
+								},
+								{
+									"key": "Reporting-Endpoints",
+									"value": "heroku-nel=\"https://nel.heroku.com/reports?s=A1hKYAVTrTfDmj%2Bswao40mQ%2FQC2uLlbMiYfqAqVXOg8%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764526198\""
+								},
+								{
+									"key": "Server",
+									"value": "Heroku"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 heroku-router"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": null
 						}
 					]
 				},
@@ -2974,6 +3128,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "9d5f2d57-f1da-4b38-9906-49b52e96f0dd",
 								"exec": [
 									"// Parse the response\r",
 									"let responseData;\r",
@@ -2988,30 +3143,6 @@
 									"    pm.expect(pm.response.code === 200 || pm.response.code === 404).to.be.true;\r",
 									"});\r",
 									"\r",
-									"// If program exists (200)\r",
-									"if (pm.response.code === 200) {\r",
-									"    pm.test(\"Response is an array\", function () {\r",
-									"        pm.expect(responseData).to.be.an(\"array\");\r",
-									"    });\r",
-									"\r",
-									"    pm.test(\"Program has required fields\", function () {\r",
-									"        const program = responseData[0];\r",
-									"        pm.expect(program).to.have.property(\"programId\");\r",
-									"        pm.expect(program).to.have.property(\"programName\");\r",
-									"        pm.expect(program).to.have.property(\"programDescription\");\r",
-									"        pm.expect(program).to.have.property(\"programStatus\");\r",
-									"        pm.expect(program).to.have.property(\"creationTime\");\r",
-									"        pm.expect(program).to.have.property(\"lastModTime\");\r",
-									"    });\r",
-									"\r",
-									"    pm.test(\"Field data types are correct\", function () {\r",
-									"        const program = responseData[0];\r",
-									"        pm.expect(program.programId).to.be.a(\"number\");\r",
-									"        pm.expect(program.programName).to.be.a(\"string\");\r",
-									"        pm.expect(program.programDescription).to.be.a(\"string\");\r",
-									"        pm.expect(program.programStatus).to.be.a(\"string\");\r",
-									"    });\r",
-									"}\r",
 									"\r",
 									"// If program does not exist (404)\r",
 									"if (pm.response.code === 404) {\r",
@@ -3025,8 +3156,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "9d5f2d57-f1da-4b38-9906-49b52e96f0dd"
+								"requests": {}
 							}
 						}
 					],
@@ -3842,6 +3972,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "8e167f20-cee2-4d7a-be6e-e3913af225cd",
 								"exec": [
 									"// Status code check – should be 200\r",
 									"pm.test(\"Status code is 200 - Batch fetched successfully\", function () {\r",
@@ -3854,15 +3985,15 @@
 									"// Handle array response\r",
 									"let resp = Array.isArray(jsonData) ? jsonData[0] : jsonData;\r",
 									"\r",
-									"// Verify batchId matches global\r",
-									"pm.test(\"batchId matches global variable\", function () {\r",
-									"    let globalId = Number(pm.globals.get(\"batchId\"));\r",
+									"// Verify batchId matches environment\r",
+									"pm.test(\"batchId matches environment variable\", function () {\r",
+									"    let globalId = Number(pm.environment.get(\"batchId\"));\r",
 									"    pm.expect(resp.batchId).to.eql(globalId);\r",
 									"});\r",
 									"\r",
-									"// Verify batchName matches global\r",
-									"pm.test(\"batchName matches global variable\", function () {\r",
-									"    let globalName = pm.globals.get(\"batchName\");\r",
+									"// Verify batchName matches environment\r",
+									"pm.test(\"batchName matches environment variable\", function () {\r",
+									"    let globalName = pm.environment.get(\"batchName\");\r",
 									"    pm.expect(resp.batchName).to.eql(globalName);\r",
 									"});\r",
 									"\r",
@@ -3877,20 +4008,19 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "8e167f20-cee2-4d7a-be6e-e3913af225cd"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "4e5dbb3e-afc1-44ff-bede-5cc3b0c28eb9",
 								"exec": [
 									""
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "4e5dbb3e-afc1-44ff-bede-5cc3b0c28eb9"
+								"requests": {}
 							}
 						}
 					],
@@ -3940,6 +4070,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "4081f7d3-111d-4240-a469-9dae2915c6fc",
 								"exec": [
 									"// 1. Status code 200\r",
 									"pm.test(\"Status code is 200 - Batch found\", function () {\r",
@@ -3963,16 +4094,16 @@
 									"    pm.expect(resp).to.have.property(\"programName\");\r",
 									"});\r",
 									"\r",
-									"// 5. Validate batchName matches global variable\r",
-									"pm.test(\"batchName matches global variable\", function () {\r",
-									"    let globalName = pm.globals.get(\"batchName\");\r",
+									"// 5. Validate batchName matches environment variable\r",
+									"pm.test(\"batchName matches environment variable\", function () {\r",
+									"\r",
+									"    let globalName = pm.environment.get(\"batchName\");\r",
 									"    pm.expect(resp.batchName).to.eql(globalName);\r",
 									"});"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "4081f7d3-111d-4240-a469-9dae2915c6fc"
+								"requests": {}
 							}
 						}
 					],
@@ -4018,6 +4149,91 @@
 				},
 				{
 					"name": "GetBatchByProgramId-Shital",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4467df98-8b14-47f7-99e1-fdeea57ac4ae",
+								"exec": [
+									"let status = pm.response.code;\r",
+									"let jsonData = pm.response.json();\r",
+									"let requestedProgramId = pm.environment.get(\"programId\");\r",
+									"\r",
+									"// ==========================\r",
+									"// ✅ CASE 1: 200 OK\r",
+									"// ==========================\r",
+									"if (status === 200) {\r",
+									"\r",
+									"    pm.test(\"Status code is 200 - Get Batch by ProgramId\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Response is an array of batches\", function () {\r",
+									"        pm.expect(jsonData).to.be.an(\"array\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"If not empty, each batch has required fields\", function () {\r",
+									"        if (jsonData.length > 0) {\r",
+									"            jsonData.forEach((batch) => {\r",
+									"                pm.expect(batch).to.have.property(\"batchId\");\r",
+									"                pm.expect(batch).to.have.property(\"batchName\");\r",
+									"                pm.expect(batch).to.have.property(\"batchDescription\");\r",
+									"                pm.expect(batch).to.have.property(\"batchNoOfClasses\");\r",
+									"                pm.expect(batch).to.have.property(\"batchStatus\");\r",
+									"                pm.expect(batch).to.have.property(\"programId\");\r",
+									"                pm.expect(batch).to.have.property(\"programName\");\r",
+									"            });\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"All batches (if any) belong to requested programId\", function () {\r",
+									"        if (jsonData.length > 0 && requestedProgramId) {\r",
+									"            jsonData.forEach((batch) => {\r",
+									"                pm.expect(batch.programId.toString()).to.eql(requestedProgramId);\r",
+									"            });\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"    console.log(\"✔ 200 OK – Batches found for programId:\", requestedProgramId);\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"// ==========================\r",
+									"// ✅ CASE 2: 404 NOT FOUND\r",
+									"// ==========================\r",
+									"else if (status === 404) {\r",
+									"\r",
+									"    pm.test(\"Status code is 404 - Not Found\", function () {\r",
+									"        pm.response.to.have.status(404);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Error response has message and success=false\", function () {\r",
+									"        pm.expect(jsonData).to.have.property(\"message\");\r",
+									"        pm.expect(jsonData).to.have.property(\"success\");\r",
+									"        pm.expect(jsonData.success).to.eql(false);\r",
+									"    });\r",
+									"\r",
+									"    console.log(\"❌ 404 Not Found – No batches for programId:\", requestedProgramId);\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"// ==========================\r",
+									"// ⚠ ANY OTHER STATUS\r",
+									"// ==========================\r",
+									"else {\r",
+									"    pm.test(\"Unexpected status code on Get Batch by ProgramId\", function () {\r",
+									"        pm.expect.fail(\"Expected 200 or 404 but got: \" + status);\r",
+									"    });\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "29632042-b5dd09e9-4ae3-4c53-b879-3c0822b18a1d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4064,57 +4280,105 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "b3a03d85-dfd9-4684-b445-b76ab18ccbd0",
 								"exec": [
-									"// 1. Status should be 200\r",
-									"pm.test(\"Status code is 200 - Batch updated\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"let status = pm.response.code;\r",
+									"let jsonData;\r",
+									"\r",
+									"// Parse JSON safely\r",
+									"try {\r",
+									"    jsonData = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    pm.test(\"Response is valid JSON\", function () {\r",
+									"        pm.expect.fail(\"Response is not valid JSON: \" + e);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"let requestedId = pm.environment.get(\"batchId\");\r",
+									"\r",
+									"// ==========================\r",
+									"// ✅ CASE 1: 200 OK\r",
+									"// ==========================\r",
+									"if (status === 200) {\r",
+									"\r",
+									"    pm.test(\"Status code is 200 - Batch updated successfully\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Response has all required fields\", function () {\r",
+									"        pm.expect(jsonData).to.have.property(\"batchDescription\");\r",
+									"        pm.expect(jsonData).to.have.property(\"batchId\");\r",
+									"        pm.expect(jsonData).to.have.property(\"batchName\");\r",
+									"        pm.expect(jsonData).to.have.property(\"batchNoOfClasses\");\r",
+									"        pm.expect(jsonData).to.have.property(\"batchStatus\");\r",
+									"        pm.expect(jsonData).to.have.property(\"programId\");\r",
+									"        pm.expect(jsonData).to.have.property(\"programName\");\r",
+									"    });\r",
+									"\r",
+									"  pm.test(\"Returned batchId matches requested batchId\", function () {\r",
+									"    if (requestedId) {\r",
+									"        pm.expect(jsonData.batchId.toString()).to.eql(requestedId.toString());\r",
+									"    }\r",
 									"});\r",
 									"\r",
-									"// 2. Parse response\r",
-									"let jsonData = pm.response.json();\r",
+									"    pm.test(\"Mandatory fields are populated correctly\", function () {\r",
+									"        pm.expect(jsonData.batchStatus).to.be.a(\"string\").and.not.empty;\r",
+									"        pm.expect(jsonData.batchName).to.be.a(\"string\").and.not.empty;\r",
+									"        pm.expect(jsonData.programName).to.be.a(\"string\").and.not.empty;\r",
+									"        pm.expect(jsonData.batchNoOfClasses).to.be.a(\"number\");\r",
+									"        pm.expect(jsonData.programId).to.be.a(\"number\");\r",
+									"    });pm.test(\"Response matches request body for updatable fields\", function () {\r",
+									"    let reqBody = pm.request.body && pm.request.body.raw ? JSON.parse(pm.request.body.raw) : {};\r",
 									"\r",
-									"// 3. Validate all required fields exist\r",
-									"pm.test(\"Response contains all batch fields\", function () {\r",
-									"    pm.expect(jsonData).to.have.property(\"batchDescription\");\r",
-									"    pm.expect(jsonData).to.have.property(\"batchId\");\r",
-									"    pm.expect(jsonData).to.have.property(\"batchName\");\r",
-									"    pm.expect(jsonData).to.have.property(\"batchNoOfClasses\");\r",
-									"    pm.expect(jsonData).to.have.property(\"batchStatus\");\r",
-									"    pm.expect(jsonData).to.have.property(\"programId\");\r",
-									"    pm.expect(jsonData).to.have.property(\"programName\");\r",
+									"    // String fields - compare as strings\r",
+									"    pm.expect(jsonData.batchDescription).to.eql(reqBody.batchDescription);\r",
+									"    pm.expect(jsonData.batchName).to.eql(reqBody.batchName);\r",
+									"    pm.expect(jsonData.batchStatus).to.eql(reqBody.batchStatus);\r",
+									"    pm.expect(jsonData.programName).to.eql(reqBody.programName);\r",
+									"\r",
+									"    // Numeric fields - compare as numbers\r",
+									"    pm.expect(Number(jsonData.batchNoOfClasses)).to.eql(Number(reqBody.batchNoOfClasses));\r",
+									"    pm.expect(Number(jsonData.programId)).to.eql(Number(reqBody.programId));\r",
 									"});\r",
 									"\r",
-									"// 4. batchId in response must match global batchId\r",
-									"pm.test(\"batchId matches global batchId\", function () {\r",
-									"    const globalBatchId = Number(pm.globals.get(\"batchId\"));\r",
-									"    pm.expect(jsonData.batchId).to.eql(globalBatchId);\r",
-									"});\r",
+									"    console.log(\"✔ 200 OK – Batch updated:\", jsonData);\r",
+									"}\r",
 									"\r",
-									"// 5. programId in response must match global programId\r",
-									"pm.test(\"programId matches global programId\", function () {\r",
-									"    const globalProgramId = Number(pm.globals.get(\"programId\"));\r",
-									"    pm.expect(jsonData.programId).to.eql(globalProgramId);\r",
-									"});\r",
 									"\r",
-									"// 6. Validate updated values match request body\r",
-									"let requestBody = JSON.parse(pm.request.body.raw);\r",
 									"\r",
-									"pm.test(\"Updated fields match request body\", function () {\r",
-									"    pm.expect(jsonData.batchDescription).to.eql(requestBody.batchDescription);\r",
-									"    pm.expect(jsonData.batchNoOfClasses).to.eql(requestBody.batchNoOfClasses);\r",
-									"    pm.expect(jsonData.batchStatus).to.eql(requestBody.batchStatus);\r",
-									"    pm.expect(jsonData.batchName).to.eql(requestBody.batchName);\r",
-									"});\r",
+									"// ==========================\r",
+									"// ✅ CASE 2: 404 NOT FOUND\r",
+									"// ==========================\r",
+									"else if (status === 404) {\r",
 									"\r",
-									"// 7. (Optional) Update globals for new values if you want to use them later\r",
-									"pm.globals.set(\"batchStatus\", jsonData.batchStatus);\r",
-									"pm.globals.set(\"batchDescription\", jsonData.batchDescription);\r",
-									"pm.globals.set(\"batchNoOfClasses\", jsonData.batchNoOfClasses);"
+									"    pm.test(\"Status code is 404 - Batch not found for update\", function () {\r",
+									"        pm.response.to.have.status(404);\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Error response has message and success=false\", function () {\r",
+									"        pm.expect(jsonData).to.have.property(\"message\");\r",
+									"        pm.expect(jsonData).to.have.property(\"success\");\r",
+									"        pm.expect(jsonData.success).to.eql(false);\r",
+									"    });\r",
+									"\r",
+									"    console.log(\"❌ 404 Not Found – No batch with Id:\", requestedId, \"Message:\", jsonData.message);\r",
+									"\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									"// ==========================\r",
+									"// ⚠ ANY OTHER STATUS\r",
+									"// ==========================\r",
+									"else {\r",
+									"    pm.test(\"Unexpected status code on Update Batch\", function () {\r",
+									"        pm.expect.fail(\"Expected 200 or 404, but got: \" + status);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "b3a03d85-dfd9-4684-b445-b76ab18ccbd0"
+								"requests": {}
 							}
 						}
 					],
@@ -4137,7 +4401,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Updated weekday evening batch\",\r\n    \"batchId\": {{batchId}},\r\n    \"batchName\": \"{{batchName}}\",\r\n    \"batchNoOfClasses\": 30,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": \"{{programId}}\",\r\n    \"programName\": \"string\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"Updated weekday evening batch\",\r\n    \"batchId\": {{batchId}},\r\n    \"batchName\": \"{{batchName}}\",\r\n    \"batchNoOfClasses\": 30,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": \"{{programId}}\",\r\n    \"programName\": \"{{programName}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4159,15 +4423,145 @@
 				},
 				{
 					"name": "DeleteBatchByBatchId-Shital",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2027a880-7c9e-4e2c-9ad3-90cfa2d259e4",
+								"exec": [
+									"// Robust post-response tests for DeleteBatchByBatchId\r",
+									"// Handles JSON, text, and empty bodies. Covers 200, 204, 404 statuses.\r",
+									"\r",
+									"const status = pm.response.code;\r",
+									"const contentType = (pm.response.headers.get('Content-Type') || '').toLowerCase();\r",
+									"const hasBody = !!pm.response.text();\r",
+									"\r",
+									"let asJson = null;\r",
+									"let asText = '';\r",
+									"let message = '';\r",
+									"let success = undefined;\r",
+									"\r",
+									"// Try parse JSON only when content-type hints JSON and body exists\r",
+									"if (hasBody && contentType.includes('application/json')) {\r",
+									"    try {\r",
+									"        asJson = pm.response.json();\r",
+									"    } catch (e) {\r",
+									"        // Fallback to text if JSON parsing fails\r",
+									"        asJson = null;\r",
+									"        asText = pm.response.text();\r",
+									"    }\r",
+									"} else if (hasBody) {\r",
+									"    asText = pm.response.text();\r",
+									"}\r",
+									"\r",
+									"// Extract fields based on available format\r",
+									"if (asJson) {\r",
+									"    if (typeof asJson.message === 'string') message = asJson.message;\r",
+									"    if (typeof asJson.success !== 'undefined') success = asJson.success;\r",
+									"} else if (asText) {\r",
+									"    // Minimal parse: look for \"Message:\" prefix or use raw text\r",
+									"    // Example: \"Message: Batch with Id-253 deleted Successfully!\"\r",
+									"    const m = asText.match(/message\\s*:\\s*(.*)/i);\r",
+									"    message = (m && m[1]) ? m[1].trim() : asText.trim();\r",
+									"}\r",
+									"\r",
+									"// Common header test\r",
+									"pm.test('Response has Content-Type header (when body present)', function () {\r",
+									"    if (hasBody) {\r",
+									"        pm.response.to.have.header('Content-Type');\r",
+									"    } else {\r",
+									"        pm.expect(true).to.be.true; // not applicable when no body\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"// Status-specific assertions\r",
+									"if (status === 200) {\r",
+									"    pm.test('Status code is 200 - Batch deleted', function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"    pm.test('Delete response contains a message', function () {\r",
+									"        pm.expect(message, 'message should be a non-empty string').to.be.a('string').and.not.empty;\r",
+									"    });\r",
+									"\r",
+									"    pm.test('Delete success flag (if provided) indicates success', function () {\r",
+									"        if (typeof success !== 'undefined') {\r",
+									"            pm.expect(success).to.eql(true);\r",
+									"        } else {\r",
+									"            pm.expect(true).to.be.true; // not applicable for text-only responses\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"} else if (status === 204) {\r",
+									"    // No Content is a valid delete outcome\r",
+									"    pm.test('Status code is 204 - No Content (Batch deleted)', function () {\r",
+									"        pm.response.to.have.status(204);\r",
+									"    });\r",
+									"\r",
+									"    pm.test('No response body for 204 status', function () {\r",
+									"        pm.expect(hasBody).to.eql(false);\r",
+									"    });\r",
+									"\r",
+									"} else if (status === 404) {\r",
+									"    pm.test('Status code is 404 - Batch not found for delete', function () {\r",
+									"        pm.response.to.have.status(404);\r",
+									"    });\r",
+									"\r",
+									"    pm.test('Error response contains a message', function () {\r",
+									"        pm.expect(message, 'error message should be present').to.be.a('string').and.not.empty;\r",
+									"    });\r",
+									"\r",
+									"    pm.test('Error success flag (if provided) indicates failure', function () {\r",
+									"        if (typeof success !== 'undefined') {\r",
+									"            pm.expect(success).to.eql(false);\r",
+									"        } else {\r",
+									"            pm.expect(true).to.be.true; // not applicable for text-only responses\r",
+									"        }\r",
+									"    });\r",
+									"\r",
+									"} else {\r",
+									"    pm.test('Unexpected status code on Delete Batch', function () {\r",
+									"        pm.expect.fail('Expected 200, 204, or 404 but got: ' + status);\r",
+									"    });\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "29632042-3f089d1e-6930-4702-a69a-4b982588c866",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
-						"url": {
+						"body": {
+							"mode": "raw",
 							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseURL}}/batches/{{batchId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"batches",
+								"{{batchId}}"
+							]
 						}
 					},
 					"response": []
@@ -4306,7 +4700,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"skillName\": \"SCDFnewversion\"\r\n}",
+							"raw": "{\r\n    \"skillName\": \"SCDWTversion\",\r\n    \"creationTime\": \"2025-11-20T19:39:39.762Z\",\r\n    \"lastModTime\": \"2025-11-20T19:39:39.762Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4572,6 +4966,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "b1afab5e-6b07-44b1-9af7-f355c8b92735",
 								"exec": [
 									"pm.test(\"User has been inactivated successfully\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -4591,12 +4986,11 @@
 									"        });\r",
 									"    }\r",
 									"}\r",
-									"pm.environment.clear();"
+									"//pm.environment.clear();"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "b1afab5e-6b07-44b1-9af7-f355c8b92735"
+								"requests": {}
 							}
 						}
 					],
