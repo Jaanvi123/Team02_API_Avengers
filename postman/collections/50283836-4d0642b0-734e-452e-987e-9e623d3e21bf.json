@@ -378,7 +378,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userLoginEmailId\": \"{{userEmail}}\"\r\n}"
+							"raw": "{\r\n    \"userLoginEmailId\": \"Simeon@gmail.com\"\r\n}"
 						},
 						"url": {
 							"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
