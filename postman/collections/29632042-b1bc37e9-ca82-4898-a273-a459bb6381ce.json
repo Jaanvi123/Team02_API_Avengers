@@ -1038,6 +1038,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "d9b31c74-c6ed-43d9-b2bb-997f7ecb5463",
 								"exec": [
 									"// 1. Status should be 201\r",
 									"pm.test(\"Status code is 201 - Batch created\", function () {\r",
@@ -1053,6 +1054,9 @@
 									"    pm.expect(jsonData.batchId).to.be.a(\"number\");\r",
 									"});\r",
 									"\r",
+									"pm.test(\"Status code is 401 unauthorized user\",function(){\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
 									"// 4. Save batchId and batchName to environment for next requests\r",
 									"pm.environment.set(\"batchId\", jsonData.batchId);\r",
 									"pm.environment.set(\"batchName\", jsonData.batchName);\r",
@@ -1080,13 +1084,13 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "d9b31c74-c6ed-43d9-b2bb-997f7ecb5463"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "240449b8-afd0-4c55-84b9-c35ba78b0bbc",
 								"exec": [
 									"// Get program name from environment\r",
 									"const programName = pm.environment.get(\"programName\") || \"SDET\";\r",
@@ -1103,8 +1107,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "240449b8-afd0-4c55-84b9-c35ba78b0bbc"
+								"requests": {}
 							}
 						}
 					],
