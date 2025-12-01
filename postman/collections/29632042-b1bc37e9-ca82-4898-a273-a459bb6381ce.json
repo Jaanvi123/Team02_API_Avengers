@@ -5128,7 +5128,7 @@
 					"response": []
 				},
 				{
-					"name": "Team 2 Admin User log out",
+					"name": "Team 2 Admin log out",
 					"event": [
 						{
 							"listen": "test",
