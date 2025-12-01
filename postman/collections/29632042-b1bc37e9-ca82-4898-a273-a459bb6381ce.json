@@ -4962,28 +4962,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete Skill by Skill Id-Jaanvi",
-					"id": "29632042-84513d84-7d0d-44e9-947d-7474aff41eaf",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseURL}}/deletebySkillId/{skillId}",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"deletebySkillId",
-								"{skillId}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "User log out-Ramya",
 					"event": [
 						{
@@ -5025,6 +5003,28 @@
 							],
 							"path": [
 								"logoutlms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Skill by Skill Id-Jaanvi",
+					"id": "29632042-84513d84-7d0d-44e9-947d-7474aff41eaf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/deletebySkillId/{skillId}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"deletebySkillId",
+								"{skillId}"
 							]
 						}
 					},
