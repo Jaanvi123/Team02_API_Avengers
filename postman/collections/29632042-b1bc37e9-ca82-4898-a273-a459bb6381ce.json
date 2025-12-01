@@ -4466,6 +4466,110 @@
 					"response": []
 				},
 				{
+					"name": "Delete Program By ProgramId-Darshana",
+					"id": "29632042-1b4272c4-7679-487e-8a44-3d82b4f59ad4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/deletebyprogid/66",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"deletebyprogid",
+								"66"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Program By Program Name-Darshana",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code 200 or 404\", () => {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"id": "aab0525c-ce75-4d58-a123-e44be9c212e4"
+							}
+						}
+					],
+					"id": "29632042-a5702432-f020-4e83-aaf7-02461d912bc0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/deletebyprogname/PythonBasics",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"deletebyprogname",
+								"PythonBasics"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DeleteBatchByBatchId-Shital",
 					"event": [
 						{
@@ -4601,110 +4705,6 @@
 							"path": [
 								"batches",
 								"{{batchId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Program By ProgramId-Darshana",
-					"id": "29632042-1b4272c4-7679-487e-8a44-3d82b4f59ad4",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{auth_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/deletebyprogid/66",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"deletebyprogid",
-								"66"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Program By Program Name-Darshana",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code 200 or 404\", () => {\r",
-									"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
-									"});"
-								],
-								"type": "text/javascript",
-								"packages": {},
-								"requests": {},
-								"id": "aab0525c-ce75-4d58-a123-e44be9c212e4"
-							}
-						}
-					],
-					"id": "29632042-a5702432-f020-4e83-aaf7-02461d912bc0",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{auth_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/deletebyprogname/PythonBasics",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"deletebyprogname",
-								"PythonBasics"
 							]
 						}
 					},
