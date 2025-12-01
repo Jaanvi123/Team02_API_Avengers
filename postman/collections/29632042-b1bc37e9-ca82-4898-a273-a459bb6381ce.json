@@ -150,7 +150,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c73b7504-1c6e-443e-a7e3-87acf98c2186",
+								"id": "b630f6c3-9130-452e-ae68-f3f0cc2ad22c",
 								"exec": [
 									"\r",
 									"//let currentEnvironment = pm.environment.name;\r",
@@ -161,11 +161,9 @@
 									"    //Extract userId from user object in response\r",
 									"    pm.environment.set(\"userId\", response.user.userId);\r",
 									"    pm.test(\"User successfully created\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
+									"        pm.response.to.have.status(201);\r",
+									"    });\r",
 									"}\r",
-									"\r",
-									"\r",
 									"\r",
 									"if (pm.response.code === 404) {\r",
 									"    const responseBody = pm.response.text();\r",
@@ -196,7 +194,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b9e89991-d980-4b38-b2e2-bf26d76b191f",
+								"id": "aad4459f-45ca-44de-9e3e-31cfa435a351",
 								"exec": [
 									"//Generate random Phone number \r",
 									"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
