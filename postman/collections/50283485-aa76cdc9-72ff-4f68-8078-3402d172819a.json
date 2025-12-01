@@ -360,6 +360,70 @@
 		},
 		{
 			"name": "Get All Skill Master",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "121dcb29-8636-425c-95e6-8f7d2d823b75",
+						"exec": [
+							"let responseJson = {};\r",
+							"try {\r",
+							"    responseJson = pm.response.json();\r",
+							"} catch (e) {\r",
+							"    console.error(\"Response is not valid JSON:\", e);\r",
+							"}\r",
+							"\r",
+							"// Log the full response\r",
+							"console.log(\"Full response JSON:\", responseJson);\r",
+							"\r",
+							"//  Success case: 200 OK\r",
+							"pm.test(\"Get All Skill Master: Request completed successfully\", function () {\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"//  Handle 400 Bad Request\r",
+							"if (pm.response.code === 400) {\r",
+							"    pm.test(\"Bad Request - Invalid input parameters\", function () {\r",
+							"        pm.expect(pm.response.code).to.eql(400);\r",
+							"    });\r",
+							"    if (responseJson.error) {\r",
+							"        console.log(\"Error message from response:\", responseJson.error);\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"//  Handle 404 Not Found\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody === \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid Endpoint Check\", function () {\r",
+							"            pm.expect(pm.response.code).to.eql(404);\r",
+							"        });\r",
+							"    } else {\r",
+							"        pm.test(\"Not Found - Check Input Parameters\", function () {\r",
+							"            pm.expect(pm.response.code).to.eql(404);\r",
+							"        });\r",
+							"        console.log(\"404 response body:\", responseBody);\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"//  Optional: Validate response structure if 200 OK\r",
+							"if (pm.response.code === 200 && Array.isArray(responseJson)) {\r",
+							"    pm.test(\"Response contains skill objects\", function () {\r",
+							"        pm.expect(responseJson.length).to.be.above(0);\r",
+							"        pm.expect(responseJson[0]).to.have.property(\"skillId\");\r",
+							"        pm.expect(responseJson[0]).to.have.property(\"skillName\");\r",
+							"        pm.expect(responseJson[0]).to.have.property(\"creationTime\");\r",
+							"        pm.expect(responseJson[0]).to.have.property(\"lastModTime\");\r",
+							"    });\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283485-ad0d9ca2-ea2b-4c0b-bf9e-9f99049a6bde",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -370,7 +434,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ1NjcyNTMsImV4cCI6MTc2NDU5NjA1M30.jEMF631JqyVCkl679K0Pib2kBbUKIoDeXBmkqCWDa9Yem3v_413LlrSzeEydfSuXqBPYM9QVhvBVM8vzJTXcZQ",
+							"value": "{{auth_token}}",
 							"type": "string"
 						}
 					]
@@ -391,21 +455,77 @@
 		},
 		{
 			"name": "Get  Skill by Skill Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed2775cb-783e-406d-8fbf-13a79e1a21ff",
+						"exec": [
+							"let responseJson = {};\r",
+							"try {\r",
+							"    responseJson = pm.response.json();\r",
+							"} catch (e) {\r",
+							"    console.error(\"Response is not valid JSON:\", e);\r",
+							"}\r",
+							"\r",
+							"console.log(\"Full response JSON:\", responseJson);\r",
+							"\r",
+							"// Success case\r",
+							"pm.test(\"Get Skill Master: Request completed successfully\", function () {\r",
+							"    pm.expect([200, 400, 404]).to.include(pm.response.code);\r",
+							"});\r",
+							"\r",
+							"// If 200 OK, validate skill fields\r",
+							"if (pm.response.code === 200) {\r",
+							"    pm.test(\"Response contains skillId and skillName\", function () {\r",
+							"        pm.expect(responseJson).to.have.property(\"skillId\");\r",
+							"        pm.expect(responseJson).to.have.property(\"skillName\");\r",
+							"    });\r",
+							"\r",
+							"    // Optional: check if skillId matches the one from POST\r",
+							"    let skillIdSent = pm.environment.get(\"Skillid\");\r",
+							"    pm.test(\"skillId in response matches POST skillId\", function () {\r",
+							"        pm.expect(responseJson.skillId).to.eql(parseInt(skillIdSent));\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// If not found\r",
+							"if (pm.response.code === 404 || responseJson.success === false) {\r",
+							"    console.log(\"Skill not found:\", responseJson.message);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283485-4f0f6543-856b-46fc-bd1d-8ead8dee04fb",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/skills/skillMasterName ",
+					"raw": "{{baseURL}}/skills/skillMasterName",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"skills",
-						"skillMasterName "
+						"skillMasterName"
 					]
 				}
 			},
