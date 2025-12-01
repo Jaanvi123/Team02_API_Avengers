@@ -727,11 +727,21 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ2Mjg0NTUsImV4cCI6MTc2NDY1NzI1NX0.dPyG-2aLzFgBVcsG-Zo_baffwgjVx-uq2Nh2BMWcmQs1y-EY4PAJnOmlxAcNot0zpStjJW8gMqobmC8YXN_dVA",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "5d1fe593-0927-4c10-8bbe-e962d2fba06e",
+				"id": "6dd96008-032d-4882-9f46-58360b11c337",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
@@ -743,7 +753,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "6ce926bb-b0ef-4beb-a8c3-f5892c002b65",
+				"id": "45738a82-14b7-48d4-b9b0-c0c2b69d7ff0",
 				"type": "text/javascript",
 				"packages": {},
 				"requests": {},
