@@ -289,150 +289,6 @@
 					"response": []
 				},
 				{
-					"name": "Create New-User-Yogini Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "b630f6c3-9130-452e-ae68-f3f0cc2ad22c",
-								"exec": [
-									"\r",
-									"//let currentEnvironment = pm.environment.name;\r",
-									"\r",
-									"if (pm.response.code === 201) {\r",
-									"    //Extract response from Json body of API response\r",
-									"    const response = pm.response.json();\r",
-									"    //Extract userId from user object in response\r",
-									"    pm.environment.set(\"userId\", response.user.userId);\r",
-									"    pm.test(\"User successfully created\", function () {\r",
-									"        pm.response.to.have.status(201);\r",
-									"    });\r",
-									"}\r",
-									"\r",
-									"if (pm.response.code === 404) {\r",
-									"    const responseBody = pm.response.text();\r",
-									"    if (responseBody == \"Invalid endpoint\") {\r",
-									"        pm.test(\"Invalid End Point Check\", function () {\r",
-									"            pm.response.to.have.status(404);\r",
-									"        });\r",
-									"    }\r",
-									"    else {\r",
-									"        const errResponse = pm.response.json();\r",
-									"        pm.test(\"Bad Request, Check Input Parameters: \" + errResponse.message, function () {\r",
-									"            pm.response.to.have.status(404);\r",
-									"        });\r",
-									"    }\r",
-									"}\r",
-									"if (pm.response.code === 400) {\r",
-									"    const errResponse = pm.response.json();\r",
-									"    pm.test(\"Bad Request, Check Input Parameters: \" + errResponse.message, function () {\r",
-									"        pm.response.to.have.status(400);\r",
-									"    });\r",
-									"}\r",
-									"if (pm.response.code === 401) {\r",
-									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
-									"        pm.response.to.have.status(401);\r",
-									"    });\r",
-									"}"
-								],
-								"type": "text/javascript",
-								"packages": {},
-								"requests": {}
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "aad4459f-45ca-44de-9e3e-31cfa435a351",
-								"exec": [
-									"//Generate random Phone number \r",
-									"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
-									"console.log(\"raw phone:\" + rawPhoneNumber);\r",
-									"let currentEnvironment = pm.environment.name;\r",
-									"\r",
-									"//Replace '-' from the random generated phone number.\r",
-									"const cleanedPhoneNumber = +rawPhoneNumber.replace(/-/g, '');\r",
-									"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \" + cleanedPhoneNumber);\r",
-									"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
-									"\r",
-									"//Generate random email. API only accepts @gmail.com\r",
-									"pm.environment.set(\"userEmail\", pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"@gmail.com\");\r",
-									"console.log(pm.environment.get('userEmail'));\r",
-									"console.log(pm.request.body.raw);\r",
-									"\r",
-									"//Reading Json files for Roles. Retrieves the value from the column \"Role\" for the current iteration.\r",
-									"var role=pm.iterationData.get(\"Role\");\r",
-									"if (role === \"Admin\") {\r",
-									"    pm.environment.set(\"roleId\", \"R01\");\r",
-									"}\r",
-									"if (role === \"Staff\") {\r",
-									"    pm.environment.set(\"roleId\", \"R02\");\r",
-									"}\r",
-									"if (role === \"Student\") {\r",
-									"    pm.environment.set(\"roleId\", \"R03\");\r",
-									"}\r",
-									"/*\r",
-									"if (currentEnvironment === \"Team02_LMS_API_Staff\") {\r",
-									"    pm.environment.set(\"roleId\", \"R02\");\r",
-									"}\r",
-									"if (currentEnvironment === \"Team02_LMS_API_Student\") {\r",
-									"    pm.environment.set(\"roleId\", \"R03\");\r",
-									"}\r",
-									"*/\r",
-									"/*\r",
-									"pm.test(\"Mandatory Fields Check\", () => {\r",
-									"    let requestData = JSON.parse(pm.request.body.raw)\r",
-									"    pm.expect(requestData).to.have.keys(['userFirstName'])\r",
-									"})\r",
-									"*/\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {},
-								"requests": {}
-							}
-						}
-					],
-					"id": "29632042-e25b82e3-b533-4ace-9173-49cc35e1df4a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{team2_auth_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"userComments\": \"whatisthis\",\r\n    \"userEduPg\": \"retreg\",\r\n    \"userEduUg\": \"bgbfvsdvds\",\r\n    \"userFirstName\": \"TestUser\",\r\n    \"userLastName\": \"Kar\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/456\",\r\n    \"userLocation\": \"USA\",\r\n    \"userMiddleName\": \"A\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"{{roleId}}\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"IST\",\r\n    \"userVisaStatus\": \"NA\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"{{userEmail}}\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Active\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseURL}}/users/roleStatus",
-							"host": [
-								"{{baseURL}}"
-							],
-							"path": [
-								"users",
-								"roleStatus"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Forgot Password/Confirm Email-Ramya",
 					"event": [
 						{
@@ -5562,6 +5418,150 @@
 			"name": "BulkSkillCreation",
 			"item": [],
 			"id": "29632042-a4a4b005-3ea2-482b-91e0-1069928831ce"
+		},
+		{
+			"name": "Create New-User-Yogini Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b630f6c3-9130-452e-ae68-f3f0cc2ad22c",
+						"exec": [
+							"\r",
+							"//let currentEnvironment = pm.environment.name;\r",
+							"\r",
+							"if (pm.response.code === 201) {\r",
+							"    //Extract response from Json body of API response\r",
+							"    const response = pm.response.json();\r",
+							"    //Extract userId from user object in response\r",
+							"    pm.environment.set(\"userId\", response.user.userId);\r",
+							"    pm.test(\"User successfully created\", function () {\r",
+							"        pm.response.to.have.status(201);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"if (pm.response.code === 404) {\r",
+							"    const responseBody = pm.response.text();\r",
+							"    if (responseBody == \"Invalid endpoint\") {\r",
+							"        pm.test(\"Invalid End Point Check\", function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"    else {\r",
+							"        const errResponse = pm.response.json();\r",
+							"        pm.test(\"Bad Request, Check Input Parameters: \" + errResponse.message, function () {\r",
+							"            pm.response.to.have.status(404);\r",
+							"        });\r",
+							"    }\r",
+							"}\r",
+							"if (pm.response.code === 400) {\r",
+							"    const errResponse = pm.response.json();\r",
+							"    pm.test(\"Bad Request, Check Input Parameters: \" + errResponse.message, function () {\r",
+							"        pm.response.to.have.status(400);\r",
+							"    });\r",
+							"}\r",
+							"if (pm.response.code === 401) {\r",
+							"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
+							"        pm.response.to.have.status(401);\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aad4459f-45ca-44de-9e3e-31cfa435a351",
+						"exec": [
+							"//Generate random Phone number \r",
+							"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
+							"console.log(\"raw phone:\" + rawPhoneNumber);\r",
+							"let currentEnvironment = pm.environment.name;\r",
+							"\r",
+							"//Replace '-' from the random generated phone number.\r",
+							"const cleanedPhoneNumber = +rawPhoneNumber.replace(/-/g, '');\r",
+							"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \" + cleanedPhoneNumber);\r",
+							"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
+							"\r",
+							"//Generate random email. API only accepts @gmail.com\r",
+							"pm.environment.set(\"userEmail\", pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"@gmail.com\");\r",
+							"console.log(pm.environment.get('userEmail'));\r",
+							"console.log(pm.request.body.raw);\r",
+							"\r",
+							"//Reading Json files for Roles. Retrieves the value from the column \"Role\" for the current iteration.\r",
+							"var role=pm.iterationData.get(\"Role\");\r",
+							"if (role === \"Admin\") {\r",
+							"    pm.environment.set(\"roleId\", \"R01\");\r",
+							"}\r",
+							"if (role === \"Staff\") {\r",
+							"    pm.environment.set(\"roleId\", \"R02\");\r",
+							"}\r",
+							"if (role === \"Student\") {\r",
+							"    pm.environment.set(\"roleId\", \"R03\");\r",
+							"}\r",
+							"/*\r",
+							"if (currentEnvironment === \"Team02_LMS_API_Staff\") {\r",
+							"    pm.environment.set(\"roleId\", \"R02\");\r",
+							"}\r",
+							"if (currentEnvironment === \"Team02_LMS_API_Student\") {\r",
+							"    pm.environment.set(\"roleId\", \"R03\");\r",
+							"}\r",
+							"*/\r",
+							"/*\r",
+							"pm.test(\"Mandatory Fields Check\", () => {\r",
+							"    let requestData = JSON.parse(pm.request.body.raw)\r",
+							"    pm.expect(requestData).to.have.keys(['userFirstName'])\r",
+							"})\r",
+							"*/\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "29632042-e25b82e3-b533-4ace-9173-49cc35e1df4a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{team2_auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userComments\": \"whatisthis\",\r\n    \"userEduPg\": \"retreg\",\r\n    \"userEduUg\": \"bgbfvsdvds\",\r\n    \"userFirstName\": \"TestUser\",\r\n    \"userLastName\": \"Kar\",\r\n    \"userLinkedinUrl\": \"www.linkedin.com/456\",\r\n    \"userLocation\": \"USA\",\r\n    \"userMiddleName\": \"A\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"{{roleId}}\",\r\n            \"userRoleStatus\": \"Active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"IST\",\r\n    \"userVisaStatus\": \"NA\",\r\n    \"userLogin\": {\r\n        \"userLoginEmail\": \"{{userEmail}}\",\r\n        \"loginStatus\": \"Active\",\r\n        \"status\": \"Active\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/roleStatus",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"roleStatus"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
