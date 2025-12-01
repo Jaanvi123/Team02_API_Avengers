@@ -7,6 +7,35 @@
 	"item": [
 		{
 			"name": "Cerate Skill Using Admin User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0eae1d0b-5362-47fb-9a81-0f8581057822",
+						"exec": [
+							"// Function to generate random string of given length\r",
+							"function generateRandomString(length) {\r",
+							"    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\r",
+							"    let result = '';\r",
+							"    for (let i = 0; i < length; i++) {\r",
+							"        result += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+							"    }\r",
+							"    return result;\r",
+							"}\r",
+							"\r",
+							"// Generate a random SkillName\r",
+							"let randomSkill = generateRandomString(8); // You can change 8 to any length\r",
+							"\r",
+							"// Set it as a Postman variable\r",
+							"pm.variables.set(\"randomSkill\", randomSkill);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
 			"id": "50283485-0f26da89-a6ef-4c74-9583-9af97e71a636",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true,
@@ -35,7 +64,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"skillName\": \"SCDFnewversion\"\r\n}",
+					"raw": "{\r\n    \"skillName\": \"{{randomSkill}}\",\r\n    \"creationTime\": \"2025-11-20T19:39:39.762Z\",\r\n    \"lastModTime\": \"2025-11-20T19:39:39.762Z\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
