@@ -771,6 +771,10 @@
 		{
 			"key": "auth_token1",
 			"value": ""
+		},
+		{
+			"key": "variable_key",
+			"value": ""
 		}
 	]
 }
