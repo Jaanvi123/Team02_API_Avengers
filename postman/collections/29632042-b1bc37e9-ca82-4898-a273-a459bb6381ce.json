@@ -9,6 +9,11 @@
 			"name": "LMS",
 			"item": [
 				{
+					"name": "New Folder",
+					"item": [],
+					"id": "29632042-2bc6fdc7-34ee-4373-a6c1-d35b5ed4f614"
+				},
+				{
 					"name": "Team2 Admin Login-Ramya",
 					"event": [
 						{
