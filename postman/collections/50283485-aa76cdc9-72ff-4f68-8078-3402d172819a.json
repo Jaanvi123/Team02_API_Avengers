@@ -251,11 +251,21 @@
 				"disableBodyPruning": true
 			},
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"skillName\": \"string\"\r\n}",
+					"raw": "{\r\n    \"skillName\": \"Korean4\",\r\n    \"creationTime\": \"2025-11-20T19:39:39.762Z\",\r\n    \"lastModTime\": \"2025-11-20T19:39:39.762Z\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -263,13 +273,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/updateSkills/{Skillid}",
+					"raw": "{{baseURL}}/updateSkills/756",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
 						"updateSkills",
-						"{Skillid}"
+						"756"
 					]
 				}
 			},
@@ -287,7 +297,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQzNjM0MzYsImV4cCI6MTc2NDM5MjIzNn0.AqYIb0m2cJG35LJtGJhKUXdPODx874nmLRtJc7vCEPjAdgMXE8vVC7Xw9ilhr3a-Uozv7YRS1Wx-FtekOD6MMg",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ1NjcyNTMsImV4cCI6MTc2NDU5NjA1M30.jEMF631JqyVCkl679K0Pib2kBbUKIoDeXBmkqCWDa9Yem3v_413LlrSzeEydfSuXqBPYM9QVhvBVM8vzJTXcZQ",
 							"type": "string"
 						}
 					]
