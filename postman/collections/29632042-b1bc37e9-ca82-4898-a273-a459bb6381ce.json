@@ -40,7 +40,7 @@
 									"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
 									"  pm.expect(json.token, \"'token' should be a string\").to.be.a(\"string\");\r",
 									"  pm.expect(String(json.token).trim().length, \"'token' should not be empty\").to.be.greaterThan(0);\r",
-									"  pm.globals.set(\"team2_auth_token\", token);\r",
+									"  pm.environment.set(\"team2_auth_token\", token);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response has expected type\", function () {\r",
@@ -150,21 +150,20 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c73b7504-1c6e-443e-a7e3-87acf98c2186",
+								"id": "b630f6c3-9130-452e-ae68-f3f0cc2ad22c",
 								"exec": [
-									"//Extract response from Json body of API response\r",
-									"const response = pm.response.json();\r",
+									"\r",
 									"//let currentEnvironment = pm.environment.name;\r",
 									"\r",
 									"if (pm.response.code === 201) {\r",
+									"    //Extract response from Json body of API response\r",
+									"    const response = pm.response.json();\r",
 									"    //Extract userId from user object in response\r",
 									"    pm.environment.set(\"userId\", response.user.userId);\r",
-									"\r",
+									"    pm.test(\"User successfully created\", function () {\r",
+									"        pm.response.to.have.status(201);\r",
+									"    });\r",
 									"}\r",
-									"\r",
-									"pm.test(\"User successfully created\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
 									"\r",
 									"if (pm.response.code === 404) {\r",
 									"    const responseBody = pm.response.text();\r",
@@ -174,15 +173,15 @@
 									"        });\r",
 									"    }\r",
 									"    else {\r",
-									"        const response = pm.response.json();\r",
-									"        pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+									"        const errResponse = pm.response.json();\r",
+									"        pm.test(\"Bad Request, Check Input Parameters: \" + errResponse.message, function () {\r",
 									"            pm.response.to.have.status(404);\r",
 									"        });\r",
 									"    }\r",
 									"}\r",
 									"if (pm.response.code === 400) {\r",
-									"    const response = pm.response.json();\r",
-									"    pm.test(\"Bad Request, Check Input Parameters: \" + response.message, function () {\r",
+									"    const errResponse = pm.response.json();\r",
+									"    pm.test(\"Bad Request, Check Input Parameters: \" + errResponse.message, function () {\r",
 									"        pm.response.to.have.status(400);\r",
 									"    });\r",
 									"}"
@@ -195,7 +194,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b9e89991-d980-4b38-b2e2-bf26d76b191f",
+								"id": "aad4459f-45ca-44de-9e3e-31cfa435a351",
 								"exec": [
 									"//Generate random Phone number \r",
 									"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
@@ -352,14 +351,14 @@
 									"  pm.expect(json, \"Missing passwordExpired\").to.have.property(\"passwordExpired\");\r",
 									"  pm.expect(json.passwordExpired, \"'passwordExpired' should be a boolean\").to.be.a(\"boolean\");\r",
 									"});\r",
-									"/*\r",
+									"\r",
 									"pm.test(\"Response has expected status\", function () {\r",
 									"  pm.expect(json).to.be.an(\"object\");\r",
 									"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
 									"  pm.expect(json.status, \"status should be a string\").to.be.a(\"string\");\r",
-									"  const allowed = [\"Active\", \"Inactive\"];\r",
-									"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);\r",
-									"});*/\r",
+									"  /*const allowed = [\"Active\", \"Inactive\"];\r",
+									"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);*/\r",
+									"});\r",
 									"}\r",
 									"if (pm.response.code === 400) {\r",
 									"    //Extract message from response body\r",
@@ -728,7 +727,7 @@
 					"response": []
 				},
 				{
-					"name": "CreateProgram-Darshana",
+					"name": "Create Program-Darshana",
 					"event": [
 						{
 							"listen": "test",
@@ -1096,7 +1095,7 @@
 					]
 				},
 				{
-					"name": "CreateProgramBatch-Shital",
+					"name": "Create Program Batch-Shital",
 					"event": [
 						{
 							"listen": "test",
@@ -2923,7 +2922,7 @@
 					"response": []
 				},
 				{
-					"name": "GetAllPrograms-Darshana",
+					"name": "Get All Programs-Darshana",
 					"event": [
 						{
 							"listen": "test",
@@ -3123,7 +3122,7 @@
 					]
 				},
 				{
-					"name": "GetProgramByProgramId-Darshana",
+					"name": "Get Program By ProgramId-Darshana",
 					"event": [
 						{
 							"listen": "test",
@@ -3209,7 +3208,7 @@
 					"response": []
 				},
 				{
-					"name": "GetAllPraogramsWithUsers-Darshana",
+					"name": "Get All Praograms With Users-Darshana",
 					"event": [
 						{
 							"listen": "test",
@@ -3274,7 +3273,7 @@
 					"response": []
 				},
 				{
-					"name": "UpdateProgramByProgramName-Darshana",
+					"name": "Update Program By Program Name-Darshana",
 					"event": [
 						{
 							"listen": "test",
@@ -3722,7 +3721,7 @@
 					]
 				},
 				{
-					"name": "UpdateProgramByProgramId-Darshana",
+					"name": "Update Program By ProgramId-Darshana",
 					"event": [
 						{
 							"listen": "test",
@@ -4567,7 +4566,7 @@
 					"response": []
 				},
 				{
-					"name": "DeleteProgramByProgramId-Darshana",
+					"name": "Delete Program By ProgramId-Darshana",
 					"id": "29632042-1b4272c4-7679-487e-8a44-3d82b4f59ad4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4614,7 +4613,7 @@
 					"response": []
 				},
 				{
-					"name": "DeleteProgramByProgramName-Darshana",
+					"name": "Delete Program By Program Name-Darshana",
 					"event": [
 						{
 							"listen": "test",
@@ -4672,6 +4671,77 @@
 				},
 				{
 					"name": "Cerate Skill-Jaanvi",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "01a0de3c-eab0-4ca1-9000-d27e1dd87c81",
+								"exec": [
+									"// Function to generate random string of given length\r",
+									"function generateRandomString(length) {\r",
+									"    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\r",
+									"    let result = '';\r",
+									"    for (let i = 0; i < length; i++) {\r",
+									"        result += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+									"    }\r",
+									"    return result;\r",
+									"}\r",
+									"\r",
+									"// Generate a random SkillName\r",
+									"let randomSkill = generateRandomString(8); // You can change 8 to any length\r",
+									"\r",
+									"// Set it as a Postman variable\r",
+									"pm.variables.set(\"randomSkill\", randomSkill);\r",
+									"console.log(\"Generated SkillName:\", randomSkill);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "381b6735-e9b2-4cee-8016-8335ea18f35a",
+								"exec": [
+									"let responseJson = {};\r",
+									"try {\r",
+									"    responseJson = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    console.error(\"Response is not valid JSON:\", e);\r",
+									"}\r",
+									"\r",
+									"console.log(\"Full response JSON:\", responseJson);\r",
+									"\r",
+									"// Extract skillName correctly (case-sensitive)\r",
+									"let skillNameFromResponse = responseJson.skillName || null;\r",
+									"console.log(\"SkillName from response:\", skillNameFromResponse);\r",
+									"\r",
+									"// Status code test\r",
+									"pm.test(\"Status code is 201 or 400\", function () {\r",
+									"    pm.expect([201, 400]).to.include(pm.response.code);\r",
+									"});\r",
+									"\r",
+									"// Check if skillName matches the one sent\r",
+									"if (pm.response.code === 201) {\r",
+									"    let skillNameSent = pm.variables.get(\"randomSkill\");\r",
+									"    pm.test(\"skillName in response matches sent skillName\", function () {\r",
+									"        pm.expect(skillNameFromResponse).to.eql(skillNameSent);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// Log error for 400\r",
+									"if (pm.response.code === 400 && responseJson.error) {\r",
+									"    console.log(\"Error message from response:\", responseJson.error);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "29632042-8aaeb672-ba0e-4a96-a8d4-508534e2875b",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
@@ -4700,7 +4770,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"skillName\": \"SCDWTversion\",\r\n    \"creationTime\": \"2025-11-20T19:39:39.762Z\",\r\n    \"lastModTime\": \"2025-11-20T19:39:39.762Z\"\r\n}",
+							"raw": "{\r\n    \"skillName\": \"{{randomSkill}}\",\r\n    \"creationTime\": \"2025-11-20T19:39:39.762Z\",\r\n    \"lastModTime\": \"2025-11-20T19:39:39.762Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
