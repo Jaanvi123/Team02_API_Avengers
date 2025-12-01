@@ -1213,7 +1213,7 @@
 							"  // 1) Status code is 200 OK\r",
 							"  pm.test(\"Status code is 200 OK\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"    pm.environment.set(\"team2_auth_token\",\"\");\r",
+							"    pm.environment.set(\"team2_auth_token\", \"\");\r",
 							"  });\r",
 							"\r",
 							"  // 2) Body is a string (text) and non-empty\r",
