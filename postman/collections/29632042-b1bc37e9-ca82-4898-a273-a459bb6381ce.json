@@ -3274,7 +3274,7 @@
 					"response": []
 				},
 				{
-					"name": "UpdateProgramByProgramName-Darshana",
+					"name": "Update Program By Program Name-Darshana",
 					"event": [
 						{
 							"listen": "test",
