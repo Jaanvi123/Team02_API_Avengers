@@ -4944,16 +4944,96 @@
 				},
 				{
 					"name": "Update Skill by Skill Id-Jaanvi",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fcd3fca3-f462-471f-8888-09720484cf9d",
+								"exec": [
+									"// Reuse randomSkill from POST\r",
+									"let randomSkill = pm.environment.get(\"randomSkill\");\r",
+									"console.log(\"Using randomSkill from POST:\", randomSkill);\r",
+									"\r",
+									"// Refresh timestamps\r",
+									"let now = new Date().toISOString();\r",
+									"pm.environment.set(\"creationTime\", now);\r",
+									"pm.environment.set(\"lastModTime\", now);\r",
+									"console.log(\"Timestamps set for PUT:\", now);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "eceec028-ca80-45ed-abf0-cecda46afb8e",
+								"exec": [
+									"let responseJson = {};\r",
+									"try {\r",
+									"    responseJson = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    console.error(\"Response is not valid JSON:\", e);\r",
+									"}\r",
+									"\r",
+									"console.log(\"Full response JSON:\", responseJson);\r",
+									"\r",
+									"// Extract skillName\r",
+									"let skillNameFromResponse = responseJson.skillName || null;\r",
+									"\r",
+									"// Status code test\r",
+									"pm.test(\"Status code is 200 or 400\", function () {\r",
+									"    pm.expect([200, 400]).to.include(pm.response.code);\r",
+									"});\r",
+									"\r",
+									"// Validate skillName if update succeeded\r",
+									"if (pm.response.code === 200) {\r",
+									"    let skillNameSent = pm.environment.get(\"randomSkill\");\r",
+									"    pm.test(\"skillName in response matches updated skillName\", function () {\r",
+									"        pm.expect(skillNameFromResponse).to.eql(skillNameSent);\r",
+									"    });\r",
+									"\r",
+									"    // Validate skillId matches the one from POST\r",
+									"    let skillIdSent = pm.environment.get(\"Skillid\");\r",
+									"    pm.test(\"skillId in response matches POST skillId\", function () {\r",
+									"        pm.expect(responseJson.skillId).to.eql(parseInt(skillIdSent));\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// Log error for 400\r",
+									"if (pm.response.code === 400 && responseJson.error) {\r",
+									"    console.log(\"Error message from response:\", responseJson.error);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "29632042-1d469a8a-fd94-48f6-9f9e-76cc5e736914",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"skillName\": \"string\"\r\n}",
+							"raw": "{\r\n  \"skillName\": \"{{randomSkill}}\",\r\n  \"creationTime\": \"{{creationTime}}\",\r\n  \"lastModTime\": \"{{lastModTime}}\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4961,13 +5041,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/updateSkills/{Skillid}",
+							"raw": "{{baseURL}}/updateSkills/{{Skillid}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"updateSkills",
-								"{Skillid}"
+								"{{Skillid}}"
 							]
 						}
 					},
