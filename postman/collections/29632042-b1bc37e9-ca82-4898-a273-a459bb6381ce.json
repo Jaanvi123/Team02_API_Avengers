@@ -5329,7 +5329,7 @@
 								"exec": [
 									"// Robust post-response tests for DeleteBatchByBatchId\r",
 									"// Handles JSON, text, and empty bodies. Covers 200, 204, 404 statuses.\r",
-									"/*\r",
+									"\r",
 									"const status = pm.response.code;\r",
 									"const contentType = (pm.response.headers.get('Content-Type') || '').toLowerCase();\r",
 									"const hasBody = !!pm.response.text();\r",
@@ -5422,7 +5422,7 @@
 									"        pm.expect.fail('Expected 200, 204, or 404 but got: ' + status);\r",
 									"    });\r",
 									"}\r",
-									"*/"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
