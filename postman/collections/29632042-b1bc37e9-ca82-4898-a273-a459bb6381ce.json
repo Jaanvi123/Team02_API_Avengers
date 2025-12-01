@@ -728,7 +728,7 @@
 					"response": []
 				},
 				{
-					"name": "CreateProgram-Darshana",
+					"name": "Create Program-Darshana",
 					"event": [
 						{
 							"listen": "test",
