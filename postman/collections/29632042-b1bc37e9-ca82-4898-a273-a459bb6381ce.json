@@ -3722,7 +3722,7 @@
 					]
 				},
 				{
-					"name": "UpdateProgramByProgramId-Darshana",
+					"name": "Update Program By ProgramId-Darshana",
 					"event": [
 						{
 							"listen": "test",
@@ -4567,7 +4567,7 @@
 					"response": []
 				},
 				{
-					"name": "DeleteProgramByProgramId-Darshana",
+					"name": "Delete Program By ProgramId-Darshana",
 					"id": "29632042-1b4272c4-7679-487e-8a44-3d82b4f59ad4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
