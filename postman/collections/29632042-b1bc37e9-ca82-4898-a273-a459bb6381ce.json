@@ -747,7 +747,7 @@
 									"}\r",
 									"// Parse the response\r",
 									"\r",
-									"/*\r",
+									"\r",
 									"// Validate mandatory fields exist\r",
 									"pm.test(\"Response has required fields\", function () {\r",
 									"    pm.expect(res).to.have.property(\"programId\");\r",
@@ -757,8 +757,8 @@
 									"    pm.expect(res).to.have.property(\"creationTime\");\r",
 									"    pm.expect(res).to.have.property(\"lastModTime\");\r",
 									"});\r",
-									"*/\r",
-									"// Validate programName length\r",
+									"\r",
+									"\r",
 									"if (pm.response.code===201)\r",
 									"{\r",
 									"    let res = pm.response.json();\r",
@@ -778,9 +778,9 @@
 									"    pm.expect(res.lastModTime).to.not.be.null;\r",
 									"});\r",
 									"\r",
-									"// Save programId for future calls\r",
+									"// Save programId for dependent modules\r",
 									"let res1 = pm.response.json();\r",
-									"pm.globals.set(\"programId\", res1.programId);\r",
+									"pm.environment.set(\"programId\", res1.programId);\r",
 									"}\r",
 									""
 								],
@@ -1100,28 +1100,44 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d9b31c74-c6ed-43d9-b2bb-997f7ecb5463",
+								"id": "e41afeda-9c6a-4530-8717-74695113f7e6",
 								"exec": [
 									"// 1. Status should be 201\r",
 									"pm.test(\"Status code is 201 - Batch created\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
-									"if (pm.response.code===401){\r",
-									"pm.test(\"Status code is 401 unauthorized user\",function(){\r",
-									"    pm.response.to.have.status(401);\r",
-									"});\r",
-									"}\r",
-									"if(pm.response.code===201)\r",
-									"{\r",
+									"\r",
+									"\r",
 									"// 2. Parse JSON response\r",
 									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// ==========================\r",
+									"// Description Length Validation\r",
+									"// ==========================\r",
+									"\r",
+									"// For POSITIVE cases (201 Created)\r",
+									"//if (pm.response.code === 201) {\r",
+									"    pm.test(\"Description length is between 4 and 25\", function () {\r",
+									"        let desc = jsonData.batchDescription;\r",
+									"        pm.expect(desc.length, \"Description length must be between 4 and 25\").to.be.within(4, 25);\r",
+									"    });\r",
+									"//}\r",
+									"\r",
+									"// For NEGATIVE cases (400 Bad Request)\r",
+									"//if (pm.response.code === 400) {\r",
+									" //   pm.test(\"Description length invalid as expected\", function () {\r",
+									"  //      let reqBody = pm.request.body && pm.request.body.raw ? JSON.parse(pm.request.body.raw) : {};\r",
+									"   //     let len = reqBody.batchDescription ? reqBody.batchDescription.length : 0;\r",
+									"\r",
+									"   //     pm.expect(len < 4 || len > 25, \"Invalid description length should trigger 400\").to.be.true;\r",
+									"   // });\r",
+									"//}\r",
 									"\r",
 									"// 3. Check batchId exists\r",
 									"pm.test(\"Response contains batchId\", function () {\r",
 									"    pm.expect(jsonData).to.have.property(\"batchId\");\r",
 									"    pm.expect(jsonData.batchId).to.be.a(\"number\");\r",
 									"});\r",
-									"\r",
 									"\r",
 									"// 4. Save batchId and batchName to environment for next requests\r",
 									"pm.environment.set(\"batchId\", jsonData.batchId);\r",
@@ -1146,8 +1162,7 @@
 									"    pm.expect(jsonData).to.have.property(\"batchStatus\");\r",
 									"    pm.expect(jsonData).to.have.property(\"programId\");\r",
 									"    pm.expect(jsonData).to.have.property(\"batchNoOfClasses\");\r",
-									"});\r",
-									"}"
+									"});"
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -1157,7 +1172,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "240449b8-afd0-4c55-84b9-c35ba78b0bbc",
+								"id": "225fa585-9f76-4ce6-ab13-4ae013e055f0",
 								"exec": [
 									"// Get program name from environment\r",
 									"const programName = pm.environment.get(\"programName\") || \"SDET\";\r",
@@ -1197,7 +1212,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Weekday evening batch\",\r\n    \"batchName\": \"{{batchName}}\",\r\n    \"batchNoOfClasses\": 25,\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\": \"{{programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"{{batchDescription}}\",\r\n    \"batchName\": \"{{batchName}}\",\r\n    \"batchNoOfClasses\": 25,\r\n    \"batchStatus\": \"{{batchStatus}}\",\r\n    \"programId\": {{programId}}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4548,10 +4563,6 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{baseURL}}/batches/{{batchId}}",
 							"host": [
