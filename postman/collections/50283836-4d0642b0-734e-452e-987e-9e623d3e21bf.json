@@ -274,7 +274,7 @@
 					"response": []
 				},
 				{
-					"name": "Forgot Password/Confirm Email Copy",
+					"name": "TestForgot Password/Confirm Email Copy",
 					"event": [
 						{
 							"listen": "test",
