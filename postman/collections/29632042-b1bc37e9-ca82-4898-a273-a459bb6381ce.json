@@ -2923,7 +2923,7 @@
 					"response": []
 				},
 				{
-					"name": "GetAllPrograms-Darshana",
+					"name": "Get All Programs-Darshana",
 					"event": [
 						{
 							"listen": "test",
