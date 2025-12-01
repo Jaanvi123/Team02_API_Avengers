@@ -407,7 +407,7 @@
 					"response": []
 				},
 				{
-					"name": "Reset Password Copy",
+					"name": "TestReset Password Copy",
 					"event": [
 						{
 							"listen": "test",
