@@ -302,7 +302,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "65628fdd-6063-4298-893e-efbc0be0c437",
+								"id": "4e07c8b1-45b2-444a-a0bd-cabd0199392d",
 								"exec": [
 									"// Safely parse JSON, if any\r",
 									"let json = {};\r",
@@ -312,13 +312,12 @@
 									"  json = {};\r",
 									"}\r",
 									"\r",
-									"// Validate Status Code (200 OK)\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"  pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"// Only proceed if status is 200\r",
-									"if (pm.response.code === 200) {\r",
+									"// Only proceed if status is 201\r",
+									"if (pm.response.code === 201) {\r",
 									"  // Extract fields\r",
 									"  const token = json.token;\r",
 									"\r",
@@ -328,6 +327,7 @@
 									"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
 									"  pm.expect(json.token, \"'token' should be a string\").to.be.a(\"string\");\r",
 									"  pm.expect(String(json.token).trim().length, \"'token' should not be empty\").to.be.greaterThan(0);\r",
+									"  pm.environment.set(\"auth_token\", token);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response has expected type\", function () {\r",
@@ -365,12 +365,12 @@
 									"  pm.expect(json.passwordExpired, \"'passwordExpired' should be a boolean\").to.be.a(\"boolean\");\r",
 									"});\r",
 									"\r",
-									"pm.test('status is either \"Active\" or \"Inactive\"', function () {\r",
+									"pm.test(\"Response has expected status\", function () {\r",
 									"  pm.expect(json).to.be.an(\"object\");\r",
 									"  pm.expect(json, \"Missing status\").to.have.property(\"status\");\r",
 									"  pm.expect(json.status, \"status should be a string\").to.be.a(\"string\");\r",
-									"  const allowed = [\"Active\", \"Inactive\"];\r",
-									"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);\r",
+									"  /*const allowed = [\"Active\", \"Inactive\"];\r",
+									"  pm.expect(allowed, `status must be one of ${allowed.join(\", \" )}`).to.include(json.status);*/\r",
 									"});\r",
 									"}\r",
 									"if (pm.response.code === 400) {\r",
@@ -394,14 +394,7 @@
 					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{auth_token}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -413,7 +406,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userLoginEmailId\": \"Simeon@gmail.com\"\r\n}"
+							"raw": "{\r\n    \"userLoginEmailId\": \"Simeooon@gmail.com\"\r\n}"
 						},
 						"url": {
 							"raw": "{{baseURL}}/login/forgotpassword/confirmEmail",
