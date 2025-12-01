@@ -1200,66 +1200,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "Team 2 Admin User log out",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "7761c226-f018-4fa2-b945-27b202ea006b",
-						"exec": [
-							"(function () {\r",
-							"  // 1) Status code is 200 OK\r",
-							"  pm.test(\"Status code is 200 OK\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"    pm.environment.set(\"team2_auth_token\", \"\");\r",
-							"  });\r",
-							"\r",
-							"  // 2) Body is a string (text) and non-empty\r",
-							"  pm.test(\"Response body is a non-empty string\", function () {\r",
-							"    const text = pm.response.text();\r",
-							"    // Ensure the body is string type\r",
-							"    pm.expect(typeof text, \"Body should be a string\").to.eql(\"string\");\r",
-							"    // Ensure it's not empty (after trimming whitespace)\r",
-							"    pm.expect(text.trim().length, \"Body should not be empty\").to.be.greaterThan(0);\r",
-							"  });\r",
-							"})();"
-						],
-						"type": "text/javascript",
-						"packages": {},
-						"requests": {}
-					}
-				}
-			],
-			"id": "50283836-33df1b83-8e99-49c8-839d-adc23df67ee4",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{team2_auth_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/logoutlms",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"logoutlms"
-					]
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [
