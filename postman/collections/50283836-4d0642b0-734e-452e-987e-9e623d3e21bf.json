@@ -10,7 +10,7 @@
 			"name": "NegativeSenarios",
 			"item": [
 				{
-					"name": "400CSV User Sign In",
+					"name": "TestUser Sign In",
 					"event": [
 						{
 							"listen": "test",
