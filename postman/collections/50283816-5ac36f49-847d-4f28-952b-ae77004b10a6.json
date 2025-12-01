@@ -6,6 +6,18 @@
 	},
 	"item": [
 		{
+			"name": "Login",
+			"id": "50283816-aba5e4fd-112d-48d1-a8c4-a54a8aa64cbc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
 			"name": "AddNewProgram",
 			"event": [
 				{
@@ -711,18 +723,6 @@
 						"PythonBasics"
 					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login",
-			"id": "50283816-aba5e4fd-112d-48d1-a8c4-a54a8aa64cbc",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": []
 			},
 			"response": []
 		}
