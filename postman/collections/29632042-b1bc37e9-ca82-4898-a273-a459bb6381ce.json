@@ -3123,7 +3123,7 @@
 					]
 				},
 				{
-					"name": "GetProgramByProgramId-Darshana",
+					"name": "Get Program By ProgramId-Darshana",
 					"event": [
 						{
 							"listen": "test",
