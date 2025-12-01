@@ -5227,13 +5227,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/skills/{{skillMasterName}}",
+							"raw": "{{baseURL}}/skills/{{randomSkill}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"skills",
-								"{{skillMasterName}}"
+								"{{randomSkill}}"
 							]
 						}
 					},
