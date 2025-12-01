@@ -5274,21 +5274,105 @@
 				},
 				{
 					"name": "Delete Skill by Skill Id-Jaanvi",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "34ca172d-a4c2-4010-ac46-d0756a90a072",
+								"exec": [
+									"// Use Skillid from environment\r",
+									"let skillId = pm.environment.get(\"Skillid\");\r",
+									"console.log(\"Deleting skill with Skillid:\", skillId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f78fa6c5-080d-4a43-aa3f-729bf708aa96",
+								"exec": [
+									"let responseJson = {};\r",
+									"try {\r",
+									"    responseJson = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    console.warn(\"Response is not valid JSON, raw text:\", pm.response.text());\r",
+									"}\r",
+									"\r",
+									"console.log(\"Full response JSON:\", responseJson);\r",
+									"\r",
+									"// ✅ Success case: 200 OK\r",
+									"pm.test(\"Delete Skill: Request completed successfully\", function () {\r",
+									"    pm.expect([200, 400, 404]).to.include(pm.response.code);\r",
+									"});\r",
+									"\r",
+									"// ✅ If 200 OK, check success flag or message\r",
+									"if (pm.response.code === 200) {\r",
+									"    pm.test(\"Skill deleted successfully\", function () {\r",
+									"        if (responseJson.success !== undefined) {\r",
+									"            pm.expect(responseJson.success).to.be.true;\r",
+									"        }\r",
+									"    });\r",
+									"    if (responseJson.message) {\r",
+									"        console.log(\"Delete success message:\", responseJson.message);\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"// ✅ Handle 400 Bad Request\r",
+									"if (pm.response.code === 400) {\r",
+									"    pm.test(\"Bad Request - Invalid input parameters\", function () {\r",
+									"        pm.expect(pm.response.code).to.eql(400);\r",
+									"    });\r",
+									"    if (responseJson.error) {\r",
+									"        console.log(\"Error message from response:\", responseJson.error);\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"// ✅ Handle 404 Not Found\r",
+									"if (pm.response.code === 404) {\r",
+									"    pm.test(\"Skill not found or invalid endpoint\", function () {\r",
+									"        pm.expect(pm.response.code).to.eql(404);\r",
+									"    });\r",
+									"    if (responseJson.message) {\r",
+									"        console.log(\"404 message:\", responseJson.message);\r",
+									"    }\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "29632042-84513d84-7d0d-44e9-947d-7474aff41eaf",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURL}}/deletebySkillId/{skillId}",
+							"raw": "{{baseURL}}/deletebySkillId/{{Skillid}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebySkillId",
-								"{skillId}"
+								"{{Skillid}}"
 							]
 						}
 					},
