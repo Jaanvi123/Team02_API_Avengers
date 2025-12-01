@@ -146,7 +146,7 @@
 									"\r",
 									"pm.test(\"Validate expected status code\", function () { pm.expect(pm.response.code).to.eql( parseInt(pm.iterationData.get(\"expectedStatus\")) ); });\r",
 									"\r",
-									"    if (pm.response.code === 415 && expectedStatusCode) {\r",
+									"    if (pm.response.code === 415) {\r",
 									"    let errorMsg = resBody.message || \"No message provided\";\r",
 									"\r",
 									"    pm.test(\"UNSUPPORTED_MEDIA_TYPE : \" + errorMsg, function () {\r",
