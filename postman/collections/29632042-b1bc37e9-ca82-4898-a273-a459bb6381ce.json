@@ -40,7 +40,7 @@
 									"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
 									"  pm.expect(json.token, \"'token' should be a string\").to.be.a(\"string\");\r",
 									"  pm.expect(String(json.token).trim().length, \"'token' should not be empty\").to.be.greaterThan(0);\r",
-									"  pm.globals.set(\"team2_auth_token\", token);\r",
+									"  pm.environment.set(\"team2_auth_token\", token);\r",
 									"});\r",
 									"\r",
 									"pm.test(\"Response has expected type\", function () {\r",
