@@ -1202,7 +1202,7 @@
 			"response": []
 		},
 		{
-			"name": "User log out Copy",
+			"name": "Team 2 Admin User log out",
 			"event": [
 				{
 					"listen": "test",
