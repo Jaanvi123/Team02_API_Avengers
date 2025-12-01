@@ -5930,7 +5930,247 @@
 		},
 		{
 			"name": "BulkSkillCreation",
-			"item": [],
+			"item": [
+				{
+					"name": "Cerate Skill-Jaanvi Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "01a0de3c-eab0-4ca1-9000-d27e1dd87c81",
+								"exec": [
+									"// Function to generate random string of given length\r",
+									"function generateRandomString(length) {\r",
+									"    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';\r",
+									"    let result = '';\r",
+									"    for (let i = 0; i < length; i++) {\r",
+									"        result += chars.charAt(Math.floor(Math.random() * chars.length));\r",
+									"    }\r",
+									"    return result;\r",
+									"}\r",
+									"\r",
+									"// Generate a random SkillName\r",
+									"let randomSkill = generateRandomString(8); // You can change 8 to any length\r",
+									"\r",
+									"// Set it as a Postman variable\r",
+									"pm.variables.set(\"randomSkill\", randomSkill);\r",
+									"console.log(\"Generated SkillName:\", randomSkill);"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "381b6735-e9b2-4cee-8016-8335ea18f35a",
+								"exec": [
+									"let responseJson = {};\r",
+									"try {\r",
+									"    responseJson = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    console.error(\"Response is not valid JSON:\", e);\r",
+									"}\r",
+									"\r",
+									"console.log(\"Full response JSON:\", responseJson);\r",
+									"\r",
+									"// Extract skillName correctly (case-sensitive)\r",
+									"let skillNameFromResponse = responseJson.skillName || null;\r",
+									"console.log(\"SkillName from response:\", skillNameFromResponse);\r",
+									"\r",
+									"// Status code test\r",
+									"pm.test(\"Status code is 201 or 400\", function () {\r",
+									"    pm.expect([201, 400]).to.include(pm.response.code);\r",
+									"});\r",
+									"\r",
+									"// Check if skillName matches the one sent\r",
+									"if (pm.response.code === 201) {\r",
+									"    let skillNameSent = pm.variables.get(\"randomSkill\");\r",
+									"    pm.test(\"skillName in response matches sent skillName\", function () {\r",
+									"        pm.expect(skillNameFromResponse).to.eql(skillNameSent);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// Log error for 400\r",
+									"if (pm.response.code === 400 && responseJson.error) {\r",
+									"    console.log(\"Error message from response:\", responseJson.error);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"id": "29632042-d2df440b-4e13-4c8e-86f4-757aaee464d8",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"skillName\": \"{{randomSkill}}\",\r\n    \"creationTime\": \"2025-11-20T19:39:39.762Z\",\r\n    \"lastModTime\": \"2025-11-20T19:39:39.762Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/SaveSkillMaster",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"SaveSkillMaster"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "29632042-83afade4-3da2-46e1-b9ae-e4461ebff884",
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": " Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJSYW1SYWppdkBnbWFpbC5jb20iLCJpYXQiOjE3NjQwMzMzOTksImV4cCI6MTc2NDA2MjE5OX0.q1JjzJFu8qNb3aWDU5o0QGwWF4-0xGIl_hiaJe86rydkOYNL9FjvGBTSj6ECqgLjH4T1L5-2BG0pZI2xKnA_CA",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"skillName\": \"SCDFnewversion\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://lms-hackathon-nov-2025-8dd40899c026.herokuapp.com/lms/SaveSkillMaster",
+									"protocol": "https",
+									"host": [
+										"lms-hackathon-nov-2025-8dd40899c026",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"lms",
+										"SaveSkillMaster"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Nov 2025 14:38:17 GMT"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "Nel",
+									"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Report-To",
+									"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=cRD0NieiGezEbWCgiqkkr3vh7bkgRKLNxZJXd%2FFzpVw%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1764081497\"}],\"max_age\":3600}"
+								},
+								{
+									"key": "Reporting-Endpoints",
+									"value": "heroku-nel=\"https://nel.heroku.com/reports?s=cRD0NieiGezEbWCgiqkkr3vh7bkgRKLNxZJXd%2FFzpVw%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764081497\""
+								},
+								{
+									"key": "Server",
+									"value": "Heroku"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000 ; includeSubDomains"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 heroku-router"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Xss-Protection",
+									"value": "0"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
+						}
+					]
+				}
+			],
 			"id": "29632042-a4a4b005-3ea2-482b-91e0-1069928831ce"
 		}
 	],
