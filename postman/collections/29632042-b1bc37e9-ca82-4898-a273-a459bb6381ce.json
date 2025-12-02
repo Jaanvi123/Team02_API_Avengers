@@ -2954,12 +2954,12 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "a453091c-847a-40f8-a0e5-10f5002afb24",
 								"exec": [
-									"// Validate status code is 200\r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
-									"// Validate required fields in each program\r",
+									"\r",
 									"pm.test(\"Each Program has required fields\", function () {\r",
 									"    const programs = pm.response.json();\r",
 									"    \r",
@@ -2975,8 +2975,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "a453091c-847a-40f8-a0e5-10f5002afb24"
+								"requests": {}
 							}
 						}
 					],
