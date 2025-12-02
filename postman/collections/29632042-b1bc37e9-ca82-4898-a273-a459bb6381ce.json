@@ -4422,7 +4422,7 @@
 									"\r",
 									"\r",
 									"let status = pm.response.code;\r",
-									"let response = pm.response.json();  \r",
+									"//let response = pm.response.json();  \r",
 									"\r",
 									"pm.test(\"Status code is either 200 or 404\", function () {\r",
 									"    pm.expect(status).to.be.oneOf([200, 404]);\r",
