@@ -1900,8 +1900,9 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "b8829e88-d1ff-4b61-9414-1925c6a2f7d9",
 								"exec": [
-									"pm.test(\"Get Users with roles: Request completed successfully\", function () { \r",
+									"pm.test(\"Get Users with roles: Request completed successfully\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"if (pm.response.code === 404) {\r",
@@ -1918,12 +1919,15 @@
 									"        });\r",
 									"    }\r",
 									"}\r",
-									""
+									"if (pm.response.code === 401) {\r",
+									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
+									"        pm.response.to.have.status(401);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "b8829e88-d1ff-4b61-9414-1925c6a2f7d9"
+								"requests": {}
 							}
 						}
 					],
