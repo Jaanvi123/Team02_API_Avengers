@@ -12,8 +12,36 @@
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ2OTE2NzUsImV4cCI6MTc2NDcyMDQ3NX0.iQMrSGbShBQa230h0b3TqC-Ske72k3PwKEl1i8iusKCKzw-LZQWLEhb7WkQfoCbXpYCaxBfz0pb7ONegOh-WZQ\",\n",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
 			},
 			"response": []
 		},
