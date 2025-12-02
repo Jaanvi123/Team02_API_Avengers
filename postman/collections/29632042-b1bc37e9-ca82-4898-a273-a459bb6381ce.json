@@ -2260,8 +2260,9 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "32199711-8d42-44e9-90e8-7f77e8b26fe7",
 								"exec": [
-									"pm.test(\"Get User by Program: Request completed successfully\", function () { \r",
+									"pm.test(\"Get User by Program: Request completed successfully\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"if (pm.response.code === 404) {\r",
@@ -2278,12 +2279,15 @@
 									"        });\r",
 									"    }\r",
 									"}\r",
-									""
+									"if (pm.response.code === 401) {\r",
+									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
+									"        pm.response.to.have.status(401);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "32199711-8d42-44e9-90e8-7f77e8b26fe7"
+								"requests": {}
 							}
 						}
 					],
