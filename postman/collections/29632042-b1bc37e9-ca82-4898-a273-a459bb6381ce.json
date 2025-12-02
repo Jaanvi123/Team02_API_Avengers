@@ -5459,7 +5459,12 @@
 									"    pm.expect(typeof text, \"Body should be a string\").to.eql(\"string\");\r",
 									"    pm.expect(text.trim().length, \"Body should not be empty\").to.be.greaterThan(0);\r",
 									"  });\r",
-									"})();"
+									"})();\r",
+									"if (pm.response.code === 401) {\r",
+									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
+									"        pm.response.to.have.status(401);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
