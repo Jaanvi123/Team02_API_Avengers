@@ -1824,8 +1824,9 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "c4d97d0f-67da-446c-b31a-00840fdd21eb",
 								"exec": [
-									"pm.test(\"Get User info by UserId: Request completed successfully\", function () { \r",
+									"pm.test(\"Get User info by UserId: Request completed successfully\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"if (pm.response.code === 404) {\r",
@@ -1841,12 +1842,16 @@
 									"            pm.response.to.have.status(404);\r",
 									"        });\r",
 									"    }\r",
+									"}\r",
+									"if (pm.response.code === 401) {\r",
+									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
+									"        pm.response.to.have.status(401);\r",
+									"    });\r",
 									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "c4d97d0f-67da-446c-b31a-00840fdd21eb"
+								"requests": {}
 							}
 						}
 					],
