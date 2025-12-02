@@ -6,6 +6,46 @@
 	},
 	"item": [
 		{
+			"name": "Login",
+			"id": "50283816-aba5e4fd-112d-48d1-a8c4-a54a8aa64cbc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ2OTE2NzUsImV4cCI6MTc2NDcyMDQ3NX0.iQMrSGbShBQa230h0b3TqC-Ske72k3PwKEl1i8iusKCKzw-LZQWLEhb7WkQfoCbXpYCaxBfz0pb7ONegOh-WZQ\",\n",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "AddNewProgram",
 			"event": [
 				{
@@ -13,44 +53,72 @@
 					"script": {
 						"id": "2cc76ef2-859a-4b65-aa38-756821676334",
 						"exec": [
-							"// Validate Status Code (201 Created)\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
+							"let status = pm.response.code;\r",
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"// CASE 1: SUCCESS (201)\r",
+							"if (status === 201) {\r",
+							"\r",
+							"    // Check if the response contains the required fields and values are as expected.\r",
+							"    pm.test(\"Status Code is 201 - Created\", function () {\r",
+							"        pm.expect(status).to.eql(201);\r",
+							"    });\r",
+							"\r",
+							"    pm.collectionVariables.set(\"programId\", jsonData.programId);\r",
+							"\r",
+							"    pm.test(\"Auto-generated fields exist\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"programId\");\r",
+							"        pm.expect(jsonData).to.have.property(\"creationTime\");\r",
+							"        pm.expect(jsonData).to.have.property(\"lastModTime\");\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Mandatory fields returned correctly\", function () {\r",
+							"        pm.expect(jsonData.programName).to.be.a(\"string\");\r",
+							"        pm.expect(jsonData.programStatus).to.be.a(\"string\");\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Program Name length valid\", function () {\r",
+							"        pm.expect(jsonData.programName.length).to.be.within(4, 25);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Description length valid\", function () {\r",
+							"        pm.expect(jsonData.programDescription.length).to.be.within(4, 25);\r",
+							"    });\r",
+							"\r",
+							"    console.log(\"Program created successfully\");\r",
+							"}\r",
+							"\r",
+							"// CASE 2: BAD REQUEST (400)\r",
+							"else if (status === 400) {\r",
+							"\r",
+							"    pm.test(\"Status Code is 400 - Bad Request\", function () {\r",
+							"        pm.expect(status).to.eql(400);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Error response contains message\", function () {\r",
+							"        pm.expect(jsonData).to.have.property(\"message\");\r",
+							"    });\r",
+							"\r",
+							"    console.log(\"Bad Request - Validation failed\");\r",
+							"}\r",
+							"else if(status===401){\r",
+							"    pm.test(\"Status code is 401- Unauthorized\",function()\r",
+							"    {\r",
+							"        pm.expect(status).to.eql(401);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"// CASE 3: ANY OTHER STATUS\r",
+							"else {\r",
+							"    pm.test(\"Unexpected status code\", function () {\r",
+							"        pm.expect.fail(`Unexpected status code: ${status}`);\r",
+							"    });\r",
+							"}\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
 							"});\r",
 							"\r",
-							"// Parse the response\r",
-							"let res = pm.response.json();\r",
-							"\r",
-							"// Validate mandatory fields exist\r",
-							"pm.test(\"Response has required fields\", function () {\r",
-							"    pm.expect(res).to.have.property(\"programId\");\r",
-							"    pm.expect(res).to.have.property(\"programName\");\r",
-							"    pm.expect(res).to.have.property(\"programDescription\");\r",
-							"    pm.expect(res).to.have.property(\"programStatus\");\r",
-							"    pm.expect(res).to.have.property(\"creationTime\");\r",
-							"    pm.expect(res).to.have.property(\"lastModTime\");\r",
-							"});\r",
-							"\r",
-							"// Validate programName length\r",
-							"pm.test(\"programName length valid (4–25)\", function () {\r",
-							"    pm.expect(res.programName.length).to.be.within(4, 25);\r",
-							"});\r",
-							"\r",
-							"// Validate description length\r",
-							"pm.test(\"programDescription length valid (4–25)\", function () {\r",
-							"    pm.expect(res.programDescription.length).to.be.within(4, 25);\r",
-							"});\r",
-							"\r",
-							"// Validate autogenerated fields are not null\r",
-							"pm.test(\"Autogenerated fields exist\", function () {\r",
-							"    pm.expect(res.programId).to.be.a(\"number\");\r",
-							"    pm.expect(res.creationTime).to.not.be.null;\r",
-							"    pm.expect(res.lastModTime).to.not.be.null;\r",
-							"});\r",
-							"\r",
-							"// Save programId for future calls\r",
-							"let res1 = pm.response.json();\r",
-							"pm.globals.set(\"programId\", res1.programId);\r",
 							""
 						],
 						"type": "text/javascript",
@@ -63,21 +131,6 @@
 					"script": {
 						"id": "c39af9f8-34d6-4ea5-8059-3c80d74e87c2",
 						"exec": [
-							"// Generate a random alphabetic suffix (no numbers)\r",
-							"function randomString(length) {\r",
-							"    let chars = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\";\r",
-							"    let result = \"\";\r",
-							"    for (let i = 0; i < length; i++) {\r",
-							"        result += chars.charAt(Math.floor(Math.random() * chars.length));\r",
-							"    }\r",
-							"    return result;\r",
-							"}\r",
-							"\r",
-							"// Program name: Program-<random letters>\r",
-							"let progName = \"Program-\" + randomString(5);\r",
-							"\r",
-							"pm.environment.set(\"programName\", progName);\r",
-							"\r",
 							""
 						],
 						"type": "text/javascript",
@@ -96,7 +149,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{auth_token}}",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ2OTE3NzUsImV4cCI6MTc2NDcyMDU3NX0.l_DGLSAxwhnGh9Bm6u5gVNR6u8n78hKOohvRmj5bG10icVE7I3Ft3k-viO2Fe0H6VJgr-21jsYYh5a6L_ZGdDw",
 							"type": "string"
 						}
 					]
@@ -111,7 +164,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"programDescription\": \"Sample-Description\",\r\n  \"programName\": \"{{programName}}\",\r\n  \"programStatus\": \"Active\"\r\n}",
+					"raw": "\r\n{\r\n  \"programDescription\": \"{{programDescription}}}\",\r\n  \"programName\": \"{{programName}}\",\r\n  \"programStatus\": \"{{programStatus}}\"\r\n}\r\n/*\r\n{\r\n  \"programDescription\": \"firsttry\",\r\n  \"programName\": \"pythonplusplus\",\r\n  \"programStatus\": \"Active\"\r\n} */",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -702,6 +755,56 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjQ2Mjg0NTUsImV4cCI6MTc2NDY1NzI1NX0.dPyG-2aLzFgBVcsG-Zo_baffwgjVx-uq2Nh2BMWcmQs1y-EY4PAJnOmlxAcNot0zpStjJW8gMqobmC8YXN_dVA",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7931beea-677e-4d13-9ab0-22ee8a557141",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fa52489a-f27d-4dfe-a199-b6612053bf08",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "auth_token1",
+			"value": ""
+		},
+		{
+			"key": "programId",
+			"value": ""
 		}
 	]
 }
