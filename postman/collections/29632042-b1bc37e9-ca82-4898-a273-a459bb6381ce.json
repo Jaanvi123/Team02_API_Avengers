@@ -4818,7 +4818,7 @@
 					]
 				},
 				{
-					"name": "Update Skill by Skill Id-Jaanvi",
+					"name": "Update Skill by Skill Id",
 					"event": [
 						{
 							"listen": "prerequest",
