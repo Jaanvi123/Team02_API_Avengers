@@ -4627,13 +4627,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogname/{programName}",
+							"raw": "{{baseURL}}/deletebyprogname/{{programName}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogname",
-								"{programName}"
+								"{{programName}}"
 							]
 						}
 					},
