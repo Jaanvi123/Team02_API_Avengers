@@ -9,7 +9,7 @@
 			"name": "LMS",
 			"item": [
 				{
-					"name": "Team2 Admin Login-Ramya",
+					"name": "Team2 Admin Login",
 					"event": [
 						{
 							"listen": "test",
@@ -727,7 +727,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Program-Darshana",
+					"name": "Create Program",
 					"event": [
 						{
 							"listen": "test",
@@ -4789,7 +4789,7 @@
 					]
 				},
 				{
-					"name": "Update Skill by Skill Id-Jaanvi",
+					"name": "Update Skill by Skill Id",
 					"event": [
 						{
 							"listen": "prerequest",
