@@ -2676,7 +2676,7 @@
 					"response": []
 				},
 				{
-					"name": "Count of active and inactive users-Yogini",
+					"name": "Count of active and inactive users",
 					"event": [
 						{
 							"listen": "test",
@@ -2750,7 +2750,7 @@
 					"response": []
 				},
 				{
-					"name": "Update User-Yogini",
+					"name": "Update User",
 					"event": [
 						{
 							"listen": "test",
