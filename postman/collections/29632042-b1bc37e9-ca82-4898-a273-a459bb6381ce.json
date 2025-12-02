@@ -2748,6 +2748,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "b394fade-97ca-42aa-80cc-5edfb18b8177",
 								"exec": [
 									"pm.test(\"User has been successfully updated\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -2770,8 +2771,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "b394fade-97ca-42aa-80cc-5edfb18b8177"
+								"requests": {}
 							}
 						}
 					],
@@ -2794,7 +2794,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userComments\": \"help\",\r\n    \"userEduPg\": \"rgdfgdfgfd\",\r\n    \"userEduUg\": \"dvfdsgA\",\r\n    \"userFirstName\": \"{{$randomFirstName}}\",\r\n    \"userLastName\": \"{{$randomLastName}}\",\r\n    \"userMiddleName\": \"Sh\",\r\n    \"userLocation\": \"Tx\",\r\n    \"userLoginEmail\": \"test333@gmail.com\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userTimeZone\": \"PST\",\r\n    \"userVisaStatus\": \"NA\"\r\n}",
+							"raw": "{\r\n    \"userComments\": \"help\",\r\n    \"userEduPg\": \"rgdfgdfgfd\",\r\n    \"userEduUg\": \"dvfdsgA\",\r\n    \"userFirstName\": \"Team2FirstName\",\r\n    \"userLastName\": \"Team2LastName\",\r\n    \"userMiddleName\": \"Sh\",\r\n    \"userLocation\": \"Tx\",\r\n    \"userLoginEmail\": \"test333@gmail.com\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userTimeZone\": \"PST\",\r\n    \"userVisaStatus\": \"NA\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
