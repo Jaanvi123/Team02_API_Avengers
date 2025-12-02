@@ -4412,7 +4412,7 @@
 								"exec": [
 									"let status = pm.response.code;\r",
 									"let response = pm.response.json();\r",
-									"let programId = pm.variables.get(\"programId\") || \"\";   \r",
+									"let programId = pm.environment.get(\"programId\") || \"\";   \r",
 									"\r",
 									"pm.test(\"Status code is either 200 or 404\", function () {\r",
 									"    pm.expect(status).to.be.oneOf([200, 404]);\r",
