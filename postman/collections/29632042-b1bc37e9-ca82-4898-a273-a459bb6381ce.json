@@ -5202,7 +5202,6 @@
 									"    }\r",
 									"}\r",
 									"\r",
-									"\r",
 									"if (pm.response.code === 404) {\r",
 									"    pm.test(\"Skill not found or invalid endpoint\", function () {\r",
 									"        pm.expect(pm.response.code).to.eql(404);\r",
