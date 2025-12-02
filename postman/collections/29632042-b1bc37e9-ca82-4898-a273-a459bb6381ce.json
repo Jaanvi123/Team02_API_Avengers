@@ -4929,7 +4929,7 @@
 					"response": []
 				},
 				{
-					"name": "Get All Skill Master-Jaanvi",
+					"name": "Get All Skill Master",
 					"event": [
 						{
 							"listen": "test",
@@ -5024,7 +5024,7 @@
 					"response": []
 				},
 				{
-					"name": "Get  Skill by skill name-Jaanvi",
+					"name": "Get  Skill by skill name",
 					"event": [
 						{
 							"listen": "test",
