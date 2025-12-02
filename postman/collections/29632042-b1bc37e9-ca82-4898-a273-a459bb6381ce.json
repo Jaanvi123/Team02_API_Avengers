@@ -4563,13 +4563,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogname/{{programName}}",
+							"raw": "{{baseURL}}/deletebyprogname/PythonBasics",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogname",
-								"{{programName}}"
+								"PythonBasics"
 							]
 						}
 					},
