@@ -4547,13 +4547,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogname/PythonBasics",
+							"raw": "{{baseURL}}/deletebyprogname/{{programName}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogname",
-								"PythonBasics"
+								"{{programName}}"
 							]
 						}
 					},
