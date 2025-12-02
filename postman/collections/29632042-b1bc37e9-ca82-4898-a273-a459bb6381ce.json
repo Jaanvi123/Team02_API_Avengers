@@ -3278,6 +3278,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "3cbdfae2-edd0-454d-b3b6-c9988ff7017a",
 								"exec": [
 									"let res;\r",
 									"try {\r",
@@ -3330,8 +3331,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "3cbdfae2-edd0-454d-b3b6-c9988ff7017a"
+								"requests": {}
 							}
 						}
 					],
@@ -3360,7 +3360,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"programDescription\": \r\n\"full-java-one\", \r\n  \"programName\": \"JavaBasics\", \r\n  \"programStatus\": \"Active\" \r\n}",
+							"raw": "{\r\n    \"programDescription\": \"Sample Description\",\r\n    \"programName\": \"{{programName}}\",\r\n    \"programStatus\": \"Active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3368,13 +3368,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/program/JavaBasics",
+							"raw": "{{baseURL}}/program/{{programName}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"program",
-								"JavaBasics"
+								"{{programName}}"
 							]
 						}
 					},
@@ -3726,6 +3726,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "98b496b7-c3b5-4b63-ba77-f0a6c3b27c27",
 								"exec": [
 									"let res;\r",
 									"try {\r",
@@ -3770,8 +3771,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "98b496b7-c3b5-4b63-ba77-f0a6c3b27c27"
+								"requests": {}
 							}
 						}
 					],
@@ -3800,7 +3800,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n  \"programDescription\": \r\n\"Python-java\", \r\n   \"programName\": \"PythonBasics\", \r\n  \"programStatus\": \"Active\" \r\n}",
+							"raw": "{\r\n    \"programDescription\": \"Sample description\",\r\n    \"programName\": \"{{programName}}\",\r\n    \"programStatus\": \"Active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3808,13 +3808,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/putprogram/67",
+							"raw": "{{baseURL}}/putprogram/{{programId}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"putprogram",
-								"67"
+								"{{programId}}"
 							]
 						}
 					},
