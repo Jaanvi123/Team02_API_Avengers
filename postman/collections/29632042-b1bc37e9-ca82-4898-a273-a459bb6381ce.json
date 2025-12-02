@@ -147,13 +147,9 @@
 							"script": {
 								"id": "b630f6c3-9130-452e-ae68-f3f0cc2ad22c",
 								"exec": [
-									"\r",
-									"//let currentEnvironment = pm.environment.name;\r",
-									"\r",
 									"if (pm.response.code === 201) {\r",
-									"    //Extract response from Json body of API response\r",
 									"    const response = pm.response.json();\r",
-									"    //Extract userId from user object in response\r",
+									"\r",
 									"    pm.environment.set(\"userId\", response.user.userId);\r",
 									"    pm.test(\"User successfully created\", function () {\r",
 									"        pm.response.to.have.status(201);\r",
