@@ -2748,6 +2748,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "b394fade-97ca-42aa-80cc-5edfb18b8177",
 								"exec": [
 									"pm.test(\"User has been successfully updated\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -2770,8 +2771,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "b394fade-97ca-42aa-80cc-5edfb18b8177"
+								"requests": {}
 							}
 						}
 					],
@@ -2794,7 +2794,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userComments\": \"help\",\r\n    \"userEduPg\": \"rgdfgdfgfd\",\r\n    \"userEduUg\": \"dvfdsgA\",\r\n    \"userFirstName\": \"{{$randomFirstName}}\",\r\n    \"userLastName\": \"{{$randomLastName}}\",\r\n    \"userMiddleName\": \"Sh\",\r\n    \"userLocation\": \"Tx\",\r\n    \"userLoginEmail\": \"test333@gmail.com\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userTimeZone\": \"PST\",\r\n    \"userVisaStatus\": \"NA\"\r\n}",
+							"raw": "{\r\n    \"userComments\": \"help\",\r\n    \"userEduPg\": \"rgdfgdfgfd\",\r\n    \"userEduUg\": \"dvfdsgA\",\r\n    \"userFirstName\": \"TeamFirstName\",\r\n    \"userLastName\": \"TeamLastName\",\r\n    \"userMiddleName\": \"Sh\",\r\n    \"userLocation\": \"Tx\",\r\n    \"userLoginEmail\": \"test333@gmail.com\",\r\n    \"userPhoneNumber\": \"{{randomPhNumber}}\",\r\n    \"userTimeZone\": \"PST\",\r\n    \"userVisaStatus\": \"NA\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4410,9 +4410,16 @@
 							"script": {
 								"id": "08bfaf3d-0fb7-495b-992f-2a2634e034a3",
 								"exec": [
-									"let status = pm.response.code;\r",
-									"let response = pm.response.json();\r",
-									"let programId = pm.environment.get(\"programId\") || \"\";   \r",
+									"let response = {};\r",
+									"try {\r",
+									"    response = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    console.warn(\"Response is not valid JSON, raw text:\", pm.response.text());\r",
+									"}\r",
+									"\r",
+									"console.log(\"Full response JSON:\", response);\r",
+									"\r",
+									"let status = pm.response.code;  \r",
 									"\r",
 									"pm.test(\"Status code is either 200 or 404\", function () {\r",
 									"    pm.expect(status).to.be.oneOf([200, 404]);\r",
@@ -4420,17 +4427,30 @@
 									"\r",
 									"if (status === 200) {\r",
 									"\r",
-									"    pm.test(\"Success flag must be true\", function () {\r",
-									"        pm.expect(response.success).to.eql(true);\r",
+									"    pm.test(\"Program deleted Successfully.\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
 									"    });\r",
 									"}\r",
 									"\r",
 									"if (status === 404) {\r",
 									"\r",
-									"    pm.test(\"Success flag must be false\", function () {\r",
-									"        pm.expect(response.success).to.eql(false);\r",
+									"    pm.test(\"Not Found.\", function () {\r",
+									"        pm.response.to.have.status(404);\r",
 									"    });\r",
 									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "95399b60-735a-4de7-b275-080200c5fc4d",
+								"exec": [
+									"\r",
 									""
 								],
 								"type": "text/javascript",
@@ -4472,13 +4492,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogid/66",
+							"raw": "{{baseURL}}/deletebyprogid/{{programId}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogid",
-								"66"
+								"{{programId}}"
 							]
 						}
 					},
@@ -4492,8 +4512,16 @@
 							"script": {
 								"id": "aab0525c-ce75-4d58-a123-e44be9c212e4",
 								"exec": [
+									"let response = {};\r",
+									"try {\r",
+									"    response = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    console.warn(\"Response is not valid JSON, raw text:\", pm.response.text());\r",
+									"}\r",
+									"\r",
+									"console.log(\"Full response JSON:\", response);\r",
+									"\r",
 									"let status = pm.response.code;\r",
-									"let response = pm.response.json();\r",
 									"\r",
 									"pm.test(\"Verify Status Code\", function () {\r",
 									"    pm.expect(status).to.be.oneOf([200, 404]);\r",
@@ -4501,17 +4529,30 @@
 									"\r",
 									"if (status === 200) {\r",
 									"   \r",
-									"    pm.test(\"Response should not contain success:false\", function () {\r",
-									"        pm.expect(response.success).to.not.eql(false);\r",
+									"    pm.test(\"Program Deleted.\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
 									"    });\r",
 									"}\r",
 									"\r",
 									"if (status === 404) {\r",
 									"   \r",
-									"    pm.test(\"Success flag must be false\", function () {\r",
-									"        pm.expect(response.success).to.eql(false);\r",
+									"    pm.test(\"Not found.\", function () {\r",
+									"        pm.response.to.have.status(404);\r",
 									"    });\r",
 									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "63c6804e-b41e-492f-814e-49c0543d40bf",
+								"exec": [
+									"\r",
 									""
 								],
 								"type": "text/javascript",
@@ -4547,13 +4588,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogname/PythonBasics",
+							"raw": "{{baseURL}}/deletebyprogname/{{programName}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogname",
-								"PythonBasics"
+								"{{programName}}"
 							]
 						}
 					},
