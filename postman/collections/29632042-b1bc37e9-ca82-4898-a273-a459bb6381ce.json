@@ -5116,7 +5116,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Skill by Skill Id-Jaanvi",
+					"name": "Delete Skill by Skill Id",
 					"event": [
 						{
 							"listen": "prerequest",
