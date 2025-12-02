@@ -2077,11 +2077,7 @@
 									"        });\r",
 									"    }\r",
 									"}\r",
-									"if (pm.response.code === 401) {\r",
-									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
-									"        pm.response.to.have.status(401);\r",
-									"    });\r",
-									"}"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
