@@ -4437,6 +4437,20 @@
 								"packages": {},
 								"requests": {}
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "95399b60-735a-4de7-b275-080200c5fc4d",
+								"exec": [
+									"let programID = pm.environment.get(\"programId\");\r",
+									"console.log(\"Deleting program with programid\",programID);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
 						}
 					],
 					"id": "29632042-1b4272c4-7679-487e-8a44-3d82b4f59ad4",
