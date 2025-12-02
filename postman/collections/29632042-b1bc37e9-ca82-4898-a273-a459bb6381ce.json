@@ -4450,8 +4450,7 @@
 							"script": {
 								"id": "95399b60-735a-4de7-b275-080200c5fc4d",
 								"exec": [
-									"//let programID = pm.environment.get(\"programId\");\r",
-									"//console.log(\"Deleting program with programid\",programID);\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript",
