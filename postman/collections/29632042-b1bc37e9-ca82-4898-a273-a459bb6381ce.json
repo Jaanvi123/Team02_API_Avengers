@@ -1420,7 +1420,7 @@
 					]
 				},
 				{
-					"name": "AssignProgram/Batch to User-Yogini",
+					"name": "AssignProgram/Batch to User",
 					"event": [
 						{
 							"listen": "test",
@@ -1500,7 +1500,7 @@
 					"response": []
 				},
 				{
-					"name": "All Users-Yogini",
+					"name": "All Users",
 					"event": [
 						{
 							"listen": "test",
@@ -1578,7 +1578,7 @@
 					"response": []
 				},
 				{
-					"name": "All Active User-Yogini",
+					"name": "All Active User",
 					"event": [
 						{
 							"listen": "test",
@@ -1666,7 +1666,7 @@
 					"response": []
 				},
 				{
-					"name": "Active user emails-Yogini",
+					"name": "Active user emails",
 					"event": [
 						{
 							"listen": "test",
@@ -1741,7 +1741,7 @@
 					"response": []
 				},
 				{
-					"name": "All Roles-Yogini",
+					"name": "All Roles",
 					"event": [
 						{
 							"listen": "test",
@@ -1816,7 +1816,7 @@
 					"response": []
 				},
 				{
-					"name": "User Info by UserId-Yogini",
+					"name": "User Info by UserId",
 					"event": [
 						{
 							"listen": "test",
@@ -1892,7 +1892,7 @@
 					"response": []
 				},
 				{
-					"name": "Users with roles-Yogini",
+					"name": "Users with roles",
 					"event": [
 						{
 							"listen": "test",
@@ -1968,7 +1968,7 @@
 					"response": []
 				},
 				{
-					"name": "Role Status by Id-Yogini",
+					"name": "Role Status by Id",
 					"event": [
 						{
 							"listen": "test",
@@ -4088,7 +4088,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"batchDescription\": \"{{batchDescription}}\",\r\n        \"batchId\": \"{{batchId}}\",\r\n        \"batchName\": \"{{batchName}}\",\r\n        \"batchNoOfClasses\": \"{{batchNoOfClasses}}\",\r\n        \"batchStatus\": \"{{batchStatus}}\",\r\n        \"programId\": \"{{programId}}\",\r\n        \"programName\": \"{{programName}}\"\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"batchDescription\": \"Team2 Batch Description\",\r\n        \"batchId\": \"{{batchId}}\",\r\n        \"batchName\": \"{{batchName}}\",\r\n        \"batchNoOfClasses\": \"2\",\r\n        \"batchStatus\": \"Active\",\r\n        \"programId\": \"{{programId}}\",\r\n        \"programName\": \"{{programName}}\"\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4171,7 +4171,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"batchDescription\": \"{{batchDescription}}\",\r\n        \"batchId\": \"{{batchId}}\",\r\n        \"batchName\": \"{{batchName}}\",\r\n        \"batchNoOfClasses\": \"{{batchNoOfClasses}}\",\r\n        \"batchStatus\": \"{{batchStatus}}\",\r\n        \"programId\": \"{{programId}}\",\r\n        \"programName\": \"{{programName}}\"\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"batchDescription\": \"Team2 Batch Description\",\r\n        \"batchId\": \"{{batchId}}\",\r\n        \"batchName\": \"{{batchName}}\",\r\n        \"batchNoOfClasses\": \"2\",\r\n        \"batchStatus\": \"Active\",\r\n        \"programId\": \"{{programId}}\",\r\n        \"programName\": \"{{programName}}\"\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4292,7 +4292,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"batchDescription\": \"{{batchDescription}}\",\r\n        \"batchId\": {{batchId}},\r\n        \"batchName\": \"{{batchName}}\",\r\n        \"batchNoOfClasses\": \"{{batchNoOfClasses}}\",\r\n        \"batchStatus\": \"{{batchStatus}}\",\r\n        \"programId\": {{programId}},\r\n        \"programName\": \"{{programName}}\"\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"batchDescription\": \"Team2 Batch Description\",\r\n        \"batchId\": {{batchId}},\r\n        \"batchName\": \"{{batchName}}\",\r\n        \"batchNoOfClasses\": \"2\",\r\n        \"batchStatus\": \"Active\",\r\n        \"programId\": {{programId}},\r\n        \"programName\": \"{{programName}}\"\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
