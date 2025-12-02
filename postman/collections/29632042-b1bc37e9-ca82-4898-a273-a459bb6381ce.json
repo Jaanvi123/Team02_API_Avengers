@@ -2281,7 +2281,7 @@
 					"response": []
 				},
 				{
-					"name": "All Users with roles-Yogini",
+					"name": "All Users with roles",
 					"event": [
 						{
 							"listen": "test",
