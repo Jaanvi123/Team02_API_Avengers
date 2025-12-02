@@ -284,7 +284,7 @@
 					"response": []
 				},
 				{
-					"name": "Forgot Password/Confirm Email-Ramya",
+					"name": "Forgot Password/Confirm Email",
 					"event": [
 						{
 							"listen": "test",
@@ -2944,7 +2944,7 @@
 					"response": []
 				},
 				{
-					"name": "Get All Programs-Darshana",
+					"name": "Get All Programs",
 					"event": [
 						{
 							"listen": "test",
@@ -3144,7 +3144,7 @@
 					]
 				},
 				{
-					"name": "Get Program By ProgramId-Darshana",
+					"name": "Get Program By ProgramId",
 					"event": [
 						{
 							"listen": "test",
