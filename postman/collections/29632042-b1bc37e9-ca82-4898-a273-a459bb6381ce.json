@@ -4484,7 +4484,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Program By Program Name-Darshana",
+					"name": "Delete Program By Program Name",
 					"event": [
 						{
 							"listen": "test",
