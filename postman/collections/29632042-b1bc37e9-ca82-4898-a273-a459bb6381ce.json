@@ -1074,7 +1074,7 @@
 					]
 				},
 				{
-					"name": "Create Program Batch-Shital",
+					"name": "Create Program Batch",
 					"event": [
 						{
 							"listen": "test",
@@ -3981,7 +3981,7 @@
 					]
 				},
 				{
-					"name": "GetAllBatches-Shital",
+					"name": "GetAllBatches",
 					"id": "29632042-1b6a9064-3b22-4fb1-a523-ba635287f408",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4012,7 +4012,7 @@
 					"response": []
 				},
 				{
-					"name": "GetBYBatchId-Shital",
+					"name": "GetBYBatchId",
 					"event": [
 						{
 							"listen": "test",
@@ -4110,7 +4110,7 @@
 					"response": []
 				},
 				{
-					"name": "GetBatchByBatchName-Shital",
+					"name": "GetBatchByBatchName",
 					"event": [
 						{
 							"listen": "test",
@@ -4193,7 +4193,7 @@
 					"response": []
 				},
 				{
-					"name": "GetBatchByProgramId-Shital",
+					"name": "GetBatchByProgramId",
 					"event": [
 						{
 							"listen": "test",
@@ -4314,7 +4314,7 @@
 					"response": []
 				},
 				{
-					"name": "UpdateByBatchId-Shital",
+					"name": "UpdateByBatchId",
 					"event": [
 						{
 							"listen": "test",
@@ -5387,7 +5387,7 @@
 					"response": []
 				},
 				{
-					"name": "DeleteBatchByBatchId-Shital",
+					"name": "DeleteBatchByBatchId",
 					"event": [
 						{
 							"listen": "test",
