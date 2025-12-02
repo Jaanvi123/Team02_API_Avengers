@@ -4541,7 +4541,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Skill-Jaanvi",
+					"name": "Create Skill",
 					"event": [
 						{
 							"listen": "prerequest",
