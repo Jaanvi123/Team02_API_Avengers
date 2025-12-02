@@ -2458,7 +2458,7 @@
 					"response": []
 				},
 				{
-					"name": "Users by roleId V2-Yogini",
+					"name": "Users by roleId V2",
 					"event": [
 						{
 							"listen": "test",
@@ -2530,7 +2530,7 @@
 					"response": []
 				},
 				{
-					"name": "User BatchId by User Id-Yogini",
+					"name": "User BatchId by User Id",
 					"event": [
 						{
 							"listen": "test",
@@ -2603,7 +2603,7 @@
 					"response": []
 				},
 				{
-					"name": "User Details by Id-Yogini",
+					"name": "User Details by Id",
 					"event": [
 						{
 							"listen": "test",
