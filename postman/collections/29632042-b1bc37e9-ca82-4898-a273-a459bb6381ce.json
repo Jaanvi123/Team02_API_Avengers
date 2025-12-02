@@ -4587,7 +4587,7 @@
 									"}\r",
 									"\r",
 									"\r",
-									"let randomSkill = generateRandomString(8); // You can change 8 to any length\r",
+									"let randomSkill = generateRandomString(8); \r",
 									"\r",
 									"\r",
 									"pm.environment.set(\"randomSkill\", randomSkill);\r",
