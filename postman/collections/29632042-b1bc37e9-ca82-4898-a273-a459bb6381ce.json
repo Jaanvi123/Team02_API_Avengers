@@ -2050,7 +2050,7 @@
 					"response": []
 				},
 				{
-					"name": "Update User Role Program Batch Status-Yogini",
+					"name": "Update User Role Program Batch Status",
 					"event": [
 						{
 							"listen": "test",
@@ -2127,7 +2127,7 @@
 					"response": []
 				},
 				{
-					"name": "User by Program Batches-Yogini",
+					"name": "User by Program Batches",
 					"event": [
 						{
 							"listen": "test",
@@ -2204,7 +2204,7 @@
 					"response": []
 				},
 				{
-					"name": "User by Program-Yogini",
+					"name": "User by Program",
 					"event": [
 						{
 							"listen": "test",
