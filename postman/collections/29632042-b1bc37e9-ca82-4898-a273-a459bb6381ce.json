@@ -1976,8 +1976,9 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "50a7a2a0-326c-4d00-912c-b53a21ca98ec",
 								"exec": [
-									"pm.test(\"Get Role Status by Id: Request completed successfully\", function () { \r",
+									"pm.test(\"Get Role Status by Id: Request completed successfully\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"if (pm.response.code === 404) {\r",
@@ -1994,12 +1995,15 @@
 									"        });\r",
 									"    }\r",
 									"}\r",
-									""
+									"if (pm.response.code === 401) {\r",
+									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
+									"        pm.response.to.have.status(401);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "50a7a2a0-326c-4d00-912c-b53a21ca98ec"
+								"requests": {}
 							}
 						}
 					],
