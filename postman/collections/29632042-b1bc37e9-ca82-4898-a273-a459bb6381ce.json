@@ -5319,7 +5319,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete User-Yogini",
+					"name": "Delete User",
 					"event": [
 						{
 							"listen": "test",
