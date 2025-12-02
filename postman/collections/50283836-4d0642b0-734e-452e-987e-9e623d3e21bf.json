@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "50283836-4d0642b0-734e-452e-987e-9e623d3e21bf",
-		"name": "UserLoginModule-Ramya",
+		"name": "UserLoginModule",
 		"description": "Testing all the endpoints under User Login Controller:\n\n1. User Sign in\n    \n2. Forgot Password Confirm Email\n    \n3. Reset Password\n    \n4. User Logout",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
