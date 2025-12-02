@@ -2337,6 +2337,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "2e7d5013-dd2b-4141-b083-339afb17a20f",
 								"exec": [
 									"pm.test(\"Get Users by roleId: Request completed successfully\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -2356,25 +2357,28 @@
 									"        pm.response.to.have.status(404);\r",
 									"    });\r",
 									"}\r",
-									"\r",
+									"if (pm.response.code === 401) {\r",
+									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
+									"        pm.response.to.have.status(401);\r",
+									"    });\r",
+									"}\r",
 									""
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "2e7d5013-dd2b-4141-b083-339afb17a20f"
+								"requests": {}
 							}
 						},
 						{
 							"listen": "prerequest",
 							"script": {
+								"id": "291db869-c299-414b-b0c5-066426134b80",
 								"exec": [
 									""
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "291db869-c299-414b-b0c5-066426134b80"
+								"requests": {}
 							}
 						}
 					],
