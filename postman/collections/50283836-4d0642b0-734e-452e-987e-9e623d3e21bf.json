@@ -689,7 +689,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"Marian2@gmail.com\",\r\n  \"password\": \"{{randomPassword}}\"\r\n}",
+					"raw": "{\r\n  \"userLoginEmailId\": \"Marian2@gmail.com\",\r\n  \"password\": \"{{password}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
