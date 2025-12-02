@@ -4410,6 +4410,17 @@
 							"script": {
 								"id": "08bfaf3d-0fb7-495b-992f-2a2634e034a3",
 								"exec": [
+									"let response = {};\r",
+									"try {\r",
+									"    response = pm.response.json();\r",
+									"} catch (e) {\r",
+									"    console.warn(\"Response is not valid JSON, raw text:\", pm.response.text());\r",
+									"}\r",
+									"\r",
+									"console.log(\"Full response JSON:\", response);\r",
+									"\r",
+									"\r",
+									"\r",
 									"let status = pm.response.code;\r",
 									"let response = pm.response.json();  \r",
 									"\r",
