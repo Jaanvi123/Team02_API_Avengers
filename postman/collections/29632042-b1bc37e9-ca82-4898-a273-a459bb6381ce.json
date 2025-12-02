@@ -4494,7 +4494,7 @@
 								"exec": [
 									"let status = pm.response.code;\r",
 									"let response = pm.response.json();\r",
-									"let programName = pm.environment.get(\"programName\") || \"\";\r",
+									"//let programName = pm.environment.get(\"programName\") || \"\";\r",
 									"\r",
 									"pm.test(\"Verify Status Code\", function () {\r",
 									"    pm.expect(status).to.be.oneOf([200, 404]);\r",
@@ -4548,13 +4548,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogname/PythonBasics",
+							"raw": "{{baseURL}}/deletebyprogname/{{programName}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogname",
-								"PythonBasics"
+								"{{programName}}"
 							]
 						}
 					},
