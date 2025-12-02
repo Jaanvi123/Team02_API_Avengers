@@ -5168,11 +5168,12 @@
 					"response": []
 				},
 				{
-					"name": "User log out-Ramya",
+					"name": "User log out",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
+								"id": "255b576b-960c-461d-9015-041992e4d5d9",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -5180,8 +5181,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "255b576b-960c-461d-9015-041992e4d5d9"
+								"requests": {}
 							}
 						}
 					],
