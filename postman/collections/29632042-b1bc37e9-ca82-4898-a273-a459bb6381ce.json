@@ -207,7 +207,7 @@
 									"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
 									"\r",
 									"//Generate random email. API only accepts @gmail.com\r",
-									"pm.environment.set(\"userEmail\", pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"@gmail.com\");\r",
+									"pm.environment.set(\"userEmail\", pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"2@gmail.com\");\r",
 									"console.log(pm.environment.get('userEmail'));\r",
 									"console.log(pm.request.body.raw);\r",
 									"\r",
