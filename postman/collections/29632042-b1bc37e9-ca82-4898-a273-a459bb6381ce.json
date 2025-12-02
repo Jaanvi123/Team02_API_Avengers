@@ -2058,6 +2058,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "69ab13a9-c63e-44cd-8a64-2209e8649078",
 								"exec": [
 									"pm.test(\"User has been successfully assigned to Program/Batches\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -2076,12 +2077,15 @@
 									"        });\r",
 									"    }\r",
 									"}\r",
-									""
+									"if (pm.response.code === 401) {\r",
+									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
+									"        pm.response.to.have.status(401);\r",
+									"    });\r",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "69ab13a9-c63e-44cd-8a64-2209e8649078"
+								"requests": {}
 							}
 						}
 					],
