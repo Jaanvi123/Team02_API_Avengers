@@ -3743,7 +3743,7 @@
 					]
 				},
 				{
-					"name": "Update Program By ProgramId-Darshana",
+					"name": "Update Program By ProgramId",
 					"event": [
 						{
 							"listen": "test",
