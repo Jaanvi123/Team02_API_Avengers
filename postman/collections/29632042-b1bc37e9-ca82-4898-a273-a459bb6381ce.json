@@ -2298,9 +2298,9 @@
 									"    const response = pm.response.json();\r",
 									"    //Extract message from response body\r",
 									"    let errorMsg = response.message;\r",
-									"   /* pm.test(\"Invalid endpoint\", function () {\r",
-									"        pm.expect(response).to.have.property('message');\r",
-									"    });*/\r",
+									"    /* pm.test(\"Invalid endpoint\", function () {\r",
+									"         pm.expect(response).to.have.property('message');\r",
+									"     });*/\r",
 									"\r",
 									"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
 									"        pm.response.to.have.status(404);\r",
@@ -4542,13 +4542,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogid/{{programId}}}",
+							"raw": "{{baseURL}}/deletebyprogid/{{programId}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogid",
-								"{{programId}}}"
+								"{{programId}}"
 							]
 						}
 					},
