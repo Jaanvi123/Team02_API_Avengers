@@ -4481,13 +4481,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogid/{{programId}}",
+							"raw": "{{baseURL}}/deletebyprogid/45",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogid",
-								"{{programId}}"
+								"45"
 							]
 						}
 					},
