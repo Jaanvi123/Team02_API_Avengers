@@ -289,9 +289,8 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c11ff1a8-2366-4ea4-a985-2e334e5e8e16",
+								"id": "ad2146b8-da93-4c31-984f-1ecee305026f",
 								"exec": [
-									"// Safely parse JSON, if any\r",
 									"let json = {};\r",
 									"try {\r",
 									"  json = pm.response.json();\r",
@@ -303,12 +302,9 @@
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"\r",
-									"// Only proceed if status is 201\r",
 									"if (pm.response.code === 201) {\r",
-									"  // Extract fields\r",
 									"  const token = json.token;\r",
 									"\r",
-									"// Field validations\r",
 									"pm.test(\"Response has expected token\", function () {\r",
 									"  pm.expect(json).to.be.an(\"object\");\r",
 									"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
@@ -361,8 +357,7 @@
 									"});\r",
 									"}\r",
 									"if (pm.response.code === 400) {\r",
-									"    //Extract message from response body\r",
-									"    let errorMsg = json.message;\r",
+									"     let errorMsg = json.message;\r",
 									"\r",
 									"    pm.test(\"Bad Request, Invalid details : \" + errorMsg, function () {\r",
 									"        pm.response.to.have.status(400);\r",
