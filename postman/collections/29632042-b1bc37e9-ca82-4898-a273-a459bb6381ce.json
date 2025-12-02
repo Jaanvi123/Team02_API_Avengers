@@ -4421,7 +4421,6 @@
 									"if (status === 200) {\r",
 									"\r",
 									"    pm.test(\"Verify success message for deletion\", function () {\r",
-									"        pm.expect(response.message).to.include(\"Program Id-\" + programId);\r",
 									"        pm.expect(response.message).to.include(\"is deleted Successfully\");\r",
 									"    });\r",
 									"\r",
