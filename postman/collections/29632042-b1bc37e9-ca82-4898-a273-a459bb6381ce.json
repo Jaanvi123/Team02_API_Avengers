@@ -2257,15 +2257,9 @@
 									"});\r",
 									"\r",
 									"if (pm.response.code === 404) {\r",
-									"\r",
-									"    //Extract response from Json body of API response\r",
 									"    const response = pm.response.json();\r",
-									"    //Extract message from response body\r",
+									" \r",
 									"    let errorMsg = response.message;\r",
-									"    /* pm.test(\"Invalid endpoint\", function () {\r",
-									"         pm.expect(response).to.have.property('message');\r",
-									"     });*/\r",
-									"\r",
 									"    pm.test(\"Bad Request : \" + errorMsg, function () {\r",
 									"        pm.response.to.have.status(404);\r",
 									"    });\r",
@@ -2427,6 +2421,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "e1b9b4e1-adf2-4879-bb38-ab68ff6a09d7",
 								"exec": [
 									"pm.test(\"Get Users by roleId V2: Request completed successfully\", function () { \r",
 									"    pm.response.to.have.status(200);\r",
@@ -2449,8 +2444,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "e1b9b4e1-adf2-4879-bb38-ab68ff6a09d7"
+								"requests": {}
 							}
 						}
 					],
