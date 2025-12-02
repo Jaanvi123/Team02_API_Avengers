@@ -405,7 +405,7 @@
 					"response": []
 				},
 				{
-					"name": "Reset Password-Ramya",
+					"name": "Reset Password",
 					"event": [
 						{
 							"listen": "test",
@@ -3230,7 +3230,7 @@
 					"response": []
 				},
 				{
-					"name": "Get All Praograms With Users-Darshana",
+					"name": "Get All Praograms With Users",
 					"event": [
 						{
 							"listen": "test",
