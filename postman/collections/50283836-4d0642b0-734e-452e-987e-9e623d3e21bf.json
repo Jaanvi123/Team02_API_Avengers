@@ -310,13 +310,13 @@
 							"} catch (e) {\r",
 							"  json = {};\r",
 							"}\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"  pm.response.to.have.status(200);\r",
-							"});\r",
+							"\r",
 							"\r",
 							"if (pm.response.code === 200) {\r",
 							"  const token = json.token;\r",
-							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
 							"pm.test(\"Response has expected token\", function () {\r",
 							"  pm.expect(json).to.be.an(\"object\");\r",
 							"  pm.expect(json, \"Missing token\").to.have.property(\"token\");\r",
@@ -406,7 +406,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userLoginEmailId\": \"{{userEmail}}\",\r\n  \"password\": \"{{password}}\"\r\n}",
+					"raw": "{\r\n  \"userLoginEmailId\": \"Mervin@@gmail.com\",\r\n  \"password\": \"{{password}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
