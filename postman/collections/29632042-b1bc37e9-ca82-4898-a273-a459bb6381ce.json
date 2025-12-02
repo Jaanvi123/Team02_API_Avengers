@@ -201,7 +201,7 @@
 									"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \" + cleanedPhoneNumber);\r",
 									"console.log(pm.collectionVariables.get('randomPhNumber'));\r",
 									"\r",
-									"pm.environment.set(\"userEmail\", pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"2@gmail.com\");\r",
+									"pm.environment.set(\"userEmail\", pm.variables.replaceIn(\"{{$randomFirstName}}\") + \"XXYYZZ@gmail.com\");\r",
 									"console.log(pm.environment.get('userEmail'));\r",
 									"console.log(pm.request.body.raw);\r",
 									"\r",
