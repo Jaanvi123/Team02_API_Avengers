@@ -4411,8 +4411,7 @@
 								"id": "08bfaf3d-0fb7-495b-992f-2a2634e034a3",
 								"exec": [
 									"let status = pm.response.code;\r",
-									"let response = pm.response.json();\r",
-									"//let programId = pm.environment.get(\"programId\") || \"\";   \r",
+									"let response = pm.response.json();  \r",
 									"\r",
 									"pm.test(\"Status code is either 200 or 404\", function () {\r",
 									"    pm.expect(status).to.be.oneOf([200, 404]);\r",
