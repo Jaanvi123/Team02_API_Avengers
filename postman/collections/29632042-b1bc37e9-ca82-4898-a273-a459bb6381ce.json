@@ -4462,6 +4462,53 @@
 				},
 				{
 					"name": "Delete Program By ProgramId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "08bfaf3d-0fb7-495b-992f-2a2634e034a3",
+								"exec": [
+									"let status = pm.response.code;\r",
+									"let response = pm.response.json();\r",
+									"let programId = pm.variables.get(\"programId\") || \"\";   // if using environment variable\r",
+									"\r",
+									"// --- Verify Response Status Code ---\r",
+									"pm.test(\"Status code is either 200 or 404\", function () {\r",
+									"    pm.expect(status).to.be.oneOf([200, 404]);\r",
+									"});\r",
+									"\r",
+									"// --- SUCCESS CASE: 200 ---\r",
+									"if (status === 200) {\r",
+									"\r",
+									"    pm.test(\"Verify success message for deletion\", function () {\r",
+									"        pm.expect(response.message).to.include(\"Program Id-\" + programId);\r",
+									"        pm.expect(response.message).to.include(\"is deleted Successfully\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Success flag must be true\", function () {\r",
+									"        pm.expect(response.success).to.eql(true);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// --- FAILURE CASE: 404 ---\r",
+									"if (status === 404) {\r",
+									"\r",
+									"    pm.test(\"Verify error message for record not found\", function () {\r",
+									"        pm.expect(response.message).to.include(\"no record found with programId\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Success flag must be false\", function () {\r",
+									"        pm.expect(response.success).to.eql(false);\r",
+									"    });\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
 					"id": "29632042-1b4272c4-7679-487e-8a44-3d82b4f59ad4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -4495,13 +4542,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/deletebyprogid/66",
+							"raw": "{{baseURL}}/deletebyprogid/{{programId}}}",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"deletebyprogid",
-								"66"
+								"{{programId}}}"
 							]
 						}
 					},
