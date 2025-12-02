@@ -573,7 +573,7 @@
 					"response": []
 				},
 				{
-					"name": "User Login-Ramya",
+					"name": "User Login",
 					"event": [
 						{
 							"listen": "test",
@@ -1431,9 +1431,9 @@
 								"id": "b4b5b9ed-3383-4a43-866e-3793d6aa259d",
 								"exec": [
 									"if (pm.response.code === 200) {\r",
-									"pm.test(\"User has been successfully assigned to Program/Batches\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
+									"    pm.test(\"User has been successfully assigned to Program/Batches\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
 									"}\r",
 									"if (pm.response.code === 401) {\r",
 									"    pm.test(\"Status code is 401 unauthorized user\", function () {\r",
