@@ -4437,7 +4437,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Program By ProgramId-Darshana",
+					"name": "Delete Program By ProgramId",
 					"id": "29632042-1b4272c4-7679-487e-8a44-3d82b4f59ad4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
