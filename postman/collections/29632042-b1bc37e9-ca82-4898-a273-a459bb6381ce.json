@@ -2825,6 +2825,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "a82175bd-d2fa-44c3-905b-e3a37fd0b8ad",
 								"exec": [
 									"pm.test(\"User loginStatus has been successfully updated\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -2843,12 +2844,17 @@
 									"            pm.response.to.have.status(404);\r",
 									"        });\r",
 									"    }\r",
+									"}\r",
+									"if (pm.response.code === 400) {\r",
+									"    const errResponse = pm.response.json();\r",
+									"    pm.test(\"Bad Request, Check Input Parameters: \" + errResponse.message, function () {\r",
+									"        pm.response.to.have.status(400);\r",
+									"    });\r",
 									"}"
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "a82175bd-d2fa-44c3-905b-e3a37fd0b8ad"
+								"requests": {}
 							}
 						}
 					],
@@ -2871,7 +2877,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmail\": \"{{userEmail}}\",\r\n  \"loginStatus\": \"Active\",\r\n  \"status\": \"Active\"\r\n}",
+							"raw": "{\r\n  \"userLoginEmail\": \"{{userEmail}}\",\r\n  \"loginStatus\": \"Inactive\",\r\n  \"status\": \"Active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
