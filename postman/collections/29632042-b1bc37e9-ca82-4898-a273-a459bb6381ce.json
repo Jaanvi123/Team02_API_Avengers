@@ -195,7 +195,6 @@
 								"exec": [
 									"const rawPhoneNumber = pm.variables.replaceIn('{{$randomPhoneNumber}}');\r",
 									"console.log(\"raw phone:\" + rawPhoneNumber);\r",
-									"let currentEnvironment = pm.environment.name;\r",
 									"\r",
 									"const cleanedPhoneNumber = +rawPhoneNumber.replace(/-/g, '');\r",
 									"pm.collectionVariables.set(\"randomPhNumber\", \"+1 \" + cleanedPhoneNumber);\r",
