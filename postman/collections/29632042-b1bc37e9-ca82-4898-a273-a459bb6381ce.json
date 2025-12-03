@@ -2600,6 +2600,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "8751b8fa-579c-41ad-b0cf-225bbda5d9a7",
 								"exec": [
 									"pm.test(\"Get User details by Id: Request completed successfully\", function () { \r",
 									"    pm.response.to.have.status(200);\r",
@@ -2622,8 +2623,7 @@
 								],
 								"type": "text/javascript",
 								"packages": {},
-								"requests": {},
-								"id": "8751b8fa-579c-41ad-b0cf-225bbda5d9a7"
+								"requests": {}
 							}
 						}
 					],
