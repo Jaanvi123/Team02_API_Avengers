@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "50283836-4d0642b0-734e-452e-987e-9e623d3e21bf",
+		"name": "UserLoginModule-Ramya",
+		"description": "Testing all the endpoints under User Login Controller:\n\n1. User Sign in\n    \n2. Forgot Password Confirm Email\n    \n3. Reset Password\n    \n4. User Logout",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cabcb04-4a31-4736-ac3e-df9f6d4aa457",
+						"exec": [
+							"let json = pm.response.json();\r",
+							"\r",
+							"// Extract token from response\r",
+							"let token = json.token;\r",
+							"\r",
+							"// Save token to environment\r",
+							"if (token) {\r",
+							"    pm.environment.set(\"auth_token\", token);\r",
+							"    pm.globals.set(\"auth_token\", token);\r",
+							"    console.log(\"Captured token:\", token);\r",
+							"} else {\r",
+							"    pm.test(\"Token not found\", function () {\r",
+							"        pm.expect.fail(\"Response did not contain 'token' field\");\r",
+							"    });\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"id": "50283836-8664e6e0-beb7-4ef0-adcc-7b2738e287ef",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userLoginEmailId\": \"team2@gmail.com\",\r\n  \"password\": \"ApiHackathon@2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logoutlms",
+			"id": "50283836-8a0bbf35-b6a3-4f8f-a486-f075b70291da",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMkBnbWFpbC5jb20iLCJpYXQiOjE3NjM4NTA4MjgsImV4cCI6MTc2Mzg3OTYyOH0.7mUESvBudM4vRfW9O9NM57L-WKXK7421QGLIhWVmHY865FLUW4j4uHXMREFRrP2jtmjUwY3zzYoCc4O2Arp3LA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/logoutlms",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"logoutlms"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b5f8ede1-db11-4fe3-9f19-1b6c14a31c45",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a4b612e6-0e81-41d2-8547-ff8b3d285f3c",
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
