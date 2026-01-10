@@ -121,7 +121,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userLoginEmailId\": \"{{team2userEmail}}\",\r\n  \"password\": \"{{team2password}}\"\r\n}",
+							"raw": "{\r\n  \"userLoginEmailId\": \"{{team5userEmail}}\",\r\n  \"password\": \"{{team5password}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
