@@ -1467,7 +1467,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{team2_auth_token}}",
+									"value": "{{team5_auth_token}}",
 									"type": "string"
 								}
 							]
